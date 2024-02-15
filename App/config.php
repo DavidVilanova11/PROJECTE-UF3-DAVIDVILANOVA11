@@ -1,3 +1,3 @@
 <?php
-define('URL',$_SERVER['REQUEST_URI']);
+define('URL',$_SERVER['REQUEST_URI']); //
 ?>
