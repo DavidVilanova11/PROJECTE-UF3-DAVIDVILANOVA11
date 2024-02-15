@@ -125,16 +125,16 @@ class usuariController extends Controller
         header("Location: /usuari/index");
     }
 
-    public function addExtinguida()
+    public function addRecuperada()
     {
         $usuariModel = new Usuari();
         $id = $_GET['id'] ?? null;
         $params['title'] = "Afegir Extinguides";
         $params['usuari'] = $usuariModel->getById($id);
-        $extinguidaModel = new Extinguida();
-        $params['llista'] = $extinguidaModel->getExtinguidesByIdusuari($id); //aquí necessito el getExtinguidesByIdusuari que es tronba al model
+        $recuperadaModel = new Recuperada();
+        $params['llista'] = $recuperadaModel->getExtinguidesByIdusuari($id); //aquí necessito el getExtinguidesByIdusuari que es tronba al model
 
-        $this->render("extinguida/index", $params, "main");
+        $this->render("recuperada/index", $params, "main");
     }
 
     public function login()
@@ -191,15 +191,15 @@ class usuariController extends Controller
 
     public function logout()
     {
-        // $extinguidaModel = new Extinguida();
-        // $extinguida = array(
+        // $recuperadaModel = new Recuperada();
+        // $recuperada = array(
         //     "id" => $_POST['id'],
-        //     "num_extinguida" => $_POST['num_extinguida'],
-        //     "nom_extinguida" => $_POST['nom_extinguida'],
+        //     "num_recuperada" => $_POST['num_recuperada'],
+        //     "nom_recuperada" => $_POST['nom_recuperada'],
 
         // );
 
-        // $extinguidaModel->updateItemById($extinguida);
+        // $recuperadaModel->updateItemById($recuperada);
 
         $params = null;
 
@@ -208,15 +208,15 @@ class usuariController extends Controller
 
     // public function switchToLogin()
     // {
-    //     // $extinguidaModel = new Extinguida();
-    //     // $extinguida = array(
+    //     // $recuperadaModel = new Recuperada();
+    //     // $recuperada = array(
     //     //     "id" => $_POST['id'],
-    //     //     "num_extinguida" => $_POST['num_extinguida'],
-    //     //     "nom_extinguida" => $_POST['nom_extinguida'],
+    //     //     "num_recuperada" => $_POST['num_recuperada'],
+    //     //     "nom_recuperada" => $_POST['nom_recuperada'],
 
     //     // );
 
-    //     // $extinguidaModel->updateItemById($extinguida);
+    //     // $recuperadaModel->updateItemById($recuperada);
 
     //     $params = null;
 

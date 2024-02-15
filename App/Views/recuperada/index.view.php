@@ -10,16 +10,16 @@ include_once(__DIR__ . "/../templates/navbar.php");
 $_SESSION['id_entrenador_actual'] = $_GET['id'];
 
 ?>
-<form action="/extinguida/store" method="post" enctype="multipart/form-data" class="col-11 col-sm-9 col-md-7 col-lg-5 mx-auto border bg-light p-4 mt-4">
+<form action="/recuperada/store" method="post" enctype="multipart/form-data" class="col-11 col-sm-9 col-md-7 col-lg-5 mx-auto border bg-light p-4 mt-4">
   <h2><?php echo $params['entrenador']['nom_entrenador'] ?></h2>
   <div class="mb-3">
-    <label for="num_extinguida" class="form-label">Num extinguida</label>
-    <input type="number" class="form-control" name="num_extinguida" id="num_extinguida" aria-describedby="helpId" placeholder="Identificador del extinguida..." />
+    <label for="num_recuperada" class="form-label">Num recuperada</label>
+    <input type="number" class="form-control" name="num_recuperada" id="num_recuperada" aria-describedby="helpId" placeholder="Identificador del recuperada..." />
   </div>
 
   <div class="mb-3">
-    <label for="familiaExtinguida">Selecciona una família d'extinguidas:</label>
-    <select class="form-select" id="familiaExtinguida" name="familia_extinguida">
+    <label for="familiaRecuperada">Selecciona una família d'recuperadas:</label>
+    <select class="form-select" id="familiaRecuperada" name="familia_recuperada">
       <option value="Accipitridae">Accipitridae (Àguiles, Estepàries, Aufranys)</option>
       <option value="Alcedinidae">Alcedinidae (Martins Pescadors)</option>
       <option value="Anatidae">Anatidae (Ànecs, Oques, Cignes)</option>
@@ -36,13 +36,13 @@ $_SESSION['id_entrenador_actual'] = $_GET['id'];
   </div>
 
   <div class="mb-3">
-    <label for="nom_extinguida" class="form-label">Nom extinguida</label>
-    <input type="text" class="form-control" name="nom_extinguida" id="nom_extinguida" aria-describedby="helpId" placeholder="Nom de la espècie..." required />
+    <label for="nom_recuperada" class="form-label">Nom recuperada</label>
+    <input type="text" class="form-control" name="nom_recuperada" id="nom_recuperada" aria-describedby="helpId" placeholder="Nom de la espècie..." required />
   </div>
 
   <div class="mb-3">
     <label for="imatge">Selecciona una imatge:</label>
-    <input type="file" class="form-control-file" id="imatge" name="imatge_extinguida" accept="image/*" onchange="mostrarPrevisualitzacio()" required>
+    <input type="file" class="form-control-file" id="imatge" name="imatge_recuperada" accept="image/*" onchange="mostrarPrevisualitzacio()" required>
   </div>
   <div class="mb-3">
     <img id="previsualitzacio" class="img-fluid" style="display: none;" alt="Previsualització de la imatge">
@@ -50,7 +50,7 @@ $_SESSION['id_entrenador_actual'] = $_GET['id'];
 
   <div class="mb-3">
     <label for="video">Selecciona un fitxer de vídeo MP4 (Opc.):</label>
-    <input type="file" class="form-control-file" id="video" name="video_extinguida" accept="video/mp4">
+    <input type="file" class="form-control-file" id="video" name="video_recuperada" accept="video/mp4">
   </div>
 
   <div class="mb-3"> <!-- Aquí agaferem el mp del que venim a la url amb get i utilitzarem un hidden per recollir-la amb el post -->
@@ -102,31 +102,31 @@ $_SESSION['id_entrenador_actual'] = $_GET['id'];
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">ID extinguida</th>
-        <th scope="col">Número extinguida</th>
-        <th scope="col">Nom extinguida</th>
-        <th scope="col">Familia extinguida</th>
-        <th scope="col">Imatge extinguida</th>
-        <th scope="col">Vídeo extinguida</th>
+        <th scope="col">ID recuperada</th>
+        <th scope="col">Número recuperada</th>
+        <th scope="col">Nom recuperada</th>
+        <th scope="col">Familia recuperada</th>
+        <th scope="col">Imatge recuperada</th>
+        <th scope="col">Vídeo recuperada</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($params['llista'] as $extinguida) {
+      <?php foreach ($params['llista'] as $recuperada) {
         echo "<tr>";
-        echo "<td>" . $extinguida['id'] . "</td>";
-        echo "<td>" . $extinguida['num_extinguida'] . "</td>";
-        echo "<td>" . $extinguida['nom_extinguida'] . "</td>";
-        echo "<td>" . $extinguida['familia_extinguida'] . "</td>";
-        echo "<td>" . $extinguida['imatge_extinguida'] . "</td>";
-        if ($extinguida['video_extinguida'] != null) {
-          echo "<td>" . $extinguida['video_extinguida'] . "</td>";
+        echo "<td>" . $recuperada['id'] . "</td>";
+        echo "<td>" . $recuperada['num_recuperada'] . "</td>";
+        echo "<td>" . $recuperada['nom_recuperada'] . "</td>";
+        echo "<td>" . $recuperada['familia_recuperada'] . "</td>";
+        echo "<td>" . $recuperada['imatge_recuperada'] . "</td>";
+        if ($recuperada['video_recuperada'] != null) {
+          echo "<td>" . $recuperada['video_recuperada'] . "</td>";
         } else {
           echo "<td> No hi ha vídeo </td>";
         }
         echo "<td>
-          <a name='' id='' class='btn btn-danger' href='/extinguida/destroy/?id=" . $extinguida['id'] . "' role='button'>Remove</a>
-          <a name='' id='' class='btn btn-primary' href='/extinguida/update/?id=" . $extinguida['id'] . "' role='button'>Update</a>
+          <a name='' id='' class='btn btn-danger' href='/recuperada/destroy/?id=" . $recuperada['id'] . "' role='button'>Remove</a>
+          <a name='' id='' class='btn btn-primary' href='/recuperada/update/?id=" . $recuperada['id'] . "' role='button'>Update</a>
         </td>";
         echo "</tr>";
       } ?>

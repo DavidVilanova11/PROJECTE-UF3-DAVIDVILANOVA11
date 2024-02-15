@@ -1,7 +1,7 @@
 <?php
 include_once("App/Core/Controller.php");
 include_once("App/Models/Usuari.php");
-include_once("App/Models/Extinguida.php");
+include_once("App/Models/Recuperada.php");
 
 class InitialData extends Controller
 {
@@ -24,45 +24,45 @@ class InitialData extends Controller
 
             $usuariModel->create($usuari);
 
-            $extinguidaModel = new Extinguida();
+            $recuperadaModel = new Recuperada();
 
 
-            if ($extinguidaModel->getAll() == null) {
-                $extinguida = array(
-                    "id" => $_SESSION['id_extinguida']++,
-                    "num_extinguida" => "1",
-                    "familia_extinguida" => "Apodidae",
-                    "nom_extinguida" => "Acridotheres tristis",
-                    "imatge_extinguida" => "gavia.jpg",
-                    "video_extinguida" => "gavia.mp4",
+            if ($recuperadaModel->getAll() == null) {
+                $recuperada = array(
+                    "id" => $_SESSION['id_recuperada']++,
+                    "num_recuperada" => "1",
+                    "familia_recuperada" => "Apodidae",
+                    "nom_recuperada" => "Acridotheres tristis",
+                    "imatge_recuperada" => "gavia.jpg",
+                    "video_recuperada" => "gavia.mp4",
                     "id_usuari" => "1"
                 );
 
-                $extinguidaModel->create($extinguida);
+                $recuperadaModel->create($recuperada);
 
-                $extinguida = array(
-                    "id" => $_SESSION['id_extinguida']++,
-                    "num_extinguida" => "7",
-                    "familia_extinguida" => "Accipitridae",
-                    "nom_extinguida" => "Accipiter gentilis",
-                    "imatge_extinguida" => "Bird-Friendly-City.jpg",
-                    "video_extinguida" => null,
+                $recuperada = array(
+                    "id" => $_SESSION['id_recuperada']++,
+                    "num_recuperada" => "7",
+                    "familia_recuperada" => "Accipitridae",
+                    "nom_recuperada" => "Accipiter gentilis",
+                    "imatge_recuperada" => "Bird-Friendly-City.jpg",
+                    "video_recuperada" => null,
                     "id_usuari" => "1"
                 );
 
-                $extinguidaModel->create($extinguida);
+                $recuperadaModel->create($recuperada);
 
-                $extinguida = array(
-                    "id" => $_SESSION['id_extinguida']++,
-                    "num_extinguida" => "33",
-                    "familia_extinguida" => "Anatidae",
-                    "nom_extinguida" => "Nix",
-                    "imatge_extinguida" => "Acridotheres tristis.avif",
-                    "video_extinguida" => null,
+                $recuperada = array(
+                    "id" => $_SESSION['id_recuperada']++,
+                    "num_recuperada" => "33",
+                    "familia_recuperada" => "Anatidae",
+                    "nom_recuperada" => "Nix",
+                    "imatge_recuperada" => "Acridotheres tristis.avif",
+                    "video_recuperada" => null,
                     "id_usuari" => "1"
                 );
 
-                $extinguidaModel->create($extinguida);
+                $recuperadaModel->create($recuperada);
             }
         }
     }

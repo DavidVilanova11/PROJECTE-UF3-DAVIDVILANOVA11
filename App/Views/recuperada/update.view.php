@@ -7,23 +7,23 @@ if (!isset($_SESSION['user_logged']) && !isset($params['entrenador'])) {
 include_once(__DIR__ . "/../templates/navbar.php");
 
 // echo '<pre>';
-// var_dump($params['ocell']);
+// var_dump($params['recuperada']);
 // echo '</pre>';
 
 // die();
 
 ?>
 
-<form action="/ocell/store" method="post" enctype="multipart/form-data" class="col-11 col-sm-9 col-md-7 col-lg-5 mx-auto border bg-light p-4 mt-4">
-    <h2><?php echo $params['ocell']['nom_ocell'] ?></h2>
+<form action="/recuperada/store" method="post" enctype="multipart/form-data" class="col-11 col-sm-9 col-md-7 col-lg-5 mx-auto border bg-light p-4 mt-4">
+    <h2><?php echo $params['recuperada']['nom_recuperada'] ?></h2>
     <div class="mb-3">
-        <label for="num_ocell" class="form-label">Num ocell</label>
-        <input type="number" class="form-control" value="<?php echo $params['ocell']['num_ocell'] ?? null ?>" name="num_ocell" id="num_ocell" aria-describedby="helpId" placeholder="Identificador del ocell..." />
+        <label for="num_recuperada" class="form-label">Num recuperada</label>
+        <input type="number" class="form-control" value="<?php echo $params['recuperada']['num_recuperada'] ?? null ?>" name="num_recuperada" id="num_recuperada" aria-describedby="helpId" placeholder="Identificador del recuperada..." />
     </div>
 
     <div class="mb-3">
-        <label for="familiaOcell">Selecciona una família d'ocells:</label>
-        <select class="form-select" id="familiaOcell" name="familia_ocell" value="<?php echo $params['ocell']['familia_ocell'] ?? null ?>">
+        <label for="familiaRecuperada">Selecciona una família d'recuperadas:</label>
+        <select class="form-select" id="familiaRecuperada" name="familia_recuperada" value="<?php echo $params['recuperada']['familia_recuperada'] ?? null ?>">
             <option value="Accipitridae">Accipitridae (Àguiles, Estepàries, Aufranys)</option>
             <option value="Alcedinidae">Alcedinidae (Martins Pescadors)</option>
             <option value="Anatidae">Anatidae (Ànecs, Oques, Cignes)</option>
@@ -40,14 +40,14 @@ include_once(__DIR__ . "/../templates/navbar.php");
     </div>
 
     <div class="mb-3">
-        <label for="nom_ocell" class="form-label">Nom ocell</label>
-        <input type="text" class="form-control" value="<?php echo $params['ocell']['nom_ocell'] ?? null ?>" name="nom_ocell" id="nom_ocell" aria-describedby="helpId" placeholder="Nom de la espècie..." required />
+        <label for="nom_recuperada" class="form-label">Nom recuperada</label>
+        <input type="text" class="form-control" value="<?php echo $params['recuperada']['nom_recuperada'] ?? null ?>" name="nom_recuperada" id="nom_recuperada" aria-describedby="helpId" placeholder="Nom de la espècie..." required />
     </div>
 
     <div class="mb-3">
         <label for="imatge">Selecciona una imatge:</label>
-        <label for="imatge"><?php echo $params['ocell']['imatge_ocell'] ?? null ?> (Actual)</label>
-        <input type="file" class="form-control-file" id="imatge" name="imatge_ocell" accept="image/*" onchange="mostrarPrevisualitzacio()" required>
+        <label for="imatge"><?php echo $params['recuperada']['imatge_recuperada'] ?? null ?> (Actual)</label>
+        <input type="file" class="form-control-file" id="imatge" name="imatge_recuperada" accept="image/*" onchange="mostrarPrevisualitzacio()" required>
     </div>
     <div class="mb-3">
         <img id="previsualitzacio" class="img-fluid" style="display: none;" alt="Previsualització de la imatge">
@@ -55,8 +55,8 @@ include_once(__DIR__ . "/../templates/navbar.php");
 
     <div class="mb-3">
         <label for="video">Selecciona un fitxer de vídeo MP4 (Opc.):</label>
-        <label for="imatge"><?php echo $params['ocell']['video_ocell'] ?? null ?> (Actual)</label>
-        <input type="file" class="form-control-file" id="video" value="<?php echo $params['ocell']['video_ocell'] ?? null ?>" name="video_ocell" accept="video/mp4">
+        <label for="imatge"><?php echo $params['recuperada']['video_recuperada'] ?? null ?> (Actual)</label>
+        <input type="file" class="form-control-file" id="video" value="<?php echo $params['recuperada']['video_recuperada'] ?? null ?>" name="video_recuperada" accept="video/mp4">
     </div>
 
     <div class="mb-3"> <!-- Aquí agaferem el mp del que venim a la url amb get i utilitzarem un hidden per recollir-la amb el post -->
