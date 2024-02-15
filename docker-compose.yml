@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  php:
+    image: php:8.2.10-apache
+    volumes:
+      - ./:/var/www/html
+      - ./php.ini:/usr/local/etc/php/php.ini
+    expose:
+      - 80
+    ports:
+      - "80:80"
+    command: 
+      - /bin/bash
+      - -c
+      - |
+        a2enmod rewrite
+        chown -R www-data:www-data /var/www/html/Public
+        apache2-foreground

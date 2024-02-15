@@ -1,0 +1,12 @@
+{
+      "version": "0.2.0",
+      "configurations": [
+            {
+                  "name": "XDebug on docker", // お好きな名前
+                  "type": "php", // 今回はPHPなので
+                  "request": "launch",
+                  "port": 9003, // portはxdebug.iniで設定したportと一緒にする
+                  "stopOnEntry": true, // デバッグが有効なときにプログラムを中断する
+            }
+      ]
+}
