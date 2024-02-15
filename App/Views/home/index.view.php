@@ -2,18 +2,18 @@
 
 $_SESSION['actual_page'] = "home";
 
-if (!isset($_SESSION['user_logged']) && !isset($params['entrenador'])) {
-    header("Location: /entrenador/index");
+if (!isset($_SESSION['user_logged']) && !isset($params['usuari'])) {
+    header("Location: /usuari/index");
 }
 
 include_once("App/Views/templates/navbar.php");
 ?>
 <div class="container">
     <h1>HOME WEB</h1>
-    <p>Hola <?php if (isset($params['entrenador']['nom_entrenador'])) {
-                echo $params['entrenador']['nom_entrenador'];
+    <p>Hola <?php if (isset($params['usuari']['nom_usuari'])) {
+                echo $params['usuari']['nom_usuari'];
             } else {
-                echo $_SESSION['user_logged']['nom_entrenador'];
+                echo $_SESSION['user_logged']['nom_usuari'];
             }
 
             ?></p>

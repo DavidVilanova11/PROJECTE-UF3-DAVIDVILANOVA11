@@ -10,43 +10,43 @@ class usuariController extends Controller
     public function index()
     {
 
-        $entrenadorModel = new Entrenador();
+        $usuari = new Usuari();
 
-        if ($entrenadorModel->getAll() == null) {
+        if ($usuariModel->getAll() == null) {
             $initialData = new InitialData();
             $initialData->charge();
         }
 
-        $params['title'] = "Gestió Entrenadors";
-        $params['llista'] = $entrenadorModel->getAll();
+        $params['title'] = "Gestió usuaris";
+        $params['llista'] = $usuariModel->getAll();
 
         if (!isset($_SESSION['user_logged'])) {
-            $this->render("entrenador/login", $params, "main");
+            $this->render("usuari/login", $params, "main");
         } else {
-            header("Location: /entrenador/create");
+            header("Location: /usuari/create");
         }
     }
 
     public function store()
     {
-        $entrenadorModel = new Entrenador();
+        $usuariModel = new Usuari();
 
-        $emailEntrenador = $_POST['email_entrenador'];
-        $nomEntrenador = $_POST['nom_entrenador'];
-        $usuariEntrenador = $_POST['usuari_entrenador'];
-        $contrasnyaEntrenador = $_POST['contrasenya_entrenador'];
+        $emailusuari = $_POST['email_usuari'];
+        $nomusuari = $_POST['nom_usuari'];
+        $usuariusuari = $_POST['usuari_usuari'];
+        $contrasnyausuari = $_POST['contrasenya_usuari'];
         $admin = false;
 
 
-        foreach ($entrenadorModel->getAll() as $entrenador) {
-            if ($entrenador['usuari_entrenador'] == $_POST['usuari_entrenador']) {
+        foreach ($usuariModel->getAll() as $usuari) {
+            if ($usuari['usuari_usuari'] == $_POST['usuari_usuari']) {
                 $params['flash_ko'] = "Usuari ja existent";
-                $this->render("entrenador/index", $params, "main");
+                $this->render("usuari/index", $params, "main");
                 die();
             }
         }
 
-        if ($_POST['usuari_entrenador'] == "admin") {
+        if ($_POST['usuari_usuari'] == "admin") {
             $admin = true;
         } else {
 
@@ -58,91 +58,91 @@ class usuariController extends Controller
         $token = substr(str_shuffle($caracters), 0, 15);
 
 
-        $entrenador = array(
-            "id" => $_SESSION['id_entrenador']++,
-            "email_entrenador" => $emailEntrenador,
-            "nom_entrenador" => $nomEntrenador,
-            "usuari_entrenador" => $usuariEntrenador,
-            "contrasenya_entrenador" => $contrasnyaEntrenador,
+        $usuari = array(
+            "id" => $_SESSION['id_usuari']++,
+            "email_usuari" => $emailusuari,
+            "nom_usuari" => $nomusuari,
+            "usuari_usuari" => $usuariusuari,
+            "contrasenya_usuari" => $contrasnyausuari,
             "admin" => $admin,
             "token" => $token,
             "verificat" => false
         );
 
         // echo '<pre>';
-        // var_dump($entrenador);
+        // var_dump($usuari);
         // echo '</pre>';
 
         // die();
 
 
-        $entrenadorModel->create($entrenador);
+        $usuariModel->create($usuari);
 
         $mail = new Mailer();
         $mail->mailServerSetup();
-        $mail->addRec([$entrenador['email_entrenador']], [], []);
-        $mail->addVerifyContent($entrenador);
+        $mail->addRec([$usuari['email_usuari']], [], []);
+        $mail->addVerifyContent($usuari);
         $mail->send();
 
         $params['flash_ok'] = "Usuari creat correctament, verifica el teu correu per poder accedir";
 
 
-        $this->render("entrenador/login", $params, "main");
+        $this->render("usuari/login", $params, "main");
     }
 
     public function destroy()
     {
-        $entrenadorModel = new Entrenador();
+        $usuariModel = new Usuari();
 
-        $entrenadorModel->removeItemById($_GET['id']);
+        $usuariModel->removeItemById($_GET['id']);
 
-        header("Location: /entrenador/index");
+        header("Location: /usuari/index");
     }
 
     public function update()
     {
-        $entrenadorModel = new Entrenador();
+        $usuariModel = new Usuari();
         $id = $_GET['id'] ?? null;
-        $params['entrenador'] = $entrenadorModel->getById($id);
+        $params['usuari'] = $usuariModel->getById($id);
 
-        $this->render("entrenador/update", $params, "main");
+        $this->render("usuari/update", $params, "main");
     }
 
     public function modify()
     {
-        $entrenadorModel = new Entrenador();
-        $entrenador = array(
+        $usuariModel = new Usuari();
+        $usuari = array(
             "id" => $_POST['id'],
-            "email_entrenador" => $_POST['email_entrenador'],
-            "nom_entrenador" => $_POST['nom_entrenador'],
-            "usuari_entrenador" => $_POST['usuari_entrenador'],
-            "contrasenya_entrenador" => $_POST['contrasenya_entrenador'],
+            "email_usuari" => $_POST['email_usuari'],
+            "nom_usuari" => $_POST['nom_usuari'],
+            "usuari_usuari" => $_POST['usuari_usuari'],
+            "contrasenya_usuari" => $_POST['contrasenya_usuari'],
 
         );
 
-        $entrenadorModel->update($entrenador);
+        $usuariModel->update($usuari);
 
-        header("Location: /entrenador/index");
+        header("Location: /usuari/index");
     }
 
-    public function addOcell()
+    public function addExtinguida()
     {
-        $entrenadorModel = new Entrenador();
+        $usuariModel = new Usuari();
         $id = $_GET['id'] ?? null;
-        $params['title'] = "Afegir Ocell";
-        $params['entrenador'] = $entrenadorModel->getById($id);
+        $params['title'] = "Afegir Extinguida";
+        $params['usuari'] = $usuariModel->getById($id);
         $ocellModel = new Extinguida();
-        $params['llista'] = $ocellModel->getOcellsByIdEntrenador($id); //aquí necessito el getOcellsByIdEntrenador que es tronba al model
+        $params['llista'] = $ocellModel->getExtinguidasByIdusuari($id); //aquí necessito el getExtinguidasByIdusuari que es tronba al model
 
-        $this->render("ocell/index", $params, "main");
+        $this->render("extinguida/index", $params, "main");
     }
 
     public function login()
     {
 
 
-        $username = $_POST['usuari_entrenador'] ?? null;
-        $pass = $_POST['contrasenya_entrenador'] ?? null;
+        $username = $_POST['usuari_usuari'] ?? null;
+        $pass = $_POST['contrasenya_usuari'] ?? null;
 
         //   echo "<pre>";
         //     var_dump($_POST);
@@ -150,24 +150,24 @@ class usuariController extends Controller
 
         //    die();
 
-        $enrenadorModel = new Entrenador();
+        $enrenadorModel = new Usuari();
         $result = $enrenadorModel->login($username, $pass);
 
 
 
         if (is_null($result)) {
             $params['flash_ko'] = "Credencials incorrectes";
-            $this->render("entrenador/login", $params, "site");
+            $this->render("usuari/login", $params, "site");
         } else {
             if ($result['verificat'] == false) {
                 $params['flash_ko'] = "Usuari no verificat";
-                $this->render("entrenador/login", $params, "site");
+                $this->render("usuari/login", $params, "site");
             } else {
-                if ($result['usuari_entrenador'] == 'admin') {
+                if ($result['usuari_usuari'] == 'admin') {
                     $params['llista'] = $enrenadorModel->getAll();
                 }
                 $_SESSION['user_logged'] = $result;
-                $params['entrenador'] = $result;
+                $params['usuari'] = $result;
                 $this->render("home/index", $params, "home");
             }
         }
@@ -176,51 +176,51 @@ class usuariController extends Controller
 
     public function create()
     {
-        $entrenadorModel = new Entrenador();
-        $params['title'] = "Gestió Entrenadors";
-        $params['llista'] = $entrenadorModel->getAll();
-        $params['usuari_loguejat'] = $_GET['id_entrenador'] ?? null; // if user_logejat and admin == true veiem la llista
+        $usuariModel = new Usuari();
+        $params['title'] = "Gestió usuaris";
+        $params['llista'] = $usuariModel->getAll();
+        $params['usuari_loguejat'] = $_GET['id_usuari'] ?? null; // if user_logejat and admin == true veiem la llista
 
 
-        //$params['usuari_loguejat'] = $entrenadorModel->getById('1');  
+        //$params['usuari_loguejat'] = $usuariModel->getById('1');  
 
 
-        $this->render("entrenador/index", $params, "main");
+        $this->render("usuari/index", $params, "main");
     }
 
 
     public function logout()
     {
-        // $ocellModel = new Ocell();
-        // $ocell = array(
+        // $ocellModel = new Extinguida();
+        // $extinguida = array(
         //     "id" => $_POST['id'],
         //     "num_ocell" => $_POST['num_ocell'],
         //     "nom_ocell" => $_POST['nom_ocell'],
 
         // );
 
-        // $ocellModel->updateItemById($ocell);
+        // $ocellModel->updateItemById($extinguida);
 
         $params = null;
 
-        $this->render("entrenador/logout", $params, "main");
+        $this->render("usuari/logout", $params, "main");
     }
 
     // public function switchToLogin()
     // {
-    //     // $ocellModel = new Ocell();
-    //     // $ocell = array(
+    //     // $ocellModel = new Extinguida();
+    //     // $extinguida = array(
     //     //     "id" => $_POST['id'],
     //     //     "num_ocell" => $_POST['num_ocell'],
     //     //     "nom_ocell" => $_POST['nom_ocell'],
 
     //     // );
 
-    //     // $ocellModel->updateItemById($ocell);
+    //     // $ocellModel->updateItemById($extinguida);
 
     //     $params = null;
 
-    //     $this->render("entrenador/login", $params, "main");
+    //     $this->render("usuari/login", $params, "main");
     // }
 
     public function verify()
@@ -228,17 +228,17 @@ class usuariController extends Controller
         $username = $_GET['username'];
         $token = $_GET['token'];
 
-        $entrenadorModel = new Entrenador();
-        $entrenador = $entrenadorModel->getByUsername($username);
+        $usuariModel = new Usuari();
+        $usuari = $usuariModel->getByUsername($username);
 
-        if ($entrenador['token'] == $token) {
-            $entrenador['verificat'] = true;
-            $entrenadorModel->update($entrenador);
+        if ($usuari['token'] == $token) {
+            $usuari['verificat'] = true;
+            $usuariModel->update($usuari);
             $params['flash_ok'] = "Usuari verificat correctament";
-            $this->render("entrenador/login", $params, "main");
+            $this->render("usuari/login", $params, "main");
         } else {
             $params['flash_ko'] = "Usuari no verificat";
-            $this->render("entrenador/login", $params, "main");
+            $this->render("usuari/login", $params, "main");
         }
     }
 }
