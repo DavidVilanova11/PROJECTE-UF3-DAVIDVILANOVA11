@@ -13,9 +13,9 @@ class Recuperada extends Orm
         }
     }
 
-    //getExtinguidesByIdUsuari using the recuperada list (no databse)
+    //getRecuperadesByIdUsuari using the recuperada list (no databse)
 
-    public function getExtinguidesByIdUsuari($id_usuari)
+    public function getRecuperadesByIdUsuari($id_usuari)
     {
         $recuperades = array();
         foreach ($this->getAll() as $recuperada) {
