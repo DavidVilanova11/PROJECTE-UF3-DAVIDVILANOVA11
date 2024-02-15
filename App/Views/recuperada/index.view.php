@@ -1,17 +1,17 @@
 <?php
 
-if (!isset($_SESSION['user_logged']) && !isset($params['entrenador'])) {
-  header("Location: /entrenador/index");
+if (!isset($_SESSION['user_logged']) && !isset($params['usuari'])) {
+  header("Location: /usuari/index");
 }
 
 
 include_once(__DIR__ . "/../templates/navbar.php");
 
-$_SESSION['id_entrenador_actual'] = $_GET['id'];
+$_SESSION['id_usuari_actual'] = $_GET['id'];
 
 ?>
 <form action="/recuperada/store" method="post" enctype="multipart/form-data" class="col-11 col-sm-9 col-md-7 col-lg-5 mx-auto border bg-light p-4 mt-4">
-  <h2><?php echo $params['entrenador']['nom_entrenador'] ?></h2>
+  <h2><?php echo $params['usuari']['nom_usuari'] ?></h2>
   <div class="mb-3">
     <label for="num_recuperada" class="form-label">Num recuperada</label>
     <input type="number" class="form-control" name="num_recuperada" id="num_recuperada" aria-describedby="helpId" placeholder="Identificador del recuperada..." />
