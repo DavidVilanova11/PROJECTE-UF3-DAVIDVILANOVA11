@@ -7,22 +7,22 @@ class Extinguida extends Orm
 
     public function __construct()
     {
-        parent::__construct('ocells');
-        if (!isset($_SESSION['id_ocell'])) {
-            $_SESSION['id_ocell'] = 1;
+        parent::__construct('extinguidas');
+        if (!isset($_SESSION['id_extinguida'])) {
+            $_SESSION['id_extinguida'] = 1;
         }
     }
 
-    //getOcellsByIdEntrenador using the ocell list (no databse)
+    //getExtinguidesByIdUsuari using the extinguida list (no databse)
 
-    public function getOcellsByIdEntrenador($id_entrenador)
+    public function getExtinguidesByIdUsuari($id_usuari)
     {
-        $ocells = array();
-        foreach ($this->getAll() as $ocell) {
-            if ($ocell['id_entrenador'] == $id_entrenador) {
-                array_push($ocells, $ocell);
+        $extinguidas = array();
+        foreach ($this->getAll() as $extinguida) {
+            if ($extinguida['id_usuari'] == $id_usuari) {
+                array_push($extinguidas, $extinguida);
             }
         }
-        return $ocells;
+        return $extinguidas;
     }
 }

@@ -10,7 +10,7 @@ class usuariController extends Controller
     public function index()
     {
 
-        $usuari = new Usuari();
+        $usuariModel = new Usuari();
 
         if ($usuariModel->getAll() == null) {
             $initialData = new InitialData();
@@ -129,10 +129,10 @@ class usuariController extends Controller
     {
         $usuariModel = new Usuari();
         $id = $_GET['id'] ?? null;
-        $params['title'] = "Afegir Extinguida";
+        $params['title'] = "Afegir Extinguides";
         $params['usuari'] = $usuariModel->getById($id);
-        $ocellModel = new Extinguida();
-        $params['llista'] = $ocellModel->getExtinguidasByIdusuari($id); //aquí necessito el getExtinguidasByIdusuari que es tronba al model
+        $extinguidaModel = new Extinguida();
+        $params['llista'] = $extinguidaModel->getExtinguidesByIdusuari($id); //aquí necessito el getExtinguidesByIdusuari que es tronba al model
 
         $this->render("extinguida/index", $params, "main");
     }
@@ -191,15 +191,15 @@ class usuariController extends Controller
 
     public function logout()
     {
-        // $ocellModel = new Extinguida();
+        // $extinguidaModel = new Extinguida();
         // $extinguida = array(
         //     "id" => $_POST['id'],
-        //     "num_ocell" => $_POST['num_ocell'],
-        //     "nom_ocell" => $_POST['nom_ocell'],
+        //     "num_extinguida" => $_POST['num_extinguida'],
+        //     "nom_extinguida" => $_POST['nom_extinguida'],
 
         // );
 
-        // $ocellModel->updateItemById($extinguida);
+        // $extinguidaModel->updateItemById($extinguida);
 
         $params = null;
 
@@ -208,15 +208,15 @@ class usuariController extends Controller
 
     // public function switchToLogin()
     // {
-    //     // $ocellModel = new Extinguida();
+    //     // $extinguidaModel = new Extinguida();
     //     // $extinguida = array(
     //     //     "id" => $_POST['id'],
-    //     //     "num_ocell" => $_POST['num_ocell'],
-    //     //     "nom_ocell" => $_POST['nom_ocell'],
+    //     //     "num_extinguida" => $_POST['num_extinguida'],
+    //     //     "nom_extinguida" => $_POST['nom_extinguida'],
 
     //     // );
 
-    //     // $ocellModel->updateItemById($extinguida);
+    //     // $extinguidaModel->updateItemById($extinguida);
 
     //     $params = null;
 

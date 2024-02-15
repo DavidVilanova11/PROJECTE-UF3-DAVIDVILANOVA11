@@ -2,24 +2,24 @@
 
 include_once("Orm.php");
 
-class Entrenador extends Orm
+class Usuari extends Orm
 {
 
     public function __construct()
     {
-        parent::__construct('entrenadors');
-        if (!isset($_SESSION['id_entrenador'])) {
-            $_SESSION['id_entrenador'] = 1;
+        parent::__construct('usuaris');
+        if (!isset($_SESSION['id_usuari'])) {
+            $_SESSION['id_usuari'] = 1;
         }
     }
 
     public function login($u, $p)
     {
 
-        foreach ($_SESSION[$this->model] as $entrenador) {
-            if ($entrenador['usuari_entrenador'] == $u) {
-                if ($entrenador['contrasenya_entrenador'] == $p) {
-                    return $entrenador;
+        foreach ($_SESSION[$this->model] as $usuari) {
+            if ($usuari['usuari_usuari'] == $u) {
+                if ($usuari['contrasenya_usuari'] == $p) {
+                    return $usuari;
                 }
             }
         }
@@ -29,9 +29,9 @@ class Entrenador extends Orm
 
     public function getByUsername($u)
     {
-        foreach ($_SESSION[$this->model] as $entrenador) {
-            if ($entrenador['usuari_entrenador'] == $u) {
-                return $entrenador;
+        foreach ($_SESSION[$this->model] as $usuari) {
+            if ($usuari['usuari_usuari'] == $u) {
+                return $usuari;
             }
         }
         return null;
