@@ -1,7 +1,7 @@
 <?php
 include_once("App/Core/Controller.php");
-include_once("App/Models/Entrenador.php");
-include_once("App/Models/Ocell.php");
+include_once("App/Models/Usuari.php");
+include_once("App/Models/Extinguida.php");
 
 class InitialData extends Controller
 {
@@ -9,60 +9,60 @@ class InitialData extends Controller
     public function charge()
     {
 
-        $entrenadorModel = new Entrenador();
-        if ($entrenadorModel->getAll() == null) {
-            $entrenador = array(
-                "id" => $_SESSION['id_entrenador']++,
-                "email_entrenador" => "admin@gmail.com",
-                "nom_entrenador" => "Admin",
-                "usuari_entrenador" => "admin",
-                "contrasenya_entrenador" => "admin",
+        $usuariModel = new Usuari();
+        if ($usuariModel->getAll() == null) {
+            $usuari = array(
+                "id" => $_SESSION['id_usuari']++,
+                "email_usuari" => "admin@gmail.com",
+                "nom_usuari" => "Admin",
+                "usuari_usuari" => "admin",
+                "contrasenya_usuari" => "admin",
                 "admin" => true,
                 "token" => "token",
                 "verificat" => true
             );
 
-            $entrenadorModel->create($entrenador);
+            $usuariModel->create($usuari);
 
-            $ocellModel = new Ocell();
+            $extinguidaModel = new Extinguida();
 
 
-            if ($ocellModel->getAll() == null) {
-                $ocell = array(
-                    "id" => $_SESSION['id_ocell']++,
-                    "num_ocell" => "1",
-                    "familia_ocell" => "Apodidae",
-                    "nom_ocell" => "Acridotheres tristis",
-                    "imatge_ocell" => "gavia.jpg",
-                    "video_ocell" => "gavia.mp4",
-                    "id_entrenador" => "1"
+            if ($extinguidaModel->getAll() == null) {
+                $extinguida = array(
+                    "id" => $_SESSION['id_extinguida']++,
+                    "num_extinguida" => "1",
+                    "familia_extinguida" => "Apodidae",
+                    "nom_extinguida" => "Acridotheres tristis",
+                    "imatge_extinguida" => "gavia.jpg",
+                    "video_extinguida" => "gavia.mp4",
+                    "id_usuari" => "1"
                 );
 
-                $ocellModel->create($ocell);
+                $extinguidaModel->create($extinguida);
 
-                $ocell = array(
-                    "id" => $_SESSION['id_ocell']++,
-                    "num_ocell" => "7",
-                    "familia_ocell" => "Accipitridae",
-                    "nom_ocell" => "Accipiter gentilis",
-                    "imatge_ocell" => "Bird-Friendly-City.jpg",
-                    "video_ocell" => null,
-                    "id_entrenador" => "1"
+                $extinguida = array(
+                    "id" => $_SESSION['id_extinguida']++,
+                    "num_extinguida" => "7",
+                    "familia_extinguida" => "Accipitridae",
+                    "nom_extinguida" => "Accipiter gentilis",
+                    "imatge_extinguida" => "Bird-Friendly-City.jpg",
+                    "video_extinguida" => null,
+                    "id_usuari" => "1"
                 );
 
-                $ocellModel->create($ocell);
+                $extinguidaModel->create($extinguida);
 
-                $ocell = array(
-                    "id" => $_SESSION['id_ocell']++,
-                    "num_ocell" => "33",
-                    "familia_ocell" => "Anatidae",
-                    "nom_ocell" => "Nix",
-                    "imatge_ocell" => "Acridotheres tristis.avif",
-                    "video_ocell" => null,
-                    "id_entrenador" => "1"
+                $extinguida = array(
+                    "id" => $_SESSION['id_extinguida']++,
+                    "num_extinguida" => "33",
+                    "familia_extinguida" => "Anatidae",
+                    "nom_extinguida" => "Nix",
+                    "imatge_extinguida" => "Acridotheres tristis.avif",
+                    "video_extinguida" => null,
+                    "id_usuari" => "1"
                 );
 
-                $ocellModel->create($ocell);
+                $extinguidaModel->create($extinguida);
             }
         }
     }
