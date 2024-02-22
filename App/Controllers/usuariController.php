@@ -134,7 +134,7 @@ class usuariController extends Controller
         $params['title'] = "Afegir Extinguides";
         $params['usuari'] = $usuariModel->getById($id);
         $recuperadaModel = new Recuperada();
-        $params['llista'] = $recuperadaModel->getExtinguidesByIdusuari($id); //aquí necessito el getExtinguidesByIdusuari que es tronba al model
+        $params['llista'] = $recuperadaModel->getRecuperadesByIdUsuari($id); //aquí necessito el getRecuperadesByIdUsuari que es trona al model
 
         $this->render("recuperada/index", $params, "main");
     }

@@ -1,0 +1,13 @@
+
+
+// recuperades
+
+CREATE TABLE `des-extincio`.`recuperades` (`id` INT NOT NULL AUTO_INCREMENT , `nom` VARCHAR(250) NOT NULL , `especie` INT NOT NULL , `naixement` TIMESTAMP NOT NULL , `img` VARCHAR(250) NOT NULL , `id_usuari` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+// usuaris
+
+CREATE TABLE `des-extincio`.`usuaris` (`id` INT NOT NULL AUTO_INCREMENT , `nom` VARCHAR(250) NOT NULL , `naixement` DATE NOT NULL , `pressupost` DOUBLE NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+// logs
+
+CREATE TABLE `des-extincio`.`logs` (`id` INT NOT NULL AUTO_INCREMENT , `id_usuari` INT NOT NULL , `id_extincta` INT NOT NULL , `id_adn` INT NOT NULL , `id_host` INT NOT NULL , `satisfactori` BOOLEAN NOT NULL , `probabilitat` FLOAT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;

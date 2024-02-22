@@ -37,8 +37,22 @@ class Orm
 
     public function create($item)
     {
-        $_SESSION[$this->model][] = $item;
+        //$_SESSION[$this->model][] = $item;
+        // $recuperada = array(
+        //     "id" => $_SESSION['id_recuperada']++,
+        //     "num_recuperada" => $numRecuperada,
+        //     "familia_recuperada" => $familiaRecuperada,
+        //     "nom_recuperada" => $nomRecuperada,
+        //     "imatge_recuperada" => $_FILES['imatge_recuperada']['name'],
+        //     "video_recuperada" => $_FILES['video_recuperada']['name'] ?? null,
+        //     "id_usuari" => $idUsuari
+        // );
         
+        // sql = "INSERT INTO recuperades()"
+
+        // $params = 
+
+        // return $item;
     }
 
     public function getAll()
