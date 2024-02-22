@@ -19,6 +19,8 @@ class usuariController extends Controller
 
         $params['title'] = "Gestió usuaris";
         $params['llista'] = $usuariModel->getAll();
+        $params['var'] = $_ENV['DB_NAME'];//
+
 
         if (!isset($_SESSION['user_logged'])) {
             $this->render("usuari/login", $params, "main");
@@ -152,8 +154,6 @@ class usuariController extends Controller
 
         $enrenadorModel = new Usuari();
         $result = $enrenadorModel->login($username, $pass);
-
-
 
         if (is_null($result)) {
             $params['flash_ko'] = "Credencials incorrectes";
