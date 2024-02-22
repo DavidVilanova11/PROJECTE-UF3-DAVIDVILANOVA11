@@ -11,3 +11,7 @@ CREATE TABLE `des-extincio`.`usuaris` (`id` INT NOT NULL AUTO_INCREMENT , `nom` 
 // logs
 
 CREATE TABLE `des-extincio`.`logs` (`id` INT NOT NULL AUTO_INCREMENT , `id_usuari` INT NOT NULL , `id_extincta` INT NOT NULL , `id_adn` INT NOT NULL , `id_host` INT NOT NULL , `satisfactori` BOOLEAN NOT NULL , `probabilitat` FLOAT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+// extinctes
+
+CREATE TABLE `des-extincio`.`extinctes` (`id` INT NOT NULL AUTO_INCREMENT , `id_adn` INT NOT NULL , `id_host` INT NOT NULL , `probabilitat` FLOAT NOT NULL , `img` VARCHAR(250) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
