@@ -13,7 +13,8 @@ class Router
 
     public function matchRoute()
     {
-        $url_array = explode('/', URL);
+        $url_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $url_array = explode('/', $url_path);
         $this->controller = !empty($url_array[1]) ? $url_array[1] : 'usuari';
         $this->controller = $this->controller . "Controller";
         require_once("App/Controllers/" . $this->controller . ".php");

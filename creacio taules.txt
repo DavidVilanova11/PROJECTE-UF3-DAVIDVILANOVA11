@@ -15,3 +15,11 @@ CREATE TABLE `des-extincio`.`logs` (`id` INT NOT NULL AUTO_INCREMENT , `id_usuar
 // extinctes
 
 CREATE TABLE `des-extincio`.`extinctes` (`id` INT NOT NULL AUTO_INCREMENT , `id_adn` INT NOT NULL , `id_host` INT NOT NULL , `probabilitat` FLOAT NOT NULL , `img` VARCHAR(250) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+// hosts
+
+CREATE TABLE `des-extincio`.`hosts` (`id` INT NOT NULL AUTO_INCREMENT , `especie` VARCHAR(250) NOT NULL , `preu` DOUBLE NOT NULL , `img` VARCHAR(250) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+// adn
+
+CREATE TABLE `des-extincio`.`adn` (`id` INT NOT NULL AUTO_INCREMENT , `nom` VARCHAR(250) NOT NULL , `preu` DOUBLE NOT NULL , `img` VARCHAR(250) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
