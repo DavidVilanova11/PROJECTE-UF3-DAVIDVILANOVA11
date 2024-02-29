@@ -48,11 +48,11 @@ class Orm
         //     "id_usuari" => $idUsuari
         // );
         
-        // sql = "INSERT INTO recuperades()"
+        sql = "INSERT INTO recuperades()"
 
-        // $params = 
+        $params = 
 
-        // return $item;
+        return $item;
     }
 
     public function getAll()
