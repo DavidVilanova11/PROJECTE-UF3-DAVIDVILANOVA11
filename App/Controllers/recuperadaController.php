@@ -67,7 +67,7 @@ class recuperadaController extends Controller
         }
 
 
-        $recuperadaModel->create($recuperada);
+        $recuperadaModel->insert($recuperada);
 
         header("Location: /usuari/addRecuperada/?id=" . $_POST['id']);
     }
@@ -105,7 +105,9 @@ class recuperadaController extends Controller
             "video_recuperada" => $_FILES['video_recuperada']['name'] ?? null,
         );
 
-        $recuperadaModel->update($recuperada);
+        // $recuperadaModel->update($recuperada); 
+
+        $recuperadaModel->insert($recuperada, $POST_['id']); // ara no fem update si li assem un id ja fem update
 
         header("Location: /recuperada/index");
     }

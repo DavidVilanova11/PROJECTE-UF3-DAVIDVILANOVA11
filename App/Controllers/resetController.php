@@ -2,16 +2,19 @@ resetController.php:
 <?php
 include_once(__DIR__ . '/../Services/Database.php');
 include_once(__DIR__ . "/../Models/Usuari.php");
-include_once(__DIR__ . "/../Models/chat_messages.php");
+include_once(__DIR__ . "/../Models/Adn.php");
 include_once(__DIR__ . "/../Models/Recuperada.php");
-include_once(__DIR__ . "/../Core/Controller.php");
-include_once(__DIR__ . "/../Models/Cistella.php");
+include_once(__DIR__ . "/../Core/Extincta.php");
+include_once(__DIR__ . "/../Models/Host.php");
+include_once(__DIR__ . "/../Models/Log_cap.php");
+include_once(__DIR__ . "/../Models/Log.php");
+
 class resetController extends Controller
 {
     public function run()
     {
         $db = new Database();
-        $sql = "DROP TABLE IF EXISTS users, recuperades, plat,cistella";
+        $sql = "DROP TABLE IF EXISTS usuaris, recuperades, recuperada,cistella";
         $db->queryDataBase($sql);
 
         Usuari::createTable();
@@ -28,10 +31,10 @@ class resetController extends Controller
         $passWitdhPepperAndSalt = $pepper . $passClear . $salt;
         $passHashed = password_hash($passWitdhPepperAndSalt, PASSWORD_ARGON2ID);
 
-        $userModel = new Usuari();
-        $user = [
+        $usuariModel = new Usuari();
+        $usuari = [
             "name" => "ADMIN",
-            "username" => "admin",
+            "usuariname" => "admin",
             "mail" => "marcramilogarrido04@gmail.com",
             "direction" => "x",
             "password" => $passHashed,
@@ -45,12 +48,12 @@ class resetController extends Controller
             "salt" => $salt
         ];
 
-        $userModel->insert($user);
+        $usuariModel->insert($usuari);
 
 
-        $user = [
+        $usuari = [
             "name" => "Marc",
-            "username" => "marcrami",
+            "usuariname" => "marcrami",
             "mail" => "marc.ramilo@cirvianum.cat",
             "direction" => "Ribes de Freser",
             "password" => $passHashed,
@@ -64,10 +67,10 @@ class resetController extends Controller
             "salt" => $salt
         ];
 
-        $userModel->insert($user);
+        $usuariModel->insert($usuari);
 
-        $plat = new Plat();
-        $plat->insert([
+        $recuperada = new Recuperada();
+        $recuperada->insert([
             "title" => "Hamburguesa",
             "description" => "Hamburguesa de vedella amb formatge",
             "ingredients" => "Vedella, formatge, pa",

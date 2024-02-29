@@ -22,7 +22,7 @@ class InitialData extends Controller
                 "verificat" => true
             );
 
-            $usuariModel->create($usuari);
+            $usuariModel->insert($usuari);
 
             $recuperadaModel = new Recuperada();
 
@@ -38,7 +38,7 @@ class InitialData extends Controller
                     "id_usuari" => "1"
                 );
 
-                $recuperadaModel->create($recuperada);
+                $recuperadaModel->insert($recuperada);
 
                 $recuperada = array(
                     //"id" => $_SESSION['id_recuperada']++,
@@ -50,7 +50,7 @@ class InitialData extends Controller
                     "id_usuari" => "1"
                 );
 
-                $recuperadaModel->create($recuperada);
+                $recuperadaModel->insert($recuperada);
 
                 $recuperada = array(
                     //"id" => $_SESSION['id_recuperada']++,
@@ -62,7 +62,7 @@ class InitialData extends Controller
                     "id_usuari" => "1"
                 );
 
-                $recuperadaModel->create($recuperada);
+                $recuperadaModel->insert($recuperada);
             }
         }
     }
