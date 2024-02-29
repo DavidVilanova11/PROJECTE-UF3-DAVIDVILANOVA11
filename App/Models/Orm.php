@@ -1,5 +1,7 @@
 <?php
 
+include_once(__DIR__ . "/../Services/Database.php");
+
 class Orm
 {
 

@@ -24,7 +24,6 @@ class recuperadaController extends Controller
         $idUsuari = $_POST['id'];
 
         $recuperada = array(
-            "id" => $_SESSION['id_recuperada']++,
             "num_recuperada" => $numRecuperada,
             "familia_recuperada" => $familiaRecuperada,
             "nom_recuperada" => $nomRecuperada,
