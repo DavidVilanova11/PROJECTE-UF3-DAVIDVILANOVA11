@@ -2,16 +2,16 @@
 
 
 <div class="signin col-11 col-md-9 col-lg-7 col-xl-5 mx-auto border p-4 bg-light mt-4">
-<form action="/entrenador/login" method="post">
+<form action="/usuari/login" method="post">
         <h2>Login</h2>
 
         <div class="mb-3">
-            <label for="usuari_entrenador" class="form-label">Usuari</label>
-            <input type="text" class="form-control" name="usuari_entrenador" id="usuari_entrenador" aria-describedby="helpId" placeholder="" required>
+            <label for="usuari" class="form-label">Usuari</label>
+            <input type="text" class="form-control" name="usuari" id="usuari" aria-describedby="helpId" placeholder="" required>
         </div>
         <div class="mb-3">
-            <label for="contrasenya_entrenador" class="form-label">Contrasenya</label>
-            <input type="text" class="form-control" name="contrasenya_entrenador" id="contrasenya_entrenador" aria-describedby="helpId" placeholder="" required>
+            <label for="contrasenya" class="form-label">Contrasenya</label>
+            <input type="text" class="form-control" name="contrasenya" id="contrasenya" aria-describedby="helpId" placeholder="" required>
         </div>
         <?php
 
@@ -32,7 +32,7 @@
         ?>
         <button type="submit" class="btn btn-primary">Accedir</button>
 
-        <a class="px-4" href="/entrenador/create">Crea un compte</a>
+        <a class="px-4" href="/usuari/create">Crea un compte</a>
 
     </form>
 

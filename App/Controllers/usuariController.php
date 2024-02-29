@@ -143,8 +143,8 @@ class usuariController extends Controller
     {
 
 
-        $username = $_POST['usuari_usuari'] ?? null;
-        $pass = $_POST['contrasenya_usuari'] ?? null;
+        $username = $_POST['usuari'] ?? null;
+        $pass = $_POST['contrasenya'] ?? null;
 
         //   echo "<pre>";
         //     var_dump($_POST);

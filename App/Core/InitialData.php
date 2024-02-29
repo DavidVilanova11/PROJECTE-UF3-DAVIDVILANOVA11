@@ -12,7 +12,7 @@ class InitialData extends Controller
         $usuariModel = new Usuari();
         if ($usuariModel->getAll() == null) {
             $usuari = array(
-                "id" => $_SESSION['id_usuari']++,
+                //"id" => $_SESSION['id_usuari']++,
                 "email_usuari" => "admin@gmail.com",
                 "nom_usuari" => "Admin",
                 "usuari_usuari" => "admin",
@@ -29,7 +29,7 @@ class InitialData extends Controller
 
             if ($recuperadaModel->getAll() == null) {
                 $recuperada = array(
-                    "id" => $_SESSION['id_recuperada']++,
+                    //"id" => $_SESSION['id_recuperada']++,
                     "num_recuperada" => "1",
                     "familia_recuperada" => "Apodidae",
                     "nom_recuperada" => "Acridotheres tristis",
@@ -41,7 +41,7 @@ class InitialData extends Controller
                 $recuperadaModel->create($recuperada);
 
                 $recuperada = array(
-                    "id" => $_SESSION['id_recuperada']++,
+                    //"id" => $_SESSION['id_recuperada']++,
                     "num_recuperada" => "7",
                     "familia_recuperada" => "Accipitridae",
                     "nom_recuperada" => "Accipiter gentilis",
@@ -53,7 +53,7 @@ class InitialData extends Controller
                 $recuperadaModel->create($recuperada);
 
                 $recuperada = array(
-                    "id" => $_SESSION['id_recuperada']++,
+                    //"id" => $_SESSION['id_recuperada']++,
                     "num_recuperada" => "33",
                     "familia_recuperada" => "Anatidae",
                     "nom_recuperada" => "Nix",
