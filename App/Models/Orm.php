@@ -37,20 +37,24 @@ class Orm
 
     public function create($item)
     {
-        //$_SESSION[$this->model][] = $item;
-        // $recuperada = array(
-        //     "id" => $_SESSION['id_recuperada']++,
-        //     "num_recuperada" => $numRecuperada,
-        //     "familia_recuperada" => $familiaRecuperada,
-        //     "nom_recuperada" => $nomRecuperada,
-        //     "imatge_recuperada" => $_FILES['imatge_recuperada']['name'],
-        //     "video_recuperada" => $_FILES['video_recuperada']['name'] ?? null,
-        //     "id_usuari" => $idUsuari
-        // );
-        
-        sql = "INSERT INTO recuperades()"
+        // CREATE TABLE `des-extincio`.`recuperades` (`id` INT NOT NULL AUTO_INCREMENT , 
+        // `nom` VARCHAR(250) NOT NULL , `especie` INT NOT NULL , 
+        // `naixement` TIMESTAMP NOT NULL , `img` VARCHAR(250) NOT NULL , 
+        // `id_usuari` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
-        $params = 
+
+        $sql = "INSERT INTO recuperades(nom, especie, naixement, img, id_usuari) VALUES (:nom, :especie, :naixement, :img, :id_usuari)";
+
+        $params = array(
+            ":nom" => $item['nom'],
+            ":especie" => $item['especie'],
+            ":naixement" => $item['naixement'],
+            ":img" => $item['img'],
+            ":id_usuari" => $item['id_usuari']
+        );
+
+        $db = new Database();
+        $db->queryDatabase($sql, $params);
 
         return $item;
     }
