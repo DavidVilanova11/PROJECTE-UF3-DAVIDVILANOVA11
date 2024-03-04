@@ -18,40 +18,17 @@ $_SESSION['id_usuari_actual'] = $_GET['id'];
   </div>
 
   <div class="mb-3">
-    <label for="familiaRecuperada">Selecciona una família d'recuperadas:</label>
-    <select class="form-select" id="familiaRecuperada" name="familia_recuperada">
-      <option value="Accipitridae">Accipitridae (Àguiles, Estepàries, Aufranys)</option>
-      <option value="Alcedinidae">Alcedinidae (Martins Pescadors)</option>
-      <option value="Anatidae">Anatidae (Ànecs, Oques, Cignes)</option>
-      <option value="Apodidae">Apodidae (Orenetes, Martinets)</option>
-      <option value="Ardeidae">Ardeidae (Bernats, Garserols, Aguaitadors)</option>
-      <option value="Charadriidae">Charadriidae (Corriols, Escars, Fumarells)</option>
-      <option value="Columbidae">Columbidae (Coloms, Tortores)</option>
-      <option value="Corvidae">Corvidae (Corbs, Gaig, Esquirols)</option>
-      <option value="Falconidae">Falconidae (Falcons, Falconets)</option>
-      <option value="Fringillidae">Fringillidae (Pinsans, Llavors, Tallarols)</option>
-      <option value="Hirundinidae">Hirundinidae (Orenetes)</option>
-      <option value="Passeridae">Passeridae (Pardals)</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
     <label for="nom_recuperada" class="form-label">Nom recuperada</label>
-    <input type="text" class="form-control" name="nom_recuperada" id="nom_recuperada" aria-describedby="helpId" placeholder="Nom de la espècie..." required />
+    <input type="text" class="form-control" name="nom_recuperada" id="nom_recuperada" aria-describedby="helpId" placeholder="Nom que li vols posar..." required />
   </div>
 
   <div class="mb-3">
-    <label for="imatge">Selecciona una imatge:</label>
-    <input type="file" class="form-control-file" id="imatge" name="imatge_recuperada" accept="image/*" onchange="mostrarPrevisualitzacio()" required>
-  </div>
-  <div class="mb-3">
-    <img id="previsualitzacio" class="img-fluid" style="display: none;" alt="Previsualització de la imatge">
+    <label for="especie_recuperada" class="form-label">Espècie recuperada</label>
+    <input type="text" class="form-control" name="especie_recuperada" id="especie_recuperada" aria-describedby="helpId" placeholder="Nom de la espècie..." required />
   </div>
 
-  <div class="mb-3">
-    <label for="video">Selecciona un fitxer de vídeo MP4 (Opc.):</label>
-    <input type="file" class="form-control-file" id="video" name="video_recuperada" accept="video/mp4">
-  </div>
+
+  <!-- El timestamp s'hauria de fer automàticament al fet l'insert a la BD -->
 
   <div class="mb-3"> <!-- Aquí agaferem el mp del que venim a la url amb get i utilitzarem un hidden per recollir-la amb el post -->
     <!-- vull recollir el get  -->

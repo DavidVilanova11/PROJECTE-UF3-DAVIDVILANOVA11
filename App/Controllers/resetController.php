@@ -19,11 +19,13 @@ class resetController extends Controller
 
         Usuari::createTable();
 
-        chat_messages::createTable();
+        Host::createTable();
 
         Recuperada::createTable();
 
-        Cistella::createTable();
+        Adn::createTable();
+
+        Extincta::createTable();
 
         $pepper = $_ENV['PEPPER'];
         $salt = bin2hex(random_bytes(16));
@@ -31,20 +33,17 @@ class resetController extends Controller
         $passWitdhPepperAndSalt = $pepper . $passClear . $salt;
         $passHashed = password_hash($passWitdhPepperAndSalt, PASSWORD_ARGON2ID);
 
+
+        // USUARIS
+
         $usuariModel = new Usuari();
         $usuari = [
-            "name" => "ADMIN",
-            "usuariname" => "admin",
-            "mail" => "marcramilogarrido04@gmail.com",
-            "direction" => "x",
+            "nom" => "David",
+            "email" => "david.vilanova@cirvianum.cat",
             "password" => $passHashed,
-            "profile_image" => "admin.jpg",
-            "avis_legal" => 1,
-            "avis_enviament_propaganda" => 1,
-            "verify" => 1,
-            "commands" => null,
+            "pressupost" => 400000,
+            "verified" => 1,
             "admin" => 1,
-            "token" => null,
             "salt" => $salt
         ];
 
@@ -52,32 +51,66 @@ class resetController extends Controller
 
 
         $usuari = [
-            "name" => "Marc",
-            "usuariname" => "marcrami",
-            "mail" => "marc.ramilo@cirvianum.cat",
-            "direction" => "Ribes de Freser",
+            "nom" => "Billy",
+            "email" => "guettavilanova2004@gamil.com",
             "password" => $passHashed,
-            "profile_image" => "marcrami.jpg",
-            "avis_legal" => 1,
-            "avis_enviament_propaganda" => 1,
-            "verify" => 1,
-            "commands" => null,
-            "admin" => 0,
-            "token" => null,
+            "pressupost" => 30000,
+            "verified" => 1,
+            "admin" => 1,
             "salt" => $salt
         ];
 
         $usuariModel->insert($usuari);
 
+        // ADN
+
+        $adn = new Adn();
+        $adn->insert([
+            "nom" => "50-AB17",
+            "preu" =>  8000,
+            "img" => "50-AB17.jpg"
+        ]);
+
+        $adn->insert([
+            "nom" => "10-LG06",
+            "preu" =>  12000,
+            "img" => "10-LG06.jpg"
+        ]);
+
+        //HOSTS 
+        $host = new Host();
+        $host->insert([
+            "id_adn" => 1,
+            "id_host" =>  8000,
+            "img" => "50-AB17.jpg"
+        ]);
+
+        
+        // EXTNICTES
+        $extincta = new Extincta();
+        $extincta->insert([
+            "id_adn" => 1,
+            "id_host" =>  8000,
+            "img" => "50-AB17.jpg"
+        ]);
+
+        $adn->insert([
+            "nom" => "10-LG06",
+            "preu" =>  12000,
+            "img" => "10-LG06.jpg"
+        ]);
+
+
+        // RECUPERADES
+        $date = new DateTimeImmutable();
+
+        //timestamp automàtic
         $recuperada = new Recuperada();
         $recuperada->insert([
-            "title" => "Hamburguesa",
-            "description" => "Hamburguesa de vedella amb formatge",
-            "ingredients" => "Vedella, formatge, pa",
-            "grams" => "200",
-            "price" => 5.50,
-            "stock" => 10,
-            "image" => "hamburguesa.jpg"
+            "nom" => "Spiny",
+            "naixemment" =>  $date->getTimestamp(),
+            "id_usuari" => 1,
+            "id_extincta" => 1
         ]);
 
         header("Location: /main/index");
