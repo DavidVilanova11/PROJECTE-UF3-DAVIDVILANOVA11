@@ -10,34 +10,34 @@ include_once(__DIR__ . "/../templates/navbar.php"); ?>
     <input type="email" class="form-control" name="email_usuari" id="email_usuari" aria-describedby="helpId" placeholder="Correu del Usuari..." required />
   </div>
   <div class="mb-3">
-    <label for="nom_usuari" class="form-label">Nom entrendaor</label>
+    <label for="nom_usuari" class="form-label">Nom usuari</label>
     <input type="text" class="form-control" name="nom_usuari" id="nom_usuari" aria-describedby="helpId" placeholder="Nom de l'Usuari..." required />
   </div>
+  <!-- Data naixement -->
   <div class="mb-3">
-    <label for="usuari_usuari" class="form-label">Usuari</label>
-    <input type="text" class="form-control" name="usuari_usuari" id="usuari_usuari" aria-describedby="helpId" placeholder="Nom d'Usuari..." required />
-  </div>
-  <div class="mb-3">
-    <label for="contrasenya_usuari" class="form-label">Contrasenya</label>
-    <input type="password" class="form-control" name="contrasenya_usuari" id="contrasenya_usuari" aria-describedby="helpId" placeholder="Introdueix una contrasenya..." required />
-  </div>
+    <label for="data_naixement" class="form-label">Data naixement</label>
+    <input type="date" class="form-control" name="data_naixement" id="data_naixement" aria-describedby="helpId" placeholder="Data de naixement..." required />
+    <div class="mb-3">
+      <label for="contrasenya_usuari" class="form-label">Contrasenya</label>
+      <input type="password" class="form-control" name="contrasenya_usuari" id="contrasenya_usuari" aria-describedby="helpId" placeholder="Introdueix una contrasenya..." required />
+    </div>
 
-  <?php
+    <?php
 
-  if (isset($params['flash_ko'])) {
-    echo "<div class='alert alert-danger mt-y' role='alert'>";
-    echo $params['flash_ko'];
-    echo "</div>";
-    unset($params);
-  }
+    if (isset($params['flash_ko'])) {
+      echo "<div class='alert alert-danger mt-y' role='alert'>";
+      echo $params['flash_ko'];
+      echo "</div>";
+      unset($params);
+    }
 
-  ?>
+    ?>
 
-  <div class="mb-3">
-    <button type="submit" class="btn btn-primary">
-      Submit
-    </button>
-  </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">
+        Submit
+      </button>
+    </div>
 </form>
 
 <?php
@@ -70,7 +70,7 @@ if (isset($_SESSION['user_logged']) && $_SESSION['user_logged']['usuari_usuari']
         echo "<td>" . $usuari['id'] . "</td>";
         echo "<td>" . $usuari['email_usuari'] . "</td>";
         echo "<td>" . $usuari['nom_usuari'] . "</td>";
-        echo "<td>" . $usuari['usuari_usuari'] . "</td>";
+        echo "<td>" . $usuari['naixement_usuari'] . "</td>";
         echo "<td>" . $usuari['contrasenya_usuari'] . "</td>";
         echo "<td>" . $usuari['admin'] . "</td>";
         echo "<td>" . $usuari['verificat'] . "</td>";

@@ -12,10 +12,6 @@ $_SESSION['id_usuari_actual'] = $_GET['id'];
 ?>
 <form action="/recuperada/store" method="post" enctype="multipart/form-data" class="col-11 col-sm-9 col-md-7 col-lg-5 mx-auto border bg-light p-4 mt-4">
   <h2><?php echo $params['usuari']['nom_usuari'] ?></h2>
-  <div class="mb-3">
-    <label for="num_recuperada" class="form-label">Num recuperada</label>
-    <input type="number" class="form-control" name="num_recuperada" id="num_recuperada" aria-describedby="helpId" placeholder="Identificador del recuperada..." />
-  </div>
 
   <div class="mb-3">
     <label for="nom_recuperada" class="form-label">Nom recuperada</label>
@@ -34,6 +30,12 @@ $_SESSION['id_usuari_actual'] = $_GET['id'];
     <!-- vull recollir el get  -->
     <input type="hidden" class="form-control" name="id" id="id" aria-describedby="helpId" value="<?php echo $_GET['id'] ?>" />
   </div>
+
+  <div class="mb-3"> <!-- Aquí agaferem el mp del que venim a la url amb get i utilitzarem un hidden per recollir-la amb el post -->
+    <!-- vull recollir el get  -->
+    <input type="hidden" class="form-control" name="id" id="id" aria-describedby="helpId" value="<?php echo $_GET['id'] ?>" />
+  </div>
+
 
   <?php
 
@@ -80,11 +82,8 @@ $_SESSION['id_usuari_actual'] = $_GET['id'];
     <thead>
       <tr>
         <th scope="col">ID recuperada</th>
-        <th scope="col">Número recuperada</th>
         <th scope="col">Nom recuperada</th>
-        <th scope="col">Familia recuperada</th>
         <th scope="col">Imatge recuperada</th>
-        <th scope="col">Vídeo recuperada</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -92,15 +91,8 @@ $_SESSION['id_usuari_actual'] = $_GET['id'];
       <?php foreach ($params['llista'] as $recuperada) {
         echo "<tr>";
         echo "<td>" . $recuperada['id'] . "</td>";
-        echo "<td>" . $recuperada['num_recuperada'] . "</td>";
         echo "<td>" . $recuperada['nom_recuperada'] . "</td>";
-        echo "<td>" . $recuperada['familia_recuperada'] . "</td>";
         echo "<td>" . $recuperada['imatge_recuperada'] . "</td>";
-        if ($recuperada['video_recuperada'] != null) {
-          echo "<td>" . $recuperada['video_recuperada'] . "</td>";
-        } else {
-          echo "<td> No hi ha vídeo </td>";
-        }
         echo "<td>
           <a name='' id='' class='btn btn-danger' href='/recuperada/destroy/?id=" . $recuperada['id'] . "' role='button'>Remove</a>
           <a name='' id='' class='btn btn-primary' href='/recuperada/update/?id=" . $recuperada['id'] . "' role='button'>Update</a>

@@ -1,4 +1,3 @@
-resetController.php:
 <?php
 include_once(__DIR__ . '/../Services/Database.php');
 include_once(__DIR__ . "/../Models/Usuari.php");
@@ -85,7 +84,7 @@ class resetController extends Controller
             "img" => "50-AB17.jpg"
         ]);
 
-        
+
         // EXTNICTES
         $extincta = new Extincta();
         $extincta->insert([
@@ -116,5 +115,3 @@ class resetController extends Controller
         header("Location: /main/index");
     }
 }
-
-
