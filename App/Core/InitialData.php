@@ -1,72 +1,4 @@
 <?php
-// include_once("App/Core/Controller.php");
-// include_once("App/Models/Usuari.php");
-// include_once("App/Models/Recuperada.php");
-
-// class InitialData extends Controller
-// {
-
-//     public function charge()
-//     {
-
-//         $usuariModel = new Usuari();
-//         if ($usuariModel->getAll() == null) {
-//             $usuari = array(
-//                 //"id" => $_SESSION['id_usuari']++,
-//                 "email_usuari" => "admin@gmail.com",
-//                 "nom_usuari" => "Admin",
-//                 "usuari_usuari" => "admin",
-//                 "contrasenya_usuari" => "admin",
-//                 "admin" => true,
-//                 "token" => "token",
-//                 "verificat" => true
-//             );
-
-//             $usuariModel->insert($usuari);
-
-//             $recuperadaModel = new Recuperada();
-
-
-//             if ($recuperadaModel->getAll() == null) {
-//                 $recuperada = array(
-//                     //"id" => $_SESSION['id_recuperada']++,
-//                     "num_recuperada" => "1",
-//                     "familia_recuperada" => "Apodidae",
-//                     "nom_recuperada" => "Acridotheres tristis",
-//                     "imatge_recuperada" => "gavia.jpg",
-//                     "video_recuperada" => "gavia.mp4",
-//                     "id_usuari" => "1"
-//                 );
-
-//                 $recuperadaModel->insert($recuperada);
-
-//                 $recuperada = array(
-//                     //"id" => $_SESSION['id_recuperada']++,
-//                     "num_recuperada" => "7",
-//                     "familia_recuperada" => "Accipitridae",
-//                     "nom_recuperada" => "Accipiter gentilis",
-//                     "imatge_recuperada" => "Bird-Friendly-City.jpg",
-//                     "video_recuperada" => null,
-//                     "id_usuari" => "1"
-//                 );
-
-//                 $recuperadaModel->insert($recuperada);
-
-//                 $recuperada = array(
-//                     //"id" => $_SESSION['id_recuperada']++,
-//                     "num_recuperada" => "33",
-//                     "familia_recuperada" => "Anatidae",
-//                     "nom_recuperada" => "Nix",
-//                     "imatge_recuperada" => "Acridotheres tristis.avif",
-//                     "video_recuperada" => null,
-//                     "id_usuari" => "1"
-//                 );
-
-//                 $recuperadaModel->insert($recuperada);
-//             }
-//         }
-//     }
-// }
 
 include_once(__DIR__ . '/../Services/Database.php');
 include_once(__DIR__ . "/../Models/Usuari.php");
@@ -77,7 +9,7 @@ include_once(__DIR__ . "/../Models/Host.php");
 include_once(__DIR__ . "/../Models/Log_cap.php");
 include_once(__DIR__ . "/../Models/Log.php");
 
-class resetController extends Controller
+class initialData extends Controller
 {
     public function run()
     {
@@ -97,7 +29,7 @@ class resetController extends Controller
 
         $pepper = $_ENV['PEPPER'];
         $salt = bin2hex(random_bytes(16));
-        $passClear = "1234";
+        $passClear = "admin";
         $passWitdhPepperAndSalt = $pepper . $passClear . $salt;
         $passHashed = password_hash($passWitdhPepperAndSalt, PASSWORD_ARGON2ID);
 
@@ -106,7 +38,7 @@ class resetController extends Controller
 
         $usuariModel = new Usuari();
         $usuari = [
-            "nom" => "David",
+            "nom" => "admin",
             "email" => "david.vilanova@cirvianum.cat",
             "password" => $passHashed,
             "pressupost" => 400000,
@@ -136,13 +68,25 @@ class resetController extends Controller
         $adn->insert([
             "nom" => "50-AB17",
             "preu" =>  8000,
-            "img" => "50-AB17.jpg"
+            "img" => "adn-1.jpg"
         ]);
 
         $adn->insert([
             "nom" => "10-LG06",
             "preu" =>  12000,
-            "img" => "10-LG06.jpg"
+            "img" => "adn-2.jpg"
+        ]);
+
+        $adn->insert([
+            "nom" => "50-AB17",
+            "preu" =>  8000,
+            "img" => "adn-3.jpg"
+        ]);
+
+        $adn->insert([
+            "nom" => "10-LG06",
+            "preu" =>  12000,
+            "img" => "adn-4.jpg"
         ]);
 
         //HOSTS 

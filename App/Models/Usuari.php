@@ -22,7 +22,7 @@ class Usuari extends Orm
         `pressupost` DOUBLE NOT NULL , 
         `verified` TINYINT(1) NOT NULL, 
         `admin` TINYINT(1) NOT NULL,
-        PRIMARY KEY (`id`)) ON DELETE CASCADE
+        PRIMARY KEY (`id`))
         ENGINE = InnoDB
         DEFAULT CHARSET=utf8mb4 
         COLLATE=utf8mb4_0900_ai_ci;";

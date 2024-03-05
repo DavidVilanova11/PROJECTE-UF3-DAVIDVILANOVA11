@@ -10,16 +10,18 @@ class usuariController extends Controller
     public function index()
     {
 
+        $initialData = new InitialData();
+        $initialData->run();
         $usuariModel = new Usuari();
+        $usuariModel->getAll();
 
-        if ($usuariModel->getAll() == null) {
-            $initialData = new InitialData();
-            $initialData->charge();
-        }
+        // if ($usuariModel->getAll() == null) {
+
+        // }
 
         $params['title'] = "Gestió usuaris";
         $params['llista'] = $usuariModel->getAll();
-        $params['var'] = $_ENV['DB_NAME'];//
+        $params['var'] = $_ENV['DB_NAME']; //
 
 
         if (!isset($_SESSION['user_logged'])) {

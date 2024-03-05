@@ -19,8 +19,8 @@ class Extincta extends Orm
         `probabilitat` FLOAT NOT NULL , 
         `img` VARCHAR(250) NOT NULL , 
         `recompensa` DOUBLE NOT NULL,  
-        PRIMARY KEY (`id`)) 
-        FOREIGN KEY (`id_adn`) REFERENCES adn(`id`))
+        PRIMARY KEY (`id`),
+        FOREIGN KEY (`id_adn`) REFERENCES adn(`id`),
         FOREIGN KEY (`id_host`) REFERENCES hosts(`id`))
         ENGINE = InnoDB 
         DEFAULT CHARSET=utf8mb4 

@@ -13,7 +13,7 @@ class Log extends Orm
     public static function createTable()
     {
         $sql = "CREATE TABLE `des-extincio`.`logs` 
-        (`id` INT NOT NULL AUTO_INCREMENT , 
+        (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , 
         `id_cap` INT NOT NULL,
         `id_usuari` INT NOT NULL , 
         `id_extincta` INT NOT NULL , 
@@ -22,10 +22,11 @@ class Log extends Orm
         `satisfactori` BOOLEAN NOT NULL , 
         `probabilitat` FLOAT NOT NULL , 
         `timestamp` TIMESTAMP NOT NULL, 
-        FOREIGN KEY (`id_usuari`) REFERENCES usuaris(`id`))
-        FOREIGN KEY (`especie`) REFERENCES extinctes(`id`))
-        FOREIGN KEY (`id_adn`) REFERENCES adn(`id`))
-        FOREIGN KEY (`id_host`) REFERENCES hosts(`id`))
+        FOREIGN KEY (`id_usuari`) REFERENCES usuaris(`id`),
+        FOREIGN KEY (`especie`) REFERENCES extinctes(`id`),
+        FOREIGN KEY (`id_adn`) REFERENCES adn(`id`),
+        FOREIGN KEY (`id_host`) REFERENCES hosts(`id`),
+        FOREIGN KEY (`id_cap`) REFERENCES log_cap(`id`) ON DELETE CASCADE)
         ENGINE = InnoDB 
         DEFAULT CHARSET=utf8mb4 
         COLLATE=utf8mb4_0900_ai_ci;";
