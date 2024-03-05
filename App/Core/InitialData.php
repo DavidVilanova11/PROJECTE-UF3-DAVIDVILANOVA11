@@ -21,17 +21,18 @@ class initialData extends Controller
 
         Host::createTable();
 
-        Recuperada::createTable();
-
         Adn::createTable();
 
         Extincta::createTable();
 
+        Recuperada::createTable();
+
+
         $pepper = $_ENV['PEPPER'];
         $salt = bin2hex(random_bytes(16));
         $passClear = "admin";
-        $passWitdhPepperAndSalt = $pepper . $passClear . $salt;
-        $passHashed = password_hash($passWitdhPepperAndSalt, PASSWORD_ARGON2ID);
+        $passWithPepperAndSalt = $pepper . $passClear . $salt;
+        $passHashed = password_hash($passWithPepperAndSalt, PASSWORD_ARGON2ID);
 
 
         // USUARIS
@@ -83,18 +84,13 @@ class initialData extends Controller
             "img" => "adn-3.jpg"
         ]);
 
-        $adn->insert([
-            "nom" => "10-LG06",
-            "preu" =>  12000,
-            "img" => "adn-4.jpg"
-        ]);
 
         //HOSTS 
         $host = new Host();
         $host->insert([
-            "id_adn" => 1,
-            "id_host" =>  8000,
-            "img" => "50-AB17.jpg"
+            "especie" => "Cervol",
+            "preu" =>  8000,
+            "img" => "deer.jpg"
         ]);
 
 
@@ -102,29 +98,31 @@ class initialData extends Controller
         $extincta = new Extincta();
         $extincta->insert([
             "id_adn" => 1,
-            "id_host" =>  8000,
-            "img" => "50-AB17.jpg"
+            "id_host" =>  1,
+            "probabilitat" => 0.5,
+            "recompensa" =>  10000,
+            "img" => "stygimoloch.jpg"
         ]);
 
-        $adn->insert([
-            "nom" => "10-LG06",
-            "preu" =>  12000,
-            "img" => "10-LG06.jpg"
-        ]);
 
+        //Log_cap
+
+
+        // LOGS
 
         // RECUPERADES
-        $date = new DateTimeImmutable();
+        // $date = new DateTimeImmutable();
 
         //timestamp automàtic
         $recuperada = new Recuperada();
         $recuperada->insert([
             "nom" => "Spiny",
-            "naixemment" =>  $date->getTimestamp(),
+            // "naixemment" =>  $date->getTimestamp(),
             "id_usuari" => 1,
             "id_extincta" => 1
         ]);
 
-        header("Location: /main/index");
+        // de moment no es fa servir
+        // header("Location: /main/index");
     }
 }

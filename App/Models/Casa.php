@@ -1,18 +1,14 @@
 <?php
 
-include_once ("Orm.php");
+// include_once ("Orm.php");
 
-class Casa extends Orm{
+// class Casa extends Orm{
 
-    public function __construct()
-    {
-        parent::__construct('cases');
-        if(!isset($_SESSION['id_casa'])){
-            $_SESSION['id_casa'] =1;
-        }
-    }
-}
-
-
-
-?>
+//     public function __construct()
+//     {
+//         parent::__construct('cases');
+//         if(!isset($_SESSION['id_casa'])){
+//             $_SESSION['id_casa'] =1;
+//         }
+//     }
+// }
