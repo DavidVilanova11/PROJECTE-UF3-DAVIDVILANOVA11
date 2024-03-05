@@ -20,15 +20,16 @@ class Usuari extends Orm
         `salt` VARCHAR(250) NOT NULL, 
         `naixement` DATE NOT NULL , 
         `pressupost` DOUBLE NOT NULL , 
-        `verified` BOOLEAN NOT NULL, 
-        `admin` BOOLEAN NOT NULL,
-        PRIMARY KEY (`id`)) ENGINE = InnoDB
+        `verified` TINYINT(1) NOT NULL, 
+        `admin` TINYINT(1) NOT NULL,
+        PRIMARY KEY (`id`)) ON DELETE CASCADE
+        ENGINE = InnoDB
         DEFAULT CHARSET=utf8mb4 
         COLLATE=utf8mb4_0900_ai_ci;";
+
 
 
         $db = new Database();
         $db->queryDataBase($sql);
     }
-
 }

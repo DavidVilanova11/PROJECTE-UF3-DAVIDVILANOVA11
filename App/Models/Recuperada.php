@@ -18,13 +18,14 @@ class Recuperada extends Orm
         `naixement` TIMESTAMP NOT NULL , 
         `id_usuari` INT NOT NULL , 
         `id_extincta` INT NOT NULL,
-        PRIMARY KEY (`id`)) 
+        PRIMARY KEY (`id`))
+        FOREIGN KEY (`id_usuari`) REFERENCES usuaris(`id`))
+        FOREIGN KEY (`id_extincta`) REFERENCES extinctes(`id`)) 
         ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 
         COLLATE=utf8mb4_0900_ai_ci;";
-        
+
 
         $db = new Database();
         $db->queryDataBase($sql);
     }
 }
-

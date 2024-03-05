@@ -72,7 +72,7 @@ include_once(__DIR__ . '/../Services/Database.php');
 include_once(__DIR__ . "/../Models/Usuari.php");
 include_once(__DIR__ . "/../Models/Adn.php");
 include_once(__DIR__ . "/../Models/Recuperada.php");
-include_once(__DIR__ . "/../Core/Extincta.php");
+include_once(__DIR__ . "/../Models/Extincta.php");
 include_once(__DIR__ . "/../Models/Host.php");
 include_once(__DIR__ . "/../Models/Log_cap.php");
 include_once(__DIR__ . "/../Models/Log.php");
@@ -82,7 +82,7 @@ class resetController extends Controller
     public function run()
     {
         $db = new Database();
-        $sql = "DROP TABLE IF EXISTS usuaris, recuperades, recuperada,cistella";
+        $sql = "DROP TABLE IF EXISTS usuaris, recuperades, adn, hosts, extinctes, log_cap, logs;";
         $db->queryDataBase($sql);
 
         Usuari::createTable();

@@ -14,18 +14,24 @@ class Log extends Orm
     {
         $sql = "CREATE TABLE `des-extincio`.`logs` 
         (`id` INT NOT NULL AUTO_INCREMENT , 
-        `nom` VARCHAR(250) NOT NULL , 
-        `especie` INT NOT NULL , 
-        `naixement` TIMESTAMP NOT NULL , 
-        `img` VARCHAR(250) NOT NULL , 
+        `id_cap` INT NOT NULL,
         `id_usuari` INT NOT NULL , 
-        PRIMARY KEY (`id`)) ENGINE = InnoDB 
+        `id_extincta` INT NOT NULL , 
+        `id_adn` INT NOT NULL , 
+        `id_host` INT NOT NULL , 
+        `satisfactori` BOOLEAN NOT NULL , 
+        `probabilitat` FLOAT NOT NULL , 
+        `timestamp` TIMESTAMP NOT NULL, 
+        FOREIGN KEY (`id_usuari`) REFERENCES usuaris(`id`))
+        FOREIGN KEY (`especie`) REFERENCES extinctes(`id`))
+        FOREIGN KEY (`id_adn`) REFERENCES adn(`id`))
+        FOREIGN KEY (`id_host`) REFERENCES hosts(`id`))
+        ENGINE = InnoDB 
         DEFAULT CHARSET=utf8mb4 
         COLLATE=utf8mb4_0900_ai_ci;";
-        
+
 
         $db = new Database();
         $db->queryDataBase($sql);
     }
 }
-

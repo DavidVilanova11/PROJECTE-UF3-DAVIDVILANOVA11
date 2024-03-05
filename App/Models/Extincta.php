@@ -14,18 +14,20 @@ class Extincta extends Orm
     {
         $sql = "CREATE TABLE `des-extincio`.`extinctes` 
         (`id` INT NOT NULL AUTO_INCREMENT , 
-        `nom` VARCHAR(250) NOT NULL , 
-        `especie` INT NOT NULL , 
-        `naixement` TIMESTAMP NOT NULL , 
+        `id_adn` INT NOT NULL , 
+        `id_host` INT NOT NULL , 
+        `probabilitat` FLOAT NOT NULL , 
         `img` VARCHAR(250) NOT NULL , 
-        `id_usuari` INT NOT NULL , 
-        PRIMARY KEY (`id`)) ENGINE = InnoDB 
+        `recompensa` DOUBLE NOT NULL,  
+        PRIMARY KEY (`id`)) 
+        FOREIGN KEY (`id_adn`) REFERENCES adn(`id`))
+        FOREIGN KEY (`id_host`) REFERENCES hosts(`id`))
+        ENGINE = InnoDB 
         DEFAULT CHARSET=utf8mb4 
         COLLATE=utf8mb4_0900_ai_ci;";
-        
+
 
         $db = new Database();
         $db->queryDataBase($sql);
     }
 }
-
