@@ -3,17 +3,24 @@
 include_once(__DIR__ . "/../Core/Controller.php");
 include_once(__DIR__ . "/../Core/Mailer.php");
 include_once(__DIR__ . "/../Core/InitialData.php");
+include_once(__DIR__ . "/../Models/Usuari.php");
 
 class usuariController extends Controller
 {
 
     public function index()
     {
-
+        
         $initialData = new InitialData();
         $initialData->run();
         $usuariModel = new Usuari();
         $usuariModel->getAll();
+
+        $params = null;
+        if (isset($_SESSION['flash'])) {
+            $params['flash'] = $_SESSION['flash'];
+            unset($_SESSION['flash']);
+        }
 
         // if ($usuariModel->getAll() == null) {
 
@@ -174,29 +181,27 @@ class usuariController extends Controller
         //     }
         // }
 
-        echo "hola";
-        die();
 
-        $username = $_POST['usuari'] ?? null;
+        $email = $_POST['email'] ?? null;
         $pass = $_POST['contrasenya'] ?? null;
 
-        if (is_null($username) || is_null($pass)) {
-            echo "hola";
-            die();
+        // var_dump($email, $pass);
+        // die();
+
+        if (is_null($email) || is_null($pass)) {
+
             header("Location: /usuari/index");
-            die();
         } else {
-            echo "hola";
-            die();
+          
             $usuariModel = new Usuari();
-            $resultat = $usuariModel->checkLogin($username, $pass);
+            $resultat = $usuariModel->checkLogin($email, $pass);
             if (is_null($resultat)) {
                 $_SESSION['flash']['ko'] = "Credencials incorrectes";
                 header("Location: /usuari/index");
             } else {
                 //$_SESSION['user_logged'] = $resultat;
                 $_SESSION['flash']['ok'] = $resultat;
-                header("Location: /recuperades/index");
+                header("Location: /recuperada/index");
                 $params = [];
                 // $this->render("home/index", $params, "home");
             }

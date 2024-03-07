@@ -6,12 +6,12 @@
         <h2>Login</h2>
 
         <div class="mb-3">
-            <label for="usuari" class="form-label">Usuari</label>
-            <input type="text" class="form-control" name="usuari" id="usuari" aria-describedby="helpId" placeholder="" required>
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" id="email" aria-describedby="helpId" placeholder="" required>
         </div>
         <div class="mb-3">
             <label for="contrasenya" class="form-label">Contrasenya</label>
-            <input type="text" class="form-control" name="contrasenya" id="contrasenya" aria-describedby="helpId" placeholder="" required>
+            <input type="password" class="form-control" name="contrasenya" id="contrasenya" aria-describedby="helpId" placeholder="" required>
         </div>
         <?php
 
@@ -37,7 +37,7 @@
     </form>
 
     <i>
-        <p class="mt-4"><b>Consell:</b> admin admin per accedir com a usuari administrador.</p>
+        <p class="mt-4"><b>Consell:</b> email: david.vilanova@cirvianum.cat pwd: admin per accedir com a usuari administrador.</p>
     </i>
 
     <?php

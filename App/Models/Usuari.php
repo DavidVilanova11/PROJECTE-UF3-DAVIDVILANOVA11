@@ -54,6 +54,8 @@ class Usuari extends Orm
                 return $result;
             } else {
                 // ko
+                // echo "Bilal";
+                // die();
                 return null;
             }
         }
