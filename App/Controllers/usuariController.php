@@ -80,7 +80,7 @@ class usuariController extends Controller
         // die();
 
 
-        $usuariModel->create($usuari);
+        $usuariModel->insert($usuari);
 
         $mail = new Mailer();
         $mail->mailServerSetup();
@@ -124,7 +124,7 @@ class usuariController extends Controller
 
         );
 
-        $usuariModel->update($usuari);
+        //   $usuariModel->update($usuari);
 
         header("Location: /usuari/index");
     }
@@ -136,7 +136,7 @@ class usuariController extends Controller
         $params['title'] = "Afegir Extinguides";
         $params['usuari'] = $usuariModel->getById($id);
         $recuperadaModel = new Recuperada();
-        $params['llista'] = $recuperadaModel->getRecuperadesByIdUsuari($id); //aquí necessito el getRecuperadesByIdUsuari que es trona al model
+        //$params['llista'] = $recuperadaModel->getRecuperadesByIdUsuari($id); //aquí necessito el getRecuperadesByIdUsuari que es trona al model
 
         $this->render("recuperada/index", $params, "main");
     }
@@ -145,32 +145,60 @@ class usuariController extends Controller
     {
 
 
+        // $username = $_POST['usuari'] ?? null;
+        // $pass = $_POST['contrasenya'] ?? null;
+
+        // //   echo "<pre>";
+        // //     var_dump($_POST);
+        // //   echo "</pre>";
+
+        // //    die();
+
+        // $enrenadorModel = new Usuari();
+        // $result = $enrenadorModel->login($username, $pass);
+
+        // if (is_null($result)) {
+        //     $params['flash_ko'] = "Credencials incorrectes";
+        //     $this->render("usuari/login", $params, "site");
+        // } else {
+        //     if ($result['verificat'] == false) {
+        //         $params['flash_ko'] = "Usuari no verificat";
+        //         $this->render("usuari/login", $params, "site");
+        //     } else {
+        //         if ($result['usuari_usuari'] == 'admin') {
+        //             $params['llista'] = $enrenadorModel->getAll();
+        //         }
+        //         $_SESSION['user_logged'] = $result;
+        //         $params['usuari'] = $result;
+        //         $this->render("home/index", $params, "home");
+        //     }
+        // }
+
+        echo "hola";
+        die();
+
         $username = $_POST['usuari'] ?? null;
         $pass = $_POST['contrasenya'] ?? null;
 
-        //   echo "<pre>";
-        //     var_dump($_POST);
-        //   echo "</pre>";
-
-        //    die();
-
-        $enrenadorModel = new Usuari();
-        $result = $enrenadorModel->login($username, $pass);
-
-        if (is_null($result)) {
-            $params['flash_ko'] = "Credencials incorrectes";
-            $this->render("usuari/login", $params, "site");
+        if (is_null($username) || is_null($pass)) {
+            echo "hola";
+            die();
+            header("Location: /usuari/index");
+            die();
         } else {
-            if ($result['verificat'] == false) {
-                $params['flash_ko'] = "Usuari no verificat";
-                $this->render("usuari/login", $params, "site");
+            echo "hola";
+            die();
+            $usuariModel = new Usuari();
+            $resultat = $usuariModel->checkLogin($username, $pass);
+            if (is_null($resultat)) {
+                $_SESSION['flash']['ko'] = "Credencials incorrectes";
+                header("Location: /usuari/index");
             } else {
-                if ($result['usuari_usuari'] == 'admin') {
-                    $params['llista'] = $enrenadorModel->getAll();
-                }
-                $_SESSION['user_logged'] = $result;
-                $params['usuari'] = $result;
-                $this->render("home/index", $params, "home");
+                //$_SESSION['user_logged'] = $resultat;
+                $_SESSION['flash']['ok'] = $resultat;
+                header("Location: /recuperades/index");
+                $params = [];
+                // $this->render("home/index", $params, "home");
             }
         }
     }
@@ -231,11 +259,11 @@ class usuariController extends Controller
         $token = $_GET['token'];
 
         $usuariModel = new Usuari();
-        $usuari = $usuariModel->getByUsername($username);
+        $usuari = 2; //$usuariModel->getByUsername($username);
 
         if ($usuari['token'] == $token) {
             $usuari['verificat'] = true;
-            $usuariModel->update($usuari);
+            // $usuariModel->update($usuari);
             $params['flash_ok'] = "Usuari verificat correctament";
             $this->render("usuari/login", $params, "main");
         } else {

@@ -12,7 +12,7 @@ class Recuperada extends Orm
 
     public static function createTable()
     {
-        $sql = "CREATE TABLE `des-extincio`.`recuperades` 
+        $sql = "CREATE TABLE IF NOT EXISTS `des-extincio`.`recuperades` 
         (`id` INT NOT NULL AUTO_INCREMENT , 
         `nom` VARCHAR(250) NOT NULL, 
         `naixement` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL , 

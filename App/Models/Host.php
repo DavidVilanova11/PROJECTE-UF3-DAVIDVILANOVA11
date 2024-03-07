@@ -12,7 +12,7 @@ class Host extends Orm
 
     public static function createTable()
     {
-        $sql = "CREATE TABLE `des-extincio`.`hosts` 
+        $sql = "CREATE TABLE IF NOT EXISTS `des-extincio`.`hosts` 
         (`id` INT NOT NULL AUTO_INCREMENT , 
         `especie` VARCHAR(250) NOT NULL , 
         `preu` DOUBLE NOT NULL , 

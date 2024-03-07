@@ -42,6 +42,7 @@ class initialData extends Controller
             "nom" => "admin",
             "email" => "david.vilanova@cirvianum.cat",
             "password" => $passHashed,
+            "naixement" => "2004-11-20", // "2004-11-20",
             "pressupost" => 400000,
             "verified" => 1,
             "admin" => 1,
@@ -56,6 +57,7 @@ class initialData extends Controller
             "email" => "guettavilanova2004@gamil.com",
             "password" => $passHashed,
             "pressupost" => 30000,
+            "naixement" => "2004-11-20", // "2004-11-20",
             "verified" => 1,
             "admin" => 1,
             "salt" => $salt

@@ -2,7 +2,7 @@
 
 
 <div class="signin col-11 col-md-9 col-lg-7 col-xl-5 mx-auto border p-4 bg-light mt-4">
-<form action="/usuari/login" method="post">
+    <form action="/usuari/login" method="post">
         <h2>Login</h2>
 
         <div class="mb-3">
@@ -39,5 +39,16 @@
     <i>
         <p class="mt-4"><b>Consell:</b> admin admin per accedir com a usuari administrador.</p>
     </i>
+
+    <?php
+
+    if (isset($params['flash']['ko'])) {
+        echo "<div class='alert alert-danger mt-y' role='alert'>";
+        echo $params['flash']['ko'];
+        echo "</div>";
+        unset($params['flash']['ko']);
+    }
+
+    ?>
 
 </div>

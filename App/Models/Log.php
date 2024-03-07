@@ -12,7 +12,7 @@ class Log extends Orm
 
     public static function createTable()
     {
-        $sql = "CREATE TABLE `des-extincio`.`logs` 
+        $sql = "CREATE TABLE IF NOT EXISTS `des-extincio`.`logs` 
         (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , 
         `id_cap` INT NOT NULL,
         `id_usuari` INT NOT NULL , 

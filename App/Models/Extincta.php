@@ -12,7 +12,7 @@ class Extincta extends Orm
 
     public static function createTable()
     {
-        $sql = "CREATE TABLE `des-extincio`.`extinctes` 
+        $sql = "CREATE TABLE IF NOT EXISTS `des-extincio`.`extinctes` 
         (`id` INT NOT NULL AUTO_INCREMENT , 
         `id_adn` INT NOT NULL , 
         `id_host` INT NOT NULL , 

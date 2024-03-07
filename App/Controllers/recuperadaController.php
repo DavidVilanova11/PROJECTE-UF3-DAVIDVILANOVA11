@@ -8,7 +8,7 @@ class recuperadaController extends Controller
     public function index()
     {
         $recuperadaModel = new Recuperada();
-        $params['title'] = "Gestió Recuperadas";
+        $params['title'] = "Gestió Recuperades";
         $params['llista'] = $recuperadaModel->getAll();
 
         $this->render("recuperada/index", $params, "site");
@@ -107,7 +107,7 @@ class recuperadaController extends Controller
 
         // $recuperadaModel->update($recuperada); 
 
-        $recuperadaModel->insert($recuperada, $POST_['id']); // ara no fem update si li assem un id ja fem update
+        //$recuperadaModel->insert($recuperada, $POST_['id']); // ara no fem update si li assem un id ja fem update
 
         header("Location: /recuperada/index");
     }

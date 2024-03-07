@@ -12,7 +12,7 @@ class Log_cap extends Orm
 
     public static function createTable()
     {
-        $sql = "CREATE TABLE `des-extincio`.`log_cap` 
+        $sql = "CREATE TABLE IF NOT EXISTS `des-extincio`.`log_cap` 
         (`id` INT NOT NULL AUTO_INCREMENT , 
         PRIMARY KEY (`id`)) 
         ENGINE = InnoDB;
