@@ -42,22 +42,22 @@ class usuariController extends Controller
     {
         $usuariModel = new Usuari();
 
-        $emailusuari = $_POST['email_usuari'];
-        $nomusuari = $_POST['nom_usuari'];
-        $usuariusuari = $_POST['usuari_usuari'];
-        $contrasnyausuari = $_POST['contrasenya_usuari'];
+        $emailUsuari = $_POST['email_usuari'];
+        $nomUsuari = $_POST['nom_usuari'];
+        $naixementUsuari = $_POST['naixement_usuari'];
+        $contrasenyaUsuari = $_POST['contrasenya_usuari'];
         $admin = false;
 
 
         foreach ($usuariModel->getAll() as $usuari) {
-            if ($usuari['usuari_usuari'] == $_POST['usuari_usuari']) {
+            if ($usuari['email_usuari'] == $_POST['email_usuari']) {
                 $params['flash_ko'] = "Usuari ja existent";
                 $this->render("usuari/index", $params, "main");
                 die();
             }
         }
 
-        if ($_POST['usuari_usuari'] == "admin") {
+        if ($_POST['contrasenya_usuari'] == "admin") {
             $admin = true;
         } else {
 
@@ -70,11 +70,11 @@ class usuariController extends Controller
 
 
         $usuari = array(
-            "id" => $_SESSION['id_usuari']++,
-            "email_usuari" => $emailusuari,
-            "nom_usuari" => $nomusuari,
-            "usuari_usuari" => $usuariusuari,
-            "contrasenya_usuari" => $contrasnyausuari,
+            //"id" => $_SESSION['id_usuari']++,
+            "email_usuari" => $emailUsuari,
+            "nom_usuari" => $nomUsuari,
+            "naixement_usuari" => $naixementUsuari,
+            "contrasenya_usuari" => $contrasenyaUsuari,
             "admin" => $admin,
             "token" => $token,
             "verificat" => false

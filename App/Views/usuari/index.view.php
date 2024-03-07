@@ -15,8 +15,8 @@ include_once(__DIR__ . "/../templates/navbar.php"); ?>
   </div>
   <!-- Data naixement -->
   <div class="mb-3">
-    <label for="data_naixement" class="form-label">Data naixement</label>
-    <input type="date" class="form-control" name="data_naixement" id="data_naixement" aria-describedby="helpId" placeholder="Data de naixement..." required />
+    <label for="naixement_usuari" class="form-label">Data naixement</label>
+    <input type="date" class="form-control" name="naixement_usuari" id="naixement_usuari" aria-describedby="helpId" placeholder="Data de naixement..." required />
     <div class="mb-3">
       <label for="contrasenya_usuari" class="form-label">Contrasenya</label>
       <input type="password" class="form-control" name="contrasenya_usuari" id="contrasenya_usuari" aria-describedby="helpId" placeholder="Introdueix una contrasenya..." required />
