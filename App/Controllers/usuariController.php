@@ -10,7 +10,7 @@ class usuariController extends Controller
 
     public function index()
     {
-        
+
         $initialData = new InitialData();
         $initialData->run();
         $usuariModel = new Usuari();
@@ -182,8 +182,8 @@ class usuariController extends Controller
         // }
 
 
-        $email = $_POST['email'] ?? null;
-        $pass = $_POST['contrasenya'] ?? null;
+        $email = trim($_POST['email'] ?? null);
+        $pass = trim($_POST['contrasenya'] ?? null);
 
         // var_dump($email, $pass);
         // die();
@@ -192,7 +192,7 @@ class usuariController extends Controller
 
             header("Location: /usuari/index");
         } else {
-          
+
             $usuariModel = new Usuari();
             $resultat = $usuariModel->checkLogin($email, $pass);
             if (is_null($resultat)) {

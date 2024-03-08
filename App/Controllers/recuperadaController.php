@@ -1,5 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Core/Store.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Recuperada.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Core/Controller.php";
 
 
 class recuperadaController extends Controller
@@ -115,7 +117,7 @@ class recuperadaController extends Controller
     public function manage()
     {
         $recuperadaModel = new Recuperada();
-        $params['title'] = "Gestió Recuperadas";
+        $params['title'] = "Gestió Recuperades";
         $params['llista'] = $recuperadaModel->getAll();
 
         $this->render("recuperada/manage", $params, "site");
