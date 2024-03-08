@@ -2,17 +2,17 @@
 
 include_once("Orm.php");
 
-class Extincta extends Orm
+class Extinta extends Orm
 {
 
     public function __construct()
     {
-        parent::__construct('extinctes');
+        parent::__construct('extintes');
     }
 
     public static function createTable()
     {
-        $sql = "CREATE TABLE IF NOT EXISTS `des-extincio`.`extinctes` 
+        $sql = "CREATE TABLE IF NOT EXISTS `des-extincio`.`extintes` 
         (`id` INT NOT NULL AUTO_INCREMENT , 
         `id_adn` INT NOT NULL , 
         `id_host` INT NOT NULL , 

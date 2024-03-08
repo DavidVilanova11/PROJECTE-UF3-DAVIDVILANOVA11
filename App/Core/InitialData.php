@@ -4,7 +4,7 @@ include_once(__DIR__ . '/../Services/Database.php');
 include_once(__DIR__ . "/../Models/Usuari.php");
 include_once(__DIR__ . "/../Models/Adn.php");
 include_once(__DIR__ . "/../Models/Recuperada.php");
-include_once(__DIR__ . "/../Models/Extincta.php");
+include_once(__DIR__ . "/../Models/Extinta.php");
 include_once(__DIR__ . "/../Models/Host.php");
 include_once(__DIR__ . "/../Models/Log_cap.php");
 include_once(__DIR__ . "/../Models/Log.php");
@@ -14,7 +14,7 @@ class initialData extends Controller
     public function run()
     {
         $db = new Database();
-        $sql = "DROP TABLE IF EXISTS usuaris, recuperades, adn, hosts, extinctes, log_cap, logs;";
+        $sql = "DROP TABLE IF EXISTS usuaris, recuperades, adn, hosts, extintes, log_cap, logs;";
         $db->queryDataBase($sql);
 
         Usuari::createTable();
@@ -23,7 +23,7 @@ class initialData extends Controller
 
         Adn::createTable();
 
-        Extincta::createTable();
+        Extinta::createTable();
 
         Recuperada::createTable();
 
@@ -97,8 +97,8 @@ class initialData extends Controller
 
 
         // EXTNICTES
-        $extincta = new Extincta();
-        $extincta->insert([
+        $extinta = new Extinta();
+        $extinta->insert([
             "id_adn" => 1,
             "id_host" =>  1,
             "probabilitat" => 0.5,

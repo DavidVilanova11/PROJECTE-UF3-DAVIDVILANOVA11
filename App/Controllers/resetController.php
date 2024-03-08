@@ -4,7 +4,7 @@ include_once(__DIR__ . '/../Services/Database.php');
 include_once(__DIR__ . "/../Models/Usuari.php");
 include_once(__DIR__ . "/../Models/Adn.php");
 include_once(__DIR__ . "/../Models/Recuperada.php");
-include_once(__DIR__ . "/../Core/Extincta.php");
+include_once(__DIR__ . "/../Core/Extinta.php");
 include_once(__DIR__ . "/../Models/Host.php");
 include_once(__DIR__ . "/../Models/Log_cap.php");
 include_once(__DIR__ . "/../Models/Log.php");
@@ -25,7 +25,7 @@ class resetController extends Controller
 
         Adn::createTable();
 
-        Extincta::createTable();
+        Extinta::createTable();
 
         $pepper = $_ENV['PEPPER'];
         $salt = bin2hex(random_bytes(16));
@@ -85,10 +85,10 @@ class resetController extends Controller
             "img" => "50-AB17.jpg"
         ]);
 
-        
+
         // EXTNICTES
-        $extincta = new Extincta();
-        $extincta->insert([
+        $extinta = new Extinta();
+        $extinta->insert([
             "id_adn" => 1,
             "id_host" =>  8000,
             "img" => "50-AB17.jpg"
@@ -116,5 +116,3 @@ class resetController extends Controller
         header("Location: /main/index");
     }
 }
-
-

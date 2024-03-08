@@ -35,9 +35,9 @@ INT NOT NULL , `id_host` INT NOT NULL , `satisfactori` BOOLEAN NOT NULL ,
 CREATE TABLE `des-extincio`.`log_cap` (`id` INT NOT NULL AUTO_INCREMENT ,
 PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
-// extinctes
+// extintes
 
-CREATE TABLE `des-extincio`.`extinctes` (`id` INT NOT NULL AUTO_INCREMENT ,
+CREATE TABLE `des-extincio`.`extintes` (`id` INT NOT NULL AUTO_INCREMENT ,
 `id_adn` INT NOT NULL , `id_host` INT NOT NULL , `probabilitat` FLOAT NOT NULL ,
 `img` VARCHAR(250) NOT NULL , `recompensa` DOUBLE NOT NULL,  PRIMARY KEY (`id`))
 ENGINE = InnoDB;

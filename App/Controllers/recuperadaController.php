@@ -109,7 +109,8 @@ class recuperadaController extends Controller
 
         // $recuperadaModel->update($recuperada); 
 
-        //$recuperadaModel->insert($recuperada, $POST_['id']); // ara no fem update si li assem un id ja fem update
+        //$recuperadaModel->insert($recuperada, $POST_['id']); // ara no fem
+        //update si li assem un id ja fem update
 
         header("Location: /recuperada/index");
     }

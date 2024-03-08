@@ -23,7 +23,7 @@ class Log extends Orm
         `probabilitat` FLOAT NOT NULL , 
         `timestamp` TIMESTAMP NOT NULL, 
         FOREIGN KEY (`id_usuari`) REFERENCES usuaris(`id`),
-        FOREIGN KEY (`id_extincta`) REFERENCES extinctes(`id`),
+        FOREIGN KEY (`id_extincta`) REFERENCES extintes(`id`),
         FOREIGN KEY (`id_adn`) REFERENCES adn(`id`),
         FOREIGN KEY (`id_host`) REFERENCES hosts(`id`),
         FOREIGN KEY (`id_cap`) REFERENCES log_cap(`id`) ON DELETE CASCADE)
