@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <style>
         body {
-            background: url(/Public/Assetsimatges/WebOriginals/home_wallapaer_4k.jpg) no-repeat center center fixed;
+            background: url(/Public/img/web/wallpaper_5.jpg) no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -19,13 +19,13 @@
         }
 
         .logo-video {
-            width: 200px;
+            width: 140px;
             /* Ajusta esto al tamaño que desees */
-            height: 100px;
+            height: 120px;
             top: -15px;
             bottom: -15px;
             max-width: 200px;
-            max-height: 100px;
+            max-height: 60px;
             left: -15px;
             /* Ajusta esto al tamaño que desees */
 
@@ -35,7 +35,7 @@
 
         .logo-video video {
             width: 100%;
-            height: 85%;
+            height: 100%;
             object-fit: cover;
         }
 

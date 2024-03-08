@@ -10,8 +10,8 @@ include_once("App/Views/templates/navbar.php");
 ?>
 <div class="container">
     <h1>HOME WEB</h1>
-    <p>Hola <?php if (isset($params['usuari']['nom_usuari'])) {
-                echo $params['usuari']['nom_usuari'];
+    <p>Hola <?php if (isset($params['usuari']['nom'])) {
+                echo $params['usuari']['nom'];
             } else {
                 echo $_SESSION['user_logged']['nom_usuari'];
             }

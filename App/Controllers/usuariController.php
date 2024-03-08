@@ -185,9 +185,6 @@ class usuariController extends Controller
         $email = trim($_POST['email'] ?? null);
         $pass = trim($_POST['contrasenya'] ?? null);
 
-        // var_dump($email, $pass);
-        // die();
-
         if (is_null($email) || is_null($pass)) {
 
             header("Location: /usuari/index");
@@ -195,15 +192,14 @@ class usuariController extends Controller
 
             $usuariModel = new Usuari();
             $resultat = $usuariModel->checkLogin($email, $pass);
+            // var_dump($resultat);
             if (is_null($resultat)) {
                 $_SESSION['flash']['ko'] = "Credencials incorrectes";
                 header("Location: /usuari/index");
             } else {
-                //$_SESSION['user_logged'] = $resultat;
-                $_SESSION['flash']['ok'] = $resultat;
-                header("Location: /recuperada/index");
-                $params = [];
-                // $this->render("home/index", $params, "home");
+                $_SESSION['user_logged'] = $resultat;
+                //$_SESSION['flash']['ok'] = $resultat;
+                header("Location: /home/index");
             }
         }
     }

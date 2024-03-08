@@ -12,6 +12,7 @@ class recuperadaController extends Controller
         $recuperadaModel = new Recuperada();
         $params['title'] = "Gestió Recuperades";
         $params['llista'] = $recuperadaModel->getAll();
+        $params['user'] = $_SESSION['user_logged']['nom_usuari'];
 
         $this->render("recuperada/index", $params, "site");
     }

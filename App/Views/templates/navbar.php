@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;"> <a class="navbar-brand" href="#">
+<nav class="navbar navbar-expand-lg" style="background-color: white;"> <a class="navbar-brand" href="#">
         <div class="logo-video">
             <video autoplay muted playsinline>
-                <source src="/Public/Assetsvideos/WebOriginals/Digital_Bird_Logo.mp4" type="video/mp4">
+                <source src="/Public/img/web/DES-EXTINCIÓ (2).mp4" type="video/mp4">
             </video>
         </div>
     </a>

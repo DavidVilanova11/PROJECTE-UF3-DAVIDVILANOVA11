@@ -4,6 +4,7 @@ class homeController extends Controller
 {
     public function index()
     {
-        $this->render("home/index", [], "home");
+        $params['usuari'] = $_SESSION['user_logged'];
+        $this->render("home/index", $params, "home");
     }
 }

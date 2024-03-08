@@ -7,7 +7,7 @@
 
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" name="email" id="email" aria-describedby="helpId" placeholder="" required>
+            <input type="email" class="form-control" name="email" id="email" aria-describedby="helpId" placeholder="" required value="david.vilanova@cirvianum.cat"></input>
         </div>
         <div class="mb-3">
             <label for="contrasenya" class="form-label">Contrasenya</label>
