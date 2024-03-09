@@ -43,6 +43,13 @@
             margin-left: 2vw;
             margin-top: 1vh;
         }
+
+        .highlight {
+            color: #ffffff;
+            /* Cambia el color del texto a blanco */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Cambia el color de fondo a negro con 50% de transparencia */
+        }
     </style>
 </head>
 
