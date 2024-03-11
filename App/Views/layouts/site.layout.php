@@ -11,13 +11,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <style>
     .logo-video {
-      width: 200px;
+      width: 140px;
       /* Ajusta esto al tamaño que desees */
-      height: 100px;
+      height: 120px;
       top: -15px;
       bottom: -15px;
       max-width: 200px;
-      max-height: 100px;
+      max-height: 60px;
       left: -15px;
       /* Ajusta esto al tamaño que desees */
 
@@ -27,39 +27,39 @@
 
     .logo-video video {
       width: 100%;
-      height: 85%;
-      object-fit: cover;
-    }
-
-    .custom-image {
-      width: 100%;
-      max-height: 150px;
-      object-fit: cover;
-    }
-
-    .custom-video {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-    }
-
-    .card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
       height: 100%;
+      object-fit: cover;
     }
 
-    .card .card-body .accordion {
-      max-height: calc(100% - 50px);
-      /* Ajusta la altura máxima según tus necesidades */
-      overflow-y: auto;
-    }
+      .custom-image {
+        width: 100%;
+        max-height: 150px;
+        object-fit: cover;
+      }
 
-    .card .card-body .accordion .card-body {
-      padding: 15px;
-      /* Ajusta el espaciado interno según tus necesidades */
-    }
+      .custom-video {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
+
+      .card .card-body .accordion {
+        max-height: calc(100% - 50px);
+        /* Ajusta la altura máxima según tus necesidades */
+        overflow-y: auto;
+      }
+
+      .card .card-body .accordion .card-body {
+        padding: 15px;
+        /* Ajusta el espaciado interno según tus necesidades */
+      }
   </style>
 </head>
 
