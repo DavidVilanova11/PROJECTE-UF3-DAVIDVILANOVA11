@@ -12,19 +12,19 @@ include_once(__DIR__ . "/../templates/navbar.php");
     <h2>Update Usuari</h2>
     <div class="mb-3">
         <label for="email_usuari" class="form-label">Email Usuari</label>
-        <input value="<?php echo $params['usuari']['email_usuari'] ?? null ?>" type="email" class="form-control" name="email_usuari" id="email_usuari" aria-describedby="helpId" placeholder="Correu del Usuari" required />
+        <input value="<?php echo $params['usuari']['email'] ?? null ?>" type="email" class="form-control" name="email_usuari" id="email_usuari" aria-describedby="helpId" placeholder="Correu del Usuari" required />
     </div>
     <div class="mb-3">
         <label for="nom_usuari" class="form-label">Nom Usuari</label>
-        <input value="<?php echo $params['usuari']['nom_usuari'] ?? null ?>" type="text" class="form-control" name="nom_usuari" id="nom_usuari" aria-describedby="helpId" placeholder="Nom de l'Usuari..." required />
+        <input value="<?php echo $params['usuari']['nom'] ?? null ?>" type="text" class="form-control" name="nom_usuari" id="nom_usuari" aria-describedby="helpId" placeholder="Nom de l'Usuari..." required />
     </div>
     <div class="mb-3">
-        <label for="usuari_usuari" class="form-label">Usuari Usuari</label>
-        <input value="<?php echo $params['usuari']['usuari_usuari'] ?? null ?>" type="text" class="form-control" name="usuari_usuari" id="usuari_usuari" aria-describedby="helpId" placeholder="Nom d'usuari..." required />
+        <label for="usuari_usuari" class="form-label">Naixement Usuari</label>
+        <input value="<?php echo $params['usuari']['naixement'] ?? null ?>" type="text" class="form-control" name="usuari_usuari" id="usuari_usuari" aria-describedby="helpId" placeholder="Nom d'usuari..." required />
     </div>
     <div class="mb-3">
-        <label for="contrasenya_usuari" class="form-label">Nom Usuari</label>
-        <input value="<?php echo $params['usuari']['contrasenya_usuari'] ?? null ?>" type="text" class="form-control" name="contrasenya_usuari" id="contrasenya_usuari" aria-describedby="helpId" placeholder="Introdueix una contrasenya..." required />
+        <label for="contrasenya_usuari" class="form-label">Contrasenya Usuari</label>
+        <input value="<?php echo $params['usuari']['password'] ?? null ?>" type="text" class="form-control" name="contrasenya_usuari" id="contrasenya_usuari" aria-describedby="helpId" placeholder="Introdueix una contrasenya..." required />
     </div>
 
     <input type="hidden" name="id" value="<?php echo $params['usuari']['id'] ?? null ?>">
