@@ -58,9 +58,9 @@ class Mailer extends PHPMailer
     {
         $this->isHTML(true);
         $this->Subject = 'Verify your email please';
-        $content = '<p>Hi ' . $user['nom_entrenador'] . '</p>';
+        $content = '<p>Hi ' . $user['nom'] . '</p>';
         $content .= '<p>Click follow button in order to verify your email</p>';
-        $content .= "<a style='padding: 4px; background-color: blue; color:white; text-decoration: unset;' href='http://localhost/entrenador/verify/?username=" . $user['usuari_entrenador'] . "&token=" . $user['token'] . "'>Verify!</a>";
+        $content .= "<a style='padding: 4px; background-color: blue; color:white; text-decoration: unset;' href='http://localhost/usuari/verify/?email=" . $user['email'] . "&token=" . $user['token'] . "'>Verify!</a>";
         $this->Body = $content;
     }
 

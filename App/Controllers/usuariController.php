@@ -2,7 +2,6 @@
 
 include_once(__DIR__ . "/../Core/Controller.php");
 include_once(__DIR__ . "/../Core/Mailer.php");
-include_once(__DIR__ . "/../Core/InitialData.php");
 include_once(__DIR__ . "/../Models/Usuari.php");
 
 class usuariController extends Controller
@@ -10,9 +9,6 @@ class usuariController extends Controller
 
     public function index()
     {
-
-        $initialData = new InitialData();
-        $initialData->run();
         $usuariModel = new Usuari();
         $usuariModel->getAll();
 
@@ -46,11 +42,11 @@ class usuariController extends Controller
         $nomUsuari = $_POST['nom_usuari'];
         $naixementUsuari = $_POST['naixement_usuari'];
         $contrasenyaUsuari = $_POST['contrasenya_usuari'];
-        $admin = false;
+        $admin = 0;
 
 
         foreach ($usuariModel->getAll() as $usuari) {
-            if ($usuari['email_usuari'] == $_POST['email_usuari']) {
+            if ($usuari['email'] == $_POST['email_usuari']) {
                 $params['flash_ko'] = "Usuari ja existent";
                 $this->render("usuari/index", $params, "main");
                 die();
@@ -58,10 +54,10 @@ class usuariController extends Controller
         }
 
         if ($_POST['contrasenya_usuari'] == "admin") {
-            $admin = true;
+            $admin = 1;
         } else {
 
-            $admin = false;
+            $admin = 0;
         }
 
 
@@ -69,35 +65,35 @@ class usuariController extends Controller
         $token = substr(str_shuffle($caracters), 0, 15);
 
 
+        $pepper = $_ENV['PEPPER'];
+        $salt = bin2hex(random_bytes(16));
+        $passClear = $contrasenyaUsuari;
+        $passWitdhPepperAndSalt = $pepper . $passClear . $salt;
+        $passHashed = password_hash($passWitdhPepperAndSalt, PASSWORD_ARGON2ID);
+
         $usuari = array(
-            //"id" => $_SESSION['id_usuari']++,
-            "email_usuari" => $emailUsuari,
-            "nom_usuari" => $nomUsuari,
-            "naixement_usuari" => $naixementUsuari,
-            "contrasenya_usuari" => $contrasenyaUsuari,
+            "email" => $emailUsuari,
+            "nom" => $nomUsuari,
+            "naixement" => $naixementUsuari,
+            "password" => $passHashed,
+            "pressupost" => 10000, 
+            "salt" => $salt,
             "admin" => $admin,
             "token" => $token,
-            "verificat" => false
+            "verified" => 0
         );
-
-        // echo '<pre>';
-        // var_dump($usuari);
-        // echo '</pre>';
-
-        // die();
-
 
         $usuariModel->insert($usuari);
 
         $mail = new Mailer();
         $mail->mailServerSetup();
-        $mail->addRec([$usuari['email_usuari']], [], []);
+        $mail->addRec([$usuari['email']], [], []);
         $mail->addVerifyContent($usuari);
         $mail->send();
 
         $params['flash_ok'] = "Usuari creat correctament, verifica el teu correu per poder accedir";
 
-
+        $params['var'] = $_ENV['DB_NAME']; //
         $this->render("usuari/login", $params, "main");
     }
 
@@ -256,19 +252,20 @@ class usuariController extends Controller
 
     public function verify()
     {
-        $username = $_GET['username'];
+        $email = $_GET['email'];
         $token = $_GET['token'];
 
         $usuariModel = new Usuari();
-        $usuari = 2; //$usuariModel->getByUsername($username);
+        $usuari = $usuariModel->getByEmail($email);
 
         if ($usuari['token'] == $token) {
-            $usuari['verificat'] = true;
-            // $usuariModel->update($usuari);
+            $usuari['verified'] = 1;
+            $usuari = $usuariModel->insert($usuari); // ja tenim el camp ID per tant farem un update automàticament
             $params['flash_ok'] = "Usuari verificat correctament";
             $this->render("usuari/login", $params, "main");
         } else {
             $params['flash_ko'] = "Usuari no verificat";
+            $params['var'] = $_ENV['DB_NAME']; //
             $this->render("usuari/login", $params, "main");
         }
     }

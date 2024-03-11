@@ -1,4 +1,4 @@
-<h1><?= $params['var'] ?></h1>
+<h1><?= $_ENV['DB_NAME']; //$params['var'] ?></h1>
 
 
 <div class="signin col-11 col-md-9 col-lg-7 col-xl-5 mx-auto border p-4 bg-light mt-4">
@@ -7,7 +7,7 @@
 
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" name="email" id="email" aria-describedby="helpId" placeholder="" required value="david.vilanova@cirvianum.cat"></input>
+            <input type="email" class="form-control" name="email" id="email" aria-describedby="helpId" placeholder="" required value="gat2004@gmail.com"></input>
         </div>
         <div class="mb-3">
             <label for="contrasenya" class="form-label">Contrasenya</label>
@@ -37,7 +37,7 @@
     </form>
 
     <i>
-        <p class="mt-4"><b>Consell:</b> email: david.vilanova@cirvianum.cat pwd: admin per accedir com a usuari administrador.</p>
+        <p class="mt-4"><b>Consell:</b> email: gat2004@gmail.com pwd: admin per accedir com a usuari administrador.</p>
     </i>
 
     <?php

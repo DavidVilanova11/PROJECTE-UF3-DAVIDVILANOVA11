@@ -11,10 +11,10 @@ class Router{
 
     public function matchRoute(){
         $url_array = explode('/',URL);
-        $this->controller = !empty($url_array[1]) ? $url_array[1] : 'usuari';
+        $this->controller = !empty($url_array[1]) ? $url_array[1] : 'reset';
         $this->controller = $this->controller . "Controller";
         require_once("App/Controllers/" . $this->controller . ".php");
-        $this->method = !empty($url_array[2]) ? $url_array[2] : 'index';
+        $this->method = !empty($url_array[2]) ? $url_array[2] : 'run';
         
         
         

@@ -22,6 +22,7 @@ class Usuari extends Orm
         `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ,
         `modified_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
         `pressupost` DOUBLE NOT NULL , 
+        `token` VARCHAR(250) NOT NULL,
         `verified` TINYINT(1) NOT NULL, 
         `admin` TINYINT(1) NOT NULL,
         PRIMARY KEY (`id`))
@@ -59,5 +60,16 @@ class Usuari extends Orm
                 return null;
             }
         }
+    }
+
+    public function getByEmail($email)
+    {
+        $sql = "SELECT * FROM usuaris WHERE email = :email";
+        $params = array(":email" => $email);
+
+        $db = new Database();
+        $result = $db->queryDataBase($sql, $params)->fetch();
+
+        return $result;
     }
 }

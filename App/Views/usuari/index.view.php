@@ -17,7 +17,8 @@ include_once(__DIR__ . "/../templates/navbar.php"); ?>
   <div class="mb-3">
     <label for="naixement_usuari" class="form-label">Data naixement</label>
     <input type="date" class="form-control" name="naixement_usuari" id="naixement_usuari" aria-describedby="helpId" placeholder="Data de naixement..." required />
-    <div class="mb-3">
+  </div>  
+  <div class="mb-3">
       <label for="contrasenya_usuari" class="form-label">Contrasenya</label>
       <input type="password" class="form-control" name="contrasenya_usuari" id="contrasenya_usuari" aria-describedby="helpId" placeholder="Introdueix una contrasenya..." required />
     </div>
@@ -42,21 +43,22 @@ include_once(__DIR__ . "/../templates/navbar.php"); ?>
 
 <?php
 
-if (isset($_SESSION['user_logged']) && $_SESSION['user_logged']['usuari_usuari'] == "admin") {
+if (isset($_SESSION['user_logged']) && $_SESSION['user_logged']['nom'] == "admin") {
 
 
 ?>
-  <div class="llista">
+
+  <div class="llista" style="margin-top: 50px;">
     <table class="table">
       <thead>
         <tr>
           <th scope="col">ID Usuari</th>
           <th scope="col">Email Usuari</th>
           <th scope="col">Nom Usuari</th>
-          <th scope="col">Usuari</th>
+          <th scope="col">Naixement Usuari</th>
           <th scope="col">Contrasenya</th>
-          <th scope="col">Admin</th>
           <th scope="col">Verificat</th>
+          <th scope="col">Admin</th>
           <th scope="col">Actions</th>
 
         </tr>
@@ -68,12 +70,12 @@ if (isset($_SESSION['user_logged']) && $_SESSION['user_logged']['usuari_usuari']
       foreach ($params['llista'] as $usuari) {
         echo "<tr>";
         echo "<td>" . $usuari['id'] . "</td>";
-        echo "<td>" . $usuari['email_usuari'] . "</td>";
-        echo "<td>" . $usuari['nom_usuari'] . "</td>";
-        echo "<td>" . $usuari['naixement_usuari'] . "</td>";
-        echo "<td>" . $usuari['contrasenya_usuari'] . "</td>";
+        echo "<td>" . $usuari['email'] . "</td>";
+        echo "<td>" . $usuari['nom'] . "</td>";
+        echo "<td>" . $usuari['naixement'] . "</td>";
+        echo "<td>" . substr($usuari['password'], 0, 5) . "..." . "</td>";
+        echo "<td>" . $usuari['verified'] . "</td>";
         echo "<td>" . $usuari['admin'] . "</td>";
-        echo "<td>" . $usuari['verificat'] . "</td>";
         echo "<td>
         <a name='' id='' class='btn btn-danger' href='/usuari/destroy/?id=" . $usuari['id'] . "' role='button'>Remove</a>
         <a name='' id='' class='btn btn-primary' href='/usuari/update/?id=" . $usuari['id'] . "' role='button'>Update</a>
