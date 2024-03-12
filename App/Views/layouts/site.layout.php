@@ -31,35 +31,44 @@
       object-fit: cover;
     }
 
-      .custom-image {
-        width: 100%;
-        max-height: 150px;
-        object-fit: cover;
-      }
+    .custom-image {
+      width: 100%;
+      max-height: 150px;
+      object-fit: cover;
+    }
 
-      .custom-video {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-      }
+    .custom-video {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
 
-      .card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
-      }
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
 
-      .card .card-body .accordion {
-        max-height: calc(100% - 50px);
-        /* Ajusta la altura máxima según tus necesidades */
-        overflow-y: auto;
-      }
+    .card .card-body .accordion {
+      max-height: calc(100% - 50px);
+      /* Ajusta la altura máxima según tus necesidades */
+      overflow-y: auto;
+    }
 
-      .card .card-body .accordion .card-body {
-        padding: 15px;
-        /* Ajusta el espaciado interno según tus necesidades */
-      }
+    .card .card-body .accordion .card-body {
+      padding: 15px;
+      /* Ajusta el espaciado interno según tus necesidades */
+    }
+
+    .nav-link:not(.active) img {
+      opacity: 0.5;
+    }
+
+
+    .nav-link.active {
+      color: #9400D3 !important;
+    }
   </style>
 </head>
 

@@ -50,6 +50,15 @@
             background-color: rgba(0, 0, 0, 0.5);
             /* Cambia el color de fondo a negro con 50% de transparencia */
         }
+
+        .nav-link:not(.active) img {
+            opacity: 0.5;
+        }
+
+
+        .nav-link.active {
+            color: #9400D3 !important;
+        }
     </style>
 </head>
 

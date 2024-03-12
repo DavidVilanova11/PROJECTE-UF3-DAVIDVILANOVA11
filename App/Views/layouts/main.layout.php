@@ -30,6 +30,16 @@
             height: 100%;
             object-fit: cover;
         }
+
+
+        .nav-link:not(.active) img {
+            opacity: 0.5;
+        }
+
+
+        .nav-link.active {
+            color: #9400D3 !important;
+        }
     </style>
 </head>
 

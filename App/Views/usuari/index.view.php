@@ -56,6 +56,7 @@ if (isset($_SESSION['user_logged']) && $_SESSION['user_logged']['nom'] == "admin
           <th scope="col">Email Usuari</th>
           <th scope="col">Nom Usuari</th>
           <th scope="col">Naixement Usuari</th>
+          <th scope="col">Pressupost Usuari</th>
           <th scope="col">Contrasenya</th>
           <th scope="col">Verificat</th>
           <th scope="col">Admin</th>
@@ -73,6 +74,7 @@ if (isset($_SESSION['user_logged']) && $_SESSION['user_logged']['nom'] == "admin
         echo "<td>" . $usuari['email'] . "</td>";
         echo "<td>" . $usuari['nom'] . "</td>";
         echo "<td>" . $usuari['naixement'] . "</td>";
+        echo "<td>" . number_format($usuari['pressupost'], 2, '.', ',') . "$" . "</td>";
         echo "<td>" . substr($usuari['password'], 0, 5) . "..." . "</td>";
         echo "<td>" . $usuari['verified'] . "</td>";
         echo "<td>" . $usuari['admin'] . "</td>";
