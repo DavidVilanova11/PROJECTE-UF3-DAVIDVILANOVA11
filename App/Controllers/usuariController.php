@@ -76,7 +76,7 @@ class usuariController extends Controller
             "nom" => $nomUsuari,
             "naixement" => $naixementUsuari,
             "password" => $passHashed,
-            "pressupost" => 10000, 
+            "pressupost" => 10000,
             "salt" => $salt,
             "admin" => $admin,
             "token" => $token,
@@ -117,17 +117,37 @@ class usuariController extends Controller
 
     public function modify()
     {
+
         $usuariModel = new Usuari();
-        $usuari = array(
-            "id" => $_POST['id'],
-            "email_usuari" => $_POST['email_usuari'],
-            "nom_usuari" => $_POST['nom_usuari'],
-            "usuari_usuari" => $_POST['usuari_usuari'],
-            "contrasenya_usuari" => $_POST['contrasenya_usuari'],
 
-        );
+        if (isset($_POST['contrasenya_usuari'])) { // si el camp contrasenya_usuari no està habilitat no el modifiquem
+            $pepper = $_ENV['PEPPER'];
+            $salt = bin2hex(random_bytes(16));
+            $passClear = $_POST['contrasenya_usuari'];
+            $passWithPepperAndSalt = $pepper . $passClear . $salt;
+            $passHashed = password_hash($passWithPepperAndSalt, PASSWORD_ARGON2ID);
 
-        //   $usuariModel->update($usuari);
+            $usuari = array(
+                "id" => $_POST['id'],
+                "email" => $_POST['email_usuari'],
+                "nom" => $_POST['nom_usuari'],
+                "naixement" => $_POST['usuari_usuari'],
+                "password" => $passHashed,
+                "salt" => $salt
+
+            );
+
+            $usuariModel->insert($usuari);
+        } else {
+            $usuari = array(
+                "id" => $_POST['id'],
+                "email" => $_POST['email_usuari'],
+                "nom" => $_POST['nom_usuari'],
+                "naixement" => $_POST['usuari_usuari'],
+            );
+        }
+
+
 
         header("Location: /usuari/index");
     }
@@ -185,17 +205,22 @@ class usuariController extends Controller
 
             header("Location: /usuari/index");
         } else {
-
             $usuariModel = new Usuari();
             $resultat = $usuariModel->checkLogin($email, $pass);
+
             // var_dump($resultat);
             if (is_null($resultat)) {
                 $_SESSION['flash']['ko'] = "Credencials incorrectes";
                 header("Location: /usuari/index");
             } else {
-                $_SESSION['user_logged'] = $resultat;
-                //$_SESSION['flash']['ok'] = $resultat;
-                header("Location: /home/index");
+                if ($resultat['verified'] == 0) {
+                    $_SESSION['flash']['ko'] = "Usuari no verificat";
+                    header("Location: /usuari/index");
+                } else {
+                    $_SESSION['user_logged'] = $resultat;
+                    //$_SESSION['flash']['ok'] = $resultat;
+                    header("Location: /home/index");
+                }
             }
         }
     }
