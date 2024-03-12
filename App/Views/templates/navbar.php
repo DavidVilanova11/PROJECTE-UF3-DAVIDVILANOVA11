@@ -18,15 +18,21 @@
             <li class="nav-item" style="margin-left: 15px;">
                 <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "create") {
                                         echo "active";
-                                    } ?>" href="/usuari/index">Gestionar Usuaris</a>
+                                    } ?>" href="/usuari/index">Gestionar Usuaris<img src="../../../Public/img/web/icons/user-solid.svg" alt="My Happy SVG" width="15px" style="margin-left: 10px; margin-bottom: 5px;" /></a>
             </li>
             <li class="nav-item" style="margin-left: 15px;">
                 <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "manage") {
                                         echo "active";
-                                    } ?>" href="/recuperada/manage">Gestionar Recuperades</a> <!-- Aquí he de posar la ruta del controlador i la funció (no té sentit posar uf ja que sempre dependrem de un mp) -->
+                                    } ?>" href="/recuperada/manage">Gestionar Recuperades<img src="../../../Public/img/web/icons/dragon-solid.svg" alt="My Happy SVG" width="25px" style="margin-left: 10px; margin-bottom: 5px;" /></a>
             </li>
             <li class="nav-item" style="margin-left: 15px;">
-                <a class="nav-link" href="view_tasks.php">Veure Extintes</a>
+                <a class="nav-link" href="/extincta/view">Veure Extintes<img src="../../../Public/img/web/icons/book-solid.svg" alt="My Happy SVG" width="15px" style="margin-left: 10px; margin-bottom: 5px;" /></a>
+            </li>
+            <li class="nav-item" style="margin-left: 15px;">
+                <a class="nav-link" href="/extincta/view">Veure Hosts<img src="../../../Public/img/web/icons/cow-solid.svg" alt="My Happy SVG" width="25px" style="margin-left: 10px; margin-bottom: 5px;" /></a>
+            </li>
+            <li class="nav-item" style="margin-left: 15px;">
+                <a class="nav-link" href="/extincta/view">Veure Adn<img src="../../../Public/img/web/icons/dna-solid.svg" alt="My Happy SVG" width="15px" style="margin-left: 10px; margin-bottom: 5px;" /></a>
             </li>
             <li class="nav-item" style="margin-left: 15px;">
                 <a class="nav-link" href="/usuari/logout">Sortir</a>
