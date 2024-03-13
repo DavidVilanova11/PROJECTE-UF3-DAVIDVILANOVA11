@@ -31,9 +31,15 @@
       object-fit: cover;
     }
 
+    .img-container {
+      display: flex;
+      align-items: center;
+      height: 220px;
+    }
+
     .custom-image {
       width: 100%;
-      max-height: 150px;
+      height: auto;
       object-fit: cover;
     }
 
@@ -63,6 +69,10 @@
 
     .nav-link:not(.active) img {
       opacity: 0.5;
+    }
+
+    .nav-link:not(.active):hover img {
+      opacity: 1;
     }
 
 

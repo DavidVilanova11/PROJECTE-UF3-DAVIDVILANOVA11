@@ -16,7 +16,7 @@ class Log extends Orm
         (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , 
         `id_cap` INT NOT NULL,
         `id_usuari` INT NOT NULL , 
-        `id_extincta` INT NOT NULL , 
+        `id_extinta` INT NOT NULL , 
         `id_adn` INT NOT NULL , 
         `id_host` INT NOT NULL , 
         `satisfactori` BOOLEAN NOT NULL , 

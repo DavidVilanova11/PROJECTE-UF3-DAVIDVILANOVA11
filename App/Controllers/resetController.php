@@ -83,19 +83,64 @@ class resetController extends Controller
         ]);
 
         $adn->insert([
-            "nom" => "50-AB17",
-            "preu" =>  8000,
+            "nom" => "06-GXX1",
+            "preu" =>  2000,
             "img" => "adn-3.jpg"
         ]);
+
+        $adn->insert([
+            "nom" => "20-AB17",
+            "preu" =>  2300,
+            "img" => "adn-4.jpg"
+        ]);
+
+        $adn->insert([
+            "nom" => "81-AB17",
+            "preu" =>  5000,
+            "img" => "adn-5.jpg"
+        ]);
+
+        $adn->insert([
+            "nom" => "37-DSR",
+            "preu" =>  6000,
+            "img" => "adn-6.jpg"
+        ]);
+
 
 
         //HOSTS 
         $host = new Host();
         $host->insert([
             "especie" => "Cervol",
-            "preu" =>  8000,
+            "preu" =>  600,
             "img" => "deer.jpg"
         ]);
+
+        $host->insert([
+            "especie" => "Cervol",
+            "preu" =>  1000,
+            "img" => "deer.jpg"
+        ]);
+
+        $host->insert([
+            "especie" => "Cervol",
+            "preu" =>  1500,
+            "img" => "deer.jpg"
+        ]);
+
+        $host->insert([
+            "especie" => "Cervol",
+            "preu" =>  3000,
+            "img" => "deer.jpg"
+        ]);
+
+        $host->insert([
+            "especie" => "Cervol",
+            "preu" =>  3200,
+            "img" => "deer.jpg"
+        ]);
+
+
 
 
         // EXTNICTES
@@ -104,9 +149,45 @@ class resetController extends Controller
             "id_adn" => 1,
             "id_host" =>  1,
             "nom" => "Stygimoloch",
-            "probabilitat" => 0.5,
+            "probabilitat" => 0.7,
             "recompensa" =>  10000,
             "img" => "stygimoloch.jpg"
+        ]);
+
+        $extinta->insert([
+            "id_adn" => 2,
+            "id_host" =>  2,
+            "nom" => "Ankylosaurus",
+            "probabilitat" => 0.6,
+            "recompensa" =>  10000,
+            "img" => "ankylosaurus.jpg"
+        ]);
+
+        $extinta->insert([
+            "id_adn" => 2,
+            "id_host" =>  2,
+            "nom" => "Sabertooth Tiger",
+            "probabilitat" => 0.5,
+            "recompensa" =>  22000,
+            "img" => "sabertooth2.jpg"
+        ]);
+
+        $extinta->insert([
+            "id_adn" => 3,
+            "id_host" =>  3,
+            "nom" => "Spinosaurus",
+            "probabilitat" => 0.5,
+            "recompensa" =>  22000,
+            "img" => "spinosaurus3.jpg"
+        ]);
+
+        $extinta->insert([
+            "id_adn" => 4,
+            "id_host" =>  4,
+            "nom" => "Therizinosaurus",
+            "probabilitat" => 0.5,
+            "recompensa" =>  22000,
+            "img" => "therizinosaurus.png"
         ]);
 
 
@@ -122,15 +203,14 @@ class resetController extends Controller
         $recuperada = new Recuperada();
         $recuperada->insert([
             "nom" => "Spiny",
-            "especie" => "stygimoloch",
+            "especie" => "Stygimoloch",
             "img" => "stygimoloch.jpg",
             "naixement" => "2021-11-20",
             "id_usuari" => 1,
-            "id_extincta" => 1
+            "id_extinta" => 1
         ]);
 
-        
+
         header("Location: /usuari/index");
     }
-
 }

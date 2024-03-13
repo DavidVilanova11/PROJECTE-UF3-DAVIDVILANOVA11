@@ -14,14 +14,15 @@ class Recuperada extends Orm
     {
         $sql = "CREATE TABLE IF NOT EXISTS `des-extincio`.`recuperades` 
         (`id` INT NOT NULL AUTO_INCREMENT , 
-        `nom` VARCHAR(250) NOT NULL, 
+        `nom` VARCHAR(250) NOT NULL,
+        `especie` VARCHAR(250) NOT NULL ,
         `naixement` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ,
         `img` VARCHAR(250) NOT NULL , 
         `id_usuari` INT NOT NULL , 
-        `id_extincta` INT NOT NULL,
+        `id_extinta` INT NOT NULL,
         PRIMARY KEY (`id`),
         FOREIGN KEY (`id_usuari`) REFERENCES `usuaris`(`id`),
-        FOREIGN KEY (`id_extincta`) REFERENCES `extintes`(`id`)) 
+        FOREIGN KEY (`id_extinta`) REFERENCES `extintes`(`id`)) 
         ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 
         COLLATE=utf8mb4_0900_ai_ci;";
 

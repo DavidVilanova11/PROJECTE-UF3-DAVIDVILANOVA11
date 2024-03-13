@@ -40,6 +40,10 @@
         .nav-link.active {
             color: #9400D3 !important;
         }
+
+        .nav-link:not(.active):hover img {
+            opacity: 1;
+        }
     </style>
 </head>
 
