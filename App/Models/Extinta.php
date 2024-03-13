@@ -16,6 +16,7 @@ class Extinta extends Orm
         (`id` INT NOT NULL AUTO_INCREMENT , 
         `id_adn` INT NOT NULL , 
         `id_host` INT NOT NULL , 
+        `nom` VARCHAR(250) NOT NULL ,
         `probabilitat` FLOAT DEFAULT 0.0 NOT NULL , 
         `img` VARCHAR(250) NOT NULL , 
         `recompensa` DOUBLE NOT NULL,  

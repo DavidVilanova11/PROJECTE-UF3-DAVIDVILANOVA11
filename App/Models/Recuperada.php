@@ -15,7 +15,8 @@ class Recuperada extends Orm
         $sql = "CREATE TABLE IF NOT EXISTS `des-extincio`.`recuperades` 
         (`id` INT NOT NULL AUTO_INCREMENT , 
         `nom` VARCHAR(250) NOT NULL, 
-        `naixement` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL , 
+        `naixement` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ,
+        `img` VARCHAR(250) NOT NULL , 
         `id_usuari` INT NOT NULL , 
         `id_extincta` INT NOT NULL,
         PRIMARY KEY (`id`),

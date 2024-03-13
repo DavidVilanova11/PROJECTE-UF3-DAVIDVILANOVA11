@@ -16,11 +16,11 @@ require_once(__DIR__ . "/../../Core/Store.php");
 <div class="container mt-5">
     <div class="d-flex flex-wrap">
 
-        <?php foreach ($_SESSION['extintes'] as $index => $extinta) : ?>
+        <?php foreach ($params['llista'] as $index => $extinta) : ?>
             <div class="card mx-3 my-3" style="width: 18rem;">
                 <img class="custom-image" src="../../../Public/img/extintes/<?php echo $extinta['img'] ?>" alt="...">
                 <div class="card-body">
-                    <p class="card-text"><?php echo $extinta['nom']; ?></p>
+                    <p class="card-text"><?php echo $extinta['especie']; ?></p>
                 </div>
             </div>
         <?php endforeach; ?>

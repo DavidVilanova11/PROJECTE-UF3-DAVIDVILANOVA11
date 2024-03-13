@@ -103,6 +103,7 @@ class resetController extends Controller
         $extinta->insert([
             "id_adn" => 1,
             "id_host" =>  1,
+            "nom" => "Stygimoloch",
             "probabilitat" => 0.5,
             "recompensa" =>  10000,
             "img" => "stygimoloch.jpg"
@@ -121,7 +122,9 @@ class resetController extends Controller
         $recuperada = new Recuperada();
         $recuperada->insert([
             "nom" => "Spiny",
-            // "naixemment" =>  $date->getTimestamp(),
+            "especie" => "stygimoloch",
+            "img" => "stygimoloch.jpg",
+            "naixement" => "2021-11-20",
             "id_usuari" => 1,
             "id_extincta" => 1
         ]);

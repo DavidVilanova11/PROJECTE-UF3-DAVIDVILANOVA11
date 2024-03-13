@@ -12,7 +12,7 @@ class ExtintaController extends Controller
         $extintaModel = new Extinta();
         $params['title'] = "Gestió Recuperades";
         $params['llista'] = $extintaModel->getAll();
-        $params['user'] = $_SESSION['user_logged']['nom_usuari'];
+        $params['user'] = $_SESSION['user_logged']['nom'];
 
         $this->render("extinta/index", $params, "home");
     }
