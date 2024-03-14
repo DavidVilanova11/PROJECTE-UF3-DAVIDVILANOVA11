@@ -22,8 +22,9 @@ class Log extends Orm
         `satisfactori` BOOLEAN NOT NULL , 
         `probabilitat` FLOAT NOT NULL , 
         `timestamp` TIMESTAMP NOT NULL, 
+        PRIMARY KEY (`id`),
         FOREIGN KEY (`id_usuari`) REFERENCES usuaris(`id`),
-        FOREIGN KEY (`id_extincta`) REFERENCES extintes(`id`),
+        FOREIGN KEY (`id_extinta`) REFERENCES extintes(`id`),
         FOREIGN KEY (`id_adn`) REFERENCES adn(`id`),
         FOREIGN KEY (`id_host`) REFERENCES hosts(`id`),
         FOREIGN KEY (`id_cap`) REFERENCES log_cap(`id`) ON DELETE CASCADE)

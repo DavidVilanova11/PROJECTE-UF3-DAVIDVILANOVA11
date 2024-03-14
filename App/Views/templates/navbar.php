@@ -79,6 +79,28 @@
                 </a>
             </li>
             <li class="nav-item" style="margin-left: 15px;">
+                <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "stock") {
+                                        echo "active";
+                                    } ?>" href="/usuari/logout">Stock
+                    <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "stock") {
+                        echo '<img src="../../../Public/img/web/icons/warehouse-solid-purple.svg" alt="My Happy SVG" width="20px" style="margin-left: 5px; margin-bottom: 5px;" />';
+                    } else {
+                        echo '<img src="../../../Public/img/web/icons/warehouse-solid.svg" alt="My Happy SVG" width="20px" style="margin-left: 5px; margin-bottom: 5px;" />';
+                    } ?>
+                </a>
+            </li>
+            <li class="nav-item" style="margin-left: 15px;">
+                <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "purchase") {
+                                        echo "active";
+                                    } ?>" href="/usuari/logout">Compres
+                    <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "purchase") {
+                        echo '<img src="../../../Public/img/web/icons/tag-solid-purple.svg" alt="My Happy SVG" width="20px" style="margin-left: 5px; margin-bottom: 5px;" />';
+                    } else {
+                        echo '<img src="../../../Public/img/web/icons/tag-solid.svg" alt="My Happy SVG" width="20px" style="margin-left: 5px; margin-bottom: 5px;" />';
+                    } ?>
+                </a>
+            </li>
+            <li class="nav-item" style="margin-left: 15px;">
                 <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "logout") {
                                         echo "active";
                                     } ?>" href="/usuari/logout">Sortir
