@@ -42,6 +42,7 @@
       max-width: 100%;
       height: auto;
       object-fit: cover;
+      border-radius: 8px 8px 0 0;
     }
 
     .custom-video {
