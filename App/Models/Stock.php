@@ -22,7 +22,7 @@ class Stock extends Orm
         PRIMARY KEY (`id`),
         FOREIGN KEY (`id_usuari`) REFERENCES usuaris(`id`),
         FOREIGN KEY (`id_adn`) REFERENCES adn(`id`),
-        FOREIGN KEY (`id_host`) REFERENCES hosts(`id`)),
+        FOREIGN KEY (`id_host`) REFERENCES hosts(`id`))
         ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 
         COLLATE=utf8mb4_0900_ai_ci;";
 
