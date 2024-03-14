@@ -43,5 +43,46 @@ class Compra extends Orm
 
         $db->queryDataBase($sql);
 
+        // Trigger to subtract the money from the user when a new adn or host is bought
+        $sql = "CREATE TRIGGER `subtract_money` AFTER INSERT ON `compres` FOR EACH ROW
+        BEGIN
+            UPDATE usuaris SET pressupost = pressupost - (SELECT preu FROM adn WHERE id = NEW.id_adn) WHERE id = NEW.id_usuari;
+        END;";
+
+        $db->queryDataBase($sql);
+
+    }
+
+    public static function createTriggers() {
+        $db = new Database();
+
+        // Trigger to make an insert in the stock table when a new adn or host is bought
+        $sql = "CREATE TRIGGER `insert_stock` AFTER INSERT ON `compres` FOR EACH ROW
+        BEGIN
+            IF NEW.tipus_compra = 'ADN' THEN
+                INSERT INTO stock (id_usuari, tipus_stock, id_adn) VALUES (NEW.id_usuari, 'ADN', NEW.id_adn);
+            ELSE
+                INSERT INTO stock (id_usuari, tipus_stock, id_host) VALUES (NEW.id_usuari, 'Host', NEW.id_host);
+            END IF;
+        END;";
+
+        $db->queryDataBase($sql);
+
+        // Trigger to subtract the money from the user when a new adn or host is bought
+        $sql = "CREATE TRIGGER `subtract_money` AFTER INSERT ON `compres` FOR EACH ROW
+        BEGIN
+            UPDATE usuaris SET pressupost = pressupost - (SELECT preu FROM adn WHERE id = NEW.id_adn) WHERE id = NEW.id_usuari;
+        END;";
+
+        $db->queryDataBase($sql);
+    }
+
+    public function getCompraByIdUsuari($id_usuari)
+    {
+        $db = new Database();
+
+        $sql = "SELECT * FROM compres WHERE id_usuari = $id_usuari";
+        $result = $db->queryDataBase($sql);
+        return $result;
     }
 }

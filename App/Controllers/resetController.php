@@ -8,6 +8,8 @@ include_once(__DIR__ . "/../Models/Extinta.php");
 include_once(__DIR__ . "/../Models/Host.php");
 include_once(__DIR__ . "/../Models/Log_cap.php");
 include_once(__DIR__ . "/../Models/Log.php");
+include_once(__DIR__ . "/../Models/Compra.php");
+include_once(__DIR__ . "/../Models/Stock.php");
 
 class resetController extends Controller
 {
@@ -33,9 +35,13 @@ class resetController extends Controller
 
         Log::createTable();
 
-        Compra::createTable(); // Amb Trigger
+        Compra::createTable(); 
 
         Stock::createTable();
+
+        // Create Triggers
+
+        Compra::createTriggers(); // Inserció a la taula stock i actualització del pressupost
 
         $pepper = $_ENV['PEPPER'];
         $salt = bin2hex(random_bytes(16));
@@ -156,9 +162,7 @@ class resetController extends Controller
         ]);
 
 
-
-
-        // EXTNICTES
+        // EXTINTES
         $extinta = new Extinta();
         $extinta->insert([
             "id_adn" => 1,
@@ -214,14 +218,23 @@ class resetController extends Controller
             "img" => "carcharodontosaurus2.jpg"
         ]);
 
+        // Compres
+
+        $compra = new Compra();
+        $compra->insert([
+            "id_usuari" => 1,
+            "id_adn" => 1,
+            "tipus_compra" => "ADN"
+        ]);
+
+
 
         //Log_cap
 
 
-        // LOGS
+        // LOGS        
 
         // RECUPERADES
-        // $date = new DateTimeImmutable();
 
         //timestamp automàtic
         $recuperada = new Recuperada();
