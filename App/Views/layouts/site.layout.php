@@ -84,7 +84,7 @@
 
     .requadre-fix {
       position: fixed;
-      top: 50px;
+      top: 80px;
       /* Ajusta la distancia desde la parte superior según tu preferencia */
       right: 20px;
       /* Ajusta la distancia desde el borde derecho según tu preferencia */
