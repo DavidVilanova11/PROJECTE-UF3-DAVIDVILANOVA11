@@ -23,6 +23,7 @@ require_once(__DIR__ . "/../../Core/Store.php");
                 </div>
                 <div class="card-body">
                     <p class="card-text"><?php echo $extinta['nom']; ?></p>
+                    <p class="card-text"><?php echo $extinta['id_adn']; ?></p>
                 </div>
             </div>
         <?php endforeach; ?>

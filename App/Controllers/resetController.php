@@ -162,7 +162,7 @@ class resetController extends Controller
 
         $extinta->insert([
             "id_adn" => 2,
-            "id_host" =>  2,
+            "id_host" =>  4,
             "nom" => "Ankylosaurus",
             "probabilitat" => 0.6,
             "recompensa" =>  10000,
@@ -170,8 +170,8 @@ class resetController extends Controller
         ]);
 
         $extinta->insert([
-            "id_adn" => 2,
-            "id_host" =>  2,
+            "id_adn" => 3,
+            "id_host" =>  5,
             "nom" => "Sabertooth Tiger",
             "probabilitat" => 0.5,
             "recompensa" =>  22000,
@@ -179,8 +179,8 @@ class resetController extends Controller
         ]);
 
         $extinta->insert([
-            "id_adn" => 3,
-            "id_host" =>  3,
+            "id_adn" => 4,
+            "id_host" =>  2,
             "nom" => "Spinosaurus",
             "probabilitat" => 0.5,
             "recompensa" =>  22000,
@@ -188,12 +188,21 @@ class resetController extends Controller
         ]);
 
         $extinta->insert([
-            "id_adn" => 4,
-            "id_host" =>  4,
+            "id_adn" => 5,
+            "id_host" =>  6,
             "nom" => "Therizinosaurus",
             "probabilitat" => 0.5,
             "recompensa" =>  22000,
             "img" => "therizinosaurus.png"
+        ]);
+
+        $extinta->insert([
+            "id_adn" => 6,
+            "id_host" =>  3,
+            "nom" => "Carcharodontosaurus",
+            "probabilitat" => 0.5,
+            "recompensa" =>  22000,
+            "img" => "carcharodontosaurus2.jpg"
         ]);
 
 
