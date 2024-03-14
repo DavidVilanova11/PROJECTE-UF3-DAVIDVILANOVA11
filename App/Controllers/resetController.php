@@ -17,6 +17,8 @@ class resetController extends Controller
         $sql = "DROP TABLE IF EXISTS usuaris, recuperades, adn, hosts, extintes, log_cap, logs;";
         $db->queryDataBase($sql);
 
+        // create tables
+
         Usuari::createTable();
 
         Host::createTable();
@@ -27,6 +29,13 @@ class resetController extends Controller
 
         Recuperada::createTable();
 
+        Log_cap::createTable();
+
+        Log::createTable();
+
+        Compra::createTable(); // Amb Trigger
+
+        Stock::createTable();
 
         $pepper = $_ENV['PEPPER'];
         $salt = bin2hex(random_bytes(16));

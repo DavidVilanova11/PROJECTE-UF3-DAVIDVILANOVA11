@@ -30,5 +30,18 @@ class Compra extends Orm
 
         $db = new Database();
         $db->queryDataBase($sql);
+
+        // Trigger to make an insert in the stock table when a new adn or host is bought
+        $sql = "CREATE TRIGGER `insert_stock` AFTER INSERT ON `compres` FOR EACH ROW
+        BEGIN
+            IF NEW.tipus_compra = 'ADN' THEN
+                INSERT INTO stock (id_usuari, tipus_stock, id_adn) VALUES (NEW.id_usuari, 'ADN', NEW.id_adn);
+            ELSE
+                INSERT INTO stock (id_usuari, tipus_stock, id_host) VALUES (NEW.id_usuari, 'Host', NEW.id_host);
+            END IF;
+        END;";
+
+        $db->queryDataBase($sql);
+
     }
 }
