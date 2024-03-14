@@ -34,5 +34,10 @@ require_once(__DIR__ . "/../../Core/Store.php");
             </div>
         <?php endforeach; ?>
 
+        <div class="requadre-fix">
+            <p class="text">Pressupost: &emsp; <?= number_format($_SESSION['user_logged']['pressupost'], 2, '.', ',') . "$" ?></p>
+            <p class="text">Hosts obtinguts: ...</p>
+        </div>
+
     </div>
 </div>

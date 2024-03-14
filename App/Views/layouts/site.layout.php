@@ -81,6 +81,26 @@
     .nav-link.active {
       color: #9400D3 !important;
     }
+
+    .requadre-fix {
+      position: fixed;
+      top: 50px;
+      /* Ajusta la distancia desde la parte superior según tu preferencia */
+      right: 20px;
+      /* Ajusta la distancia desde el borde derecho según tu preferencia */
+      padding: 10px;
+      background-color: rgba(0, 128, 0, 0.2);
+      /* Verde con menos opacidad */
+      border: 2px solid #008000;
+      /* Borde verde */
+      border-radius: 5px;
+    }
+
+    .text {
+      font-size: 16px;
+      color: #008000;
+      /* Color del text verde */
+    }
   </style>
 </head>
 
