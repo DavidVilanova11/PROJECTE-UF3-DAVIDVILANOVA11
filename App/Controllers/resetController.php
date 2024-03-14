@@ -117,27 +117,33 @@ class resetController extends Controller
         ]);
 
         $host->insert([
-            "especie" => "Cervol",
+            "especie" => "Cocodril Asiàtic",
             "preu" =>  1000,
-            "img" => "deer.jpg"
+            "img" => "crocodile.jpg"
         ]);
 
         $host->insert([
-            "especie" => "Cervol",
+            "especie" => "Cocodril Africà",
             "preu" =>  1500,
-            "img" => "deer.jpg"
+            "img" => "crocodile_2.jpg"
         ]);
 
         $host->insert([
-            "especie" => "Cervol",
+            "especie" => "Indian Rhinoceros",
             "preu" =>  3000,
-            "img" => "deer.jpg"
+            "img" => "indian_rhinoceros.jpg"
         ]);
 
         $host->insert([
-            "especie" => "Cervol",
+            "especie" => "Mountain Lion",
             "preu" =>  3200,
-            "img" => "deer.jpg"
+            "img" => "mountain_lion.jpg"
+        ]);
+
+        $host->insert([
+            "especie" => "Papagallo",
+            "preu" =>  3200,
+            "img" => "papagallo.jpg"
         ]);
 
 

@@ -68,7 +68,7 @@
                 </a>
             </li>
             <li class="nav-item" style="margin-left: 15px;">
-                <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "host") {
+                <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "adn") {
                                         echo "active";
                                     } ?>" href="/adn/manage">Veure Adn
                     <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "adn") {
@@ -79,7 +79,7 @@
                 </a>
             </li>
             <li class="nav-item" style="margin-left: 15px;">
-                <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "host") {
+                <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "logout") {
                                         echo "active";
                                     } ?>" href="/usuari/logout">Sortir
                     <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "logout") {

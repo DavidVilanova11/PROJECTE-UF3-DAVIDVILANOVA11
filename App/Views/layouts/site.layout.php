@@ -34,11 +34,12 @@
     .img-container {
       display: flex;
       align-items: center;
-      height: 220px;
+      height: 250px;
+      overflow: hidden;
     }
 
     .custom-image {
-      width: 100%;
+      max-width: 100%;
       height: auto;
       object-fit: cover;
     }
