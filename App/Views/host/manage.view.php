@@ -28,7 +28,7 @@ require_once(__DIR__ . "/../../Core/Store.php");
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-secondary">Comprar</button>
                         </div>
-                        <small class="text-muted text-right"><?php echo $host['preu']; ?>€</small>
+                        <small class="text-muted text-right"><?php echo number_format($host['preu'], 2, '.', ',') . "$" ?></small>
                     </div>
                 </div>
             </div>
