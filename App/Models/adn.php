@@ -25,4 +25,18 @@ class Adn extends Orm
         $db = new Database();
         $db->queryDataBase($sql);
     }
+
+    public function selectById($id){
+        $sql = "SELECT * FROM adn WHERE id = :id";
+        $params = array(":id" => $id);
+
+        $db = new Database();
+        $result = $db->queryDataBase($sql, $params)->fetch();
+
+        if (!$result) {
+            return null;
+        } else {
+            return $result;
+        }
+    }
 }
