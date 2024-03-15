@@ -1,3 +1,14 @@
+<?php
+
+$_SESSION['actual_page'] = "purchase";
+
+if (!isset($_SESSION['user_logged']) && !isset($params['usuari'])) {
+  header("Location: /usuari/index");
+}
+
+include_once(__DIR__ . "/../templates/navbar.php");
+?>
+
 <div class="llista" style="margin-top: 50px;">
   <table class="table">
     <thead>
@@ -24,8 +35,6 @@
         echo "<td>" . $compra['tipus_compra'] . "</td>";
         // recollim el preu de l'adn corresponent
         echo "<td>" . number_format($compra['adn']['preu'], 2, '.', ',') . "$" . "</td>";
-        echo "<td>
-        </td>";
         echo "</tr>";
       }
 
