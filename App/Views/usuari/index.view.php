@@ -81,7 +81,6 @@ if (isset($_SESSION['user_logged']) && $_SESSION['user_logged']['nom'] == "admin
         echo "<td>
         <a name='' id='' class='btn btn-danger' href='/usuari/destroy/?id=" . $usuari['id'] . "' role='button'>Remove</a>
         <a name='' id='' class='btn btn-primary' href='/usuari/update/?id=" . $usuari['id'] . "' role='button'>Update</a>
-        <a name='' id='' class='btn btn-success' href='/usuari/addOcell/?id=" . $usuari['id'] . "' role='button'>+Ocell</a>
         </td>";
         echo "</tr>";
       }
