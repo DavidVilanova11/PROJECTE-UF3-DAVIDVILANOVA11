@@ -46,9 +46,14 @@ class Compra extends Orm
         END IF;
     END;",
             "CREATE TRIGGER `subtract_money` AFTER INSERT ON `compres` FOR EACH ROW
-    BEGIN
-        UPDATE usuaris SET pressupost = pressupost - (SELECT preu FROM adn WHERE id = NEW.id_adn) WHERE id = NEW.id_usuari;
-    END;"
+            BEGIN
+                IF NEW.id_adn IS NOT NULL THEN
+                    UPDATE usuaris SET pressupost = pressupost - (SELECT preu FROM adn WHERE id = NEW.id_adn) WHERE id = NEW.id_usuari;
+                ELSE
+                    UPDATE usuaris SET pressupost = pressupost - (SELECT preu FROM hosts WHERE id = NEW.id_host) WHERE id = NEW.id_usuari;
+                END IF;
+            END;
+            "
         ];
 
         foreach ($sqlStatements as $sql) {
