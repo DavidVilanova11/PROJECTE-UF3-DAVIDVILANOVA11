@@ -13,7 +13,7 @@ class Usuari extends Orm
     public static function createTable()
     {
         $sql = "CREATE TABLE IF NOT EXISTS `des-extincio`.`usuaris` 
-        (`id` INT NOT NULL AUTO_INCREMENT , 
+        (`id` INT NOT NULL AUTO_INCREMENT, 
         `nom` VARCHAR(250) NOT NULL ,  
         `email` VARCHAR(250) NOT NULL, 
         `password` VARCHAR(250) NOT NULL, 
@@ -50,7 +50,7 @@ class Usuari extends Orm
             $salt = $result['salt'];
             $pepper = $_ENV['PEPPER'];
             $passwordToCheck = $pepper . $contrasenya . $salt;
-            if(password_verify($passwordToCheck, $result['password'])) {
+            if (password_verify($passwordToCheck, $result['password'])) {
                 // ok
                 return $result;
             } else {

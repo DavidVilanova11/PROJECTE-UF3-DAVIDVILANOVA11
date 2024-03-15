@@ -16,7 +16,7 @@ class resetController extends Controller
     public function run()
     {
         $db = new Database();
-        $sql = "DROP TABLE IF EXISTS usuaris, recuperades, adn, hosts, extintes, log_cap, logs;";
+        $sql = "DROP TABLE IF EXISTS compres, stock, log_cap, logs, usuaris, recuperades, adn, hosts, extintes;";
         $db->queryDataBase($sql);
 
         // create tables
@@ -35,7 +35,7 @@ class resetController extends Controller
 
         Log::createTable();
 
-        Compra::createTable(); 
+        Compra::createTable();
 
         Stock::createTable();
 

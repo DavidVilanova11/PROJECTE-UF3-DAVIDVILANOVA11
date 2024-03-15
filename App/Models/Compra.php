@@ -7,7 +7,7 @@ class Compra extends Orm
 
     public function __construct()
     {
-        parent::__construct('compra');
+        parent::__construct('compres');
     }
 
     // tindrem id_host i id_adn però només un d'ells tindrà valor
@@ -23,58 +23,42 @@ class Compra extends Orm
         PRIMARY KEY (`id`),
         FOREIGN KEY (`id_usuari`) REFERENCES usuaris(`id`),
         FOREIGN KEY (`id_adn`) REFERENCES adn(`id`),
-        FOREIGN KEY (`id_host`) REFERENCES hosts(`id`)),
+        FOREIGN KEY (`id_host`) REFERENCES hosts(`id`))
         ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 
         COLLATE=utf8mb4_0900_ai_ci;";
 
 
         $db = new Database();
         $db->queryDataBase($sql);
-
-        // Trigger to make an insert in the stock table when a new adn or host is bought
-        $sql = "CREATE TRIGGER `insert_stock` AFTER INSERT ON `compres` FOR EACH ROW
-        BEGIN
-            IF NEW.tipus_compra = 'ADN' THEN
-                INSERT INTO stock (id_usuari, tipus_stock, id_adn) VALUES (NEW.id_usuari, 'ADN', NEW.id_adn);
-            ELSE
-                INSERT INTO stock (id_usuari, tipus_stock, id_host) VALUES (NEW.id_usuari, 'Host', NEW.id_host);
-            END IF;
-        END;";
-
-        $db->queryDataBase($sql);
-
-        // Trigger to subtract the money from the user when a new adn or host is bought
-        $sql = "CREATE TRIGGER `subtract_money` AFTER INSERT ON `compres` FOR EACH ROW
-        BEGIN
-            UPDATE usuaris SET pressupost = pressupost - (SELECT preu FROM adn WHERE id = NEW.id_adn) WHERE id = NEW.id_usuari;
-        END;";
-
-        $db->queryDataBase($sql);
-
     }
 
-    public static function createTriggers() {
-        $db = new Database();
+    public static function createTriggers()
+    {
+        // Execute administrative SQL statements using MySQL command-line client
+        $rootPassword = $_ENV['DB_PASSWORD'];
+        $databaseName = 'des-extincio';
 
-        // Trigger to make an insert in the stock table when a new adn or host is bought
-        $sql = "CREATE TRIGGER `insert_stock` AFTER INSERT ON `compres` FOR EACH ROW
-        BEGIN
-            IF NEW.tipus_compra = 'ADN' THEN
-                INSERT INTO stock (id_usuari, tipus_stock, id_adn) VALUES (NEW.id_usuari, 'ADN', NEW.id_adn);
-            ELSE
-                INSERT INTO stock (id_usuari, tipus_stock, id_host) VALUES (NEW.id_usuari, 'Host', NEW.id_host);
-            END IF;
-        END;";
+        // SQL statements to execute
+        $sqlStatements = [
+            "CREATE TRIGGER `insert_stock` AFTER INSERT ON `compres` FOR EACH ROW
+    BEGIN
+        IF NEW.tipus_compra = 'ADN' THEN
+            INSERT INTO stock (id_usuari, tipus_stock, id_adn) VALUES (NEW.id_usuari, 'ADN', NEW.id_adn);
+        ELSE
+            INSERT INTO stock (id_usuari, tipus_stock, id_host) VALUES (NEW.id_usuari, 'Host', NEW.id_host);
+        END IF;
+    END;",
+            "CREATE TRIGGER `subtract_money` AFTER INSERT ON `compres` FOR EACH ROW
+    BEGIN
+        UPDATE usuaris SET pressupost = pressupost - (SELECT preu FROM adn WHERE id = NEW.id_adn) WHERE id = NEW.id_usuari;
+    END;"
+        ];
 
-        $db->queryDataBase($sql);
-
-        // Trigger to subtract the money from the user when a new adn or host is bought
-        $sql = "CREATE TRIGGER `subtract_money` AFTER INSERT ON `compres` FOR EACH ROW
-        BEGIN
-            UPDATE usuaris SET pressupost = pressupost - (SELECT preu FROM adn WHERE id = NEW.id_adn) WHERE id = NEW.id_usuari;
-        END;";
-
-        $db->queryDataBase($sql);
+        // Execute each SQL statement
+        foreach ($sqlStatements as $sql) {
+            $command = sprintf("mysql -u root -p%s -e \"%s\" %s", $rootPassword, $sql, $databaseName);
+            exec($command);
+        }
     }
 
     public function getCompraByIdUsuari($id_usuari)
