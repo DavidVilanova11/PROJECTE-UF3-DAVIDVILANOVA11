@@ -79,6 +79,17 @@
                 </a>
             </li>
             <li class="nav-item" style="margin-left: 15px;">
+                <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "fusion") {
+                                        echo "active";
+                                    } ?>" href="/adn/manage">Fusió
+                    <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "fusion") {
+                        echo '<img src="../../../Public/img/web/icons/syringe-solid-purple.svg" alt="My Happy SVG" width="20px" style="margin-left: 5px; margin-bottom: 5px;" />';
+                    } else {
+                        echo '<img src="../../../Public/img/web/icons/syringe-solid.svg" alt="My Happy SVG" width="20px" style="margin-left: 5px; margin-bottom: 5px;" />';
+                    } ?>
+                </a>
+            </li>
+            <li class="nav-item" style="margin-left: 15px;">
                 <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "stock") {
                                         echo "active";
                                     } ?>" href="/stock/manage">Stock
