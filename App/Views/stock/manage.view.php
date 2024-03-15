@@ -32,7 +32,6 @@ require_once(__DIR__ . "/../../Core/Store.php");
                     </div>
                     <div class="card-body">
                         <p class="card-text"><?php echo $stock['adn']['nom']; ?></p>
-                        <p class="card-text"><?php echo $stock['adn']['id']; ?></p>
                     </div>
                 </div>
             <?php endif; ?>
@@ -40,11 +39,10 @@ require_once(__DIR__ . "/../../Core/Store.php");
             <?php if (isset($stock['host'])) : ?>
                 <div class="card mx-3 my-3" style="width: 16rem; height: 28rem;">
                     <div class="img-container">
-                        <img class="custom-image" src="../../../Public/img/host/<?php echo $stock['host']['img']; ?>" alt="...">
+                        <img class="custom-image" src="../../../Public/img/hosts/<?php echo $stock['host']['img']; ?>" alt="...">
                     </div>
                     <div class="card-body">
-                        <p class="card-text"><?php echo $stock['host']['nom']; ?></p>
-                        <p class="card-text"><?php echo $stock['host']['id']; ?></p>
+                        <p class="card-text"><?php echo $stock['host']['especie']; ?></p>
                     </div>
                 </div>
             <?php endif; ?>
