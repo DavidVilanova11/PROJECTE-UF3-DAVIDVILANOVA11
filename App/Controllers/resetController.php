@@ -156,9 +156,9 @@ class resetController extends Controller
         ]);
 
         $host->insert([
-            "especie" => "Papagallo",
+            "especie" => "Casuarius",
             "preu" =>  3200,
-            "img" => "papagallo.jpg"
+            "img" => "casuarius.jpg"
         ]);
 
 
