@@ -34,11 +34,8 @@ class Compra extends Orm
 
     public static function createTriggers()
     {
-        // Execute administrative SQL statements using MySQL command-line client
-        $rootPassword = $_ENV['DB_PASSWORD'];
-        $databaseName = 'des-extincio';
 
-        // SQL statements to execute
+        // SQL statements to create triggers
         $sqlStatements = [
             "CREATE TRIGGER `insert_stock` AFTER INSERT ON `compres` FOR EACH ROW
     BEGIN
@@ -54,12 +51,17 @@ class Compra extends Orm
     END;"
         ];
 
-        // Execute each SQL statement
         foreach ($sqlStatements as $sql) {
-            $command = sprintf("mysql -u root -p%s -e \"%s\" %s", $rootPassword, $sql, $databaseName);
-            exec($command);
+            try {
+                $db = new Database();
+                $db->queryDataBase($sql);
+            } catch (Exception $ex) {
+                // Manejar el error específico para esta declaración SQL
+                echo "Error executing SQL statement: " . $sql . " - " . $ex->getMessage();
+            }
         }
     }
+
 
     public function getCompraByIdUsuari($id_usuari)
     {
