@@ -72,8 +72,23 @@ class Compra extends Orm
     {
         $db = new Database();
 
-        $sql = "SELECT * FROM compres WHERE id_usuari = $id_usuari";
-        $result = $db->queryDataBase($sql);
+        $sql = "SELECT * FROM compres WHERE id_usuari = :id_usuari";
+        $params = array(
+            ":id_usuari" => $id_usuari
+        );
+        $result = $db->queryDataBase($sql, $params)->fetchAll();
+        return $result;
+    }
+
+
+    public function getById($id)
+    {
+        $sql = "SELECT * FROM " . $this->model . " WHERE id = :id";
+        $params = array(
+            ":id" => $id
+        );
+        $db = new Database();
+        $result = $db->queryDataBase($sql, $params)->fetch();
         return $result;
     }
 }

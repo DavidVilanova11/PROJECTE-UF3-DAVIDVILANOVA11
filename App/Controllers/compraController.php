@@ -39,7 +39,7 @@ class compraController extends Controller
     {
         $compraModel = new Compra();
         $params['title'] = "Compres realitzades";
-        $params['llista'] = $compraModel->getAll();
+        $params['llista'] = $compraModel->getCompraByIdUsuari($_SESSION['user_logged']['id']);
         foreach ($params['llista'] as $index => $compra) {
             $adnModel = new Adn();
             $adn = $adnModel->getById($compra['id_adn']);
