@@ -7,6 +7,13 @@ if (!isset($_SESSION['user_logged']) && !isset($params['usuari'])) {
 }
 
 include_once(__DIR__ . "/../templates/navbar.php");
+
+// echo '<pre>';
+// var_dump($params['llista']);
+// echo '</pre>';
+
+// die();
+
 ?>
 
 <div class="llista" style="margin-top: 50px;">
@@ -19,26 +26,23 @@ include_once(__DIR__ . "/../templates/navbar.php");
       </tr>
     </thead>
     <tbody>
-
-      <?php
-
-      // echo '<pre>';
-      // var_dump($params['llista']);
-      // echo '</pre>';
-
-      // die();
-
-
-      foreach ($params['llista'] as $compra) {
-        echo "<tr>";
-        echo "<td>" . $compra['id'] . "</td>";
-        echo "<td>" . $compra['tipus_compra'] . "</td>";
-        // recollim el preu de l'adn corresponent
-        echo "<td>" . number_format($compra['adn']['preu'], 2, '.', ',') . "$" . "</td>";
-        echo "</tr>";
-      }
-
-      ?>
-
+      <?php foreach ($params['llista'] as $compra) : ?>
+        <tr>
+          <td><?= $compra['id'] ?></td>
+          <td><?= $compra['tipus_compra'] ?></td>
+          <td>
+            <?php
+            if ($compra['tipus_compra'] === 'ADN' && isset($compra['adn'])) {
+              echo number_format($compra['adn']['preu'], 2, '.', ',') . "$";
+            } elseif ($compra['tipus_compra'] === 'Host' && isset($compra['host'])) {
+              echo number_format($compra['host']['preu'], 2, '.', ',') . "$";
+            } else {
+              echo "Precio no disponible";
+            }
+            ?>
+          </td>
+        </tr>
+      <?php endforeach; ?>
     </tbody>
   </table>
+</div>

@@ -4,6 +4,7 @@ include_once(__DIR__ . "/../Core/Controller.php");
 include_once(__DIR__ . "/../Core/Mailer.php");
 include_once(__DIR__ . "/../Models/Compra.php");
 include_once(__DIR__ . "/../Models/Adn.php");
+include_once(__DIR__ . "/../Models/Host.php");
 
 class compraController extends Controller
 {
@@ -43,6 +44,9 @@ class compraController extends Controller
             $adnModel = new Adn();
             $adn = $adnModel->getById($compra['id_adn']);
             $params['llista'][$index]['adn'] = $adn;
+            $hostModel = new Host();
+            $host = $hostModel->getById($compra['id_host']);
+            $params['llista'][$index]['host'] = $host;
         }
         $params['compra_loguejat'] = $_GET['id_compra'] ?? null; // if user_logejat and admin == true veiem la llista
 
