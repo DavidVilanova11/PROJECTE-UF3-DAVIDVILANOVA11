@@ -70,7 +70,7 @@ class resetController extends Controller
 
         $usuari = [
             "nom" => "Billy",
-            "email" => "guettavilanova2004@gamil.com",
+            "email" => "guettavilanova2004@gmail.com",
             "password" => $passHashed,
             "pressupost" => 30000,
             "naixement" => "2004-11-20", // "2004-11-20",

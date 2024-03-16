@@ -80,15 +80,4 @@ class Compra extends Orm
         return $result;
     }
 
-
-    public function getById($id)
-    {
-        $sql = "SELECT * FROM " . $this->model . " WHERE id = :id";
-        $params = array(
-            ":id" => $id
-        );
-        $db = new Database();
-        $result = $db->queryDataBase($sql, $params)->fetch();
-        return $result;
-    }
 }

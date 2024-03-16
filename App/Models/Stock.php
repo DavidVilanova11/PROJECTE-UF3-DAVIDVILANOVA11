@@ -31,14 +31,45 @@ class Stock extends Orm
         $db->queryDataBase($sql);
     }
 
-    public function getProductQuantity($id, $type)
+    public function getProductQuantity($id, $id_usuari, $type)
     {
-        $sql = "SELECT COUNT(*) as quantity FROM stock WHERE id_" . $type . " = :id";
-        $params = array(":id" => $id);
+        $sql = "SELECT COUNT(*) as quantity FROM stock WHERE id_" . $type . " = :id AND id_usuari = :id_usuari";
+        $params = array(
+            ":id" => $id,
+            ":id_usuari" => $id_usuari
+        );
 
         $db = new Database();
         $result = $db->queryDataBase($sql, $params)->fetch();
 
         return $result['quantity'];
     }
+
+    public function getStockByIdUsuari($column, $id_usuari)
+    {
+        $db = new Database();
+
+        $sql = "SELECT DISTINCT $column FROM " . $this->model . " WHERE id_usuari = $id_usuari;";
+        $params = array(
+            ":column" => $column,
+            ":id_usuari" => $id_usuari
+        );
+        $result = $db->queryDataBase($sql)->fetchAll(PDO::FETCH_COLUMN);
+        return $result;
+    }
+
+    // public function getDistinct($column)
+    // {
+    //     try {
+    //         $sql = "SELECT DISTINCT $column FROM " . $this->model;
+    //         $db = new Database();
+    //         $result = $db->queryDataBase($sql)->fetchAll(PDO::FETCH_COLUMN);
+    //         return $result;
+    //     } catch (PDOException $e) {
+    //         // Manejar errores de la base de datos
+    //         // Por ejemplo, puedes registrar el error y devolver un mensaje genérico al usuario
+    //         error_log('Error en la consulta: ' . $e->getMessage());
+    //         return false;
+    //     }
+    // }
 }

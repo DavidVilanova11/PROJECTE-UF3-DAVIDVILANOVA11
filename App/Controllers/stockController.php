@@ -15,8 +15,23 @@ class stockController extends Controller
         $adnModel = new Adn();
         $stockModel = new Stock();
         $params['title'] = "Gestió Stock";
-        $distinct_hosts = $stockModel->getDistinct('id_host');
-        $distinct_adn = $stockModel->getDistinct('id_adn');
+        $distinct_hosts = $stockModel->getStockByIdUsuari('id_host', $_SESSION['user_logged']['id']);
+        $distinct_adn = $stockModel->getStockByIdUsuari('id_adn', $_SESSION['user_logged']['id']);
+
+        // $distinct_hosts = $stockModel->getDistinct('id_host');
+        // $distinct_adn = $stockModel->getDistinct('id_adn');
+
+        // echo '<pre>';
+        // var_dump($distinct_hosts);
+        // echo '</pre>';
+
+        // echo '<pre>';
+        // var_dump(
+        //     $distinct_adn
+        // );
+        // echo '</pre>';
+
+        // die();
 
         // Recuperar los objetos completos de host
         $hosts = [];
@@ -50,7 +65,7 @@ class stockController extends Controller
         if (isset($params['llista']['adn']) && is_array($params['llista']['adn'])) {
             foreach ($params['llista']['adn'] as $index => $stock) {
                 if (isset($stock['id'])) {
-                    $params['llista']['adn'][$index]['quantity'] = $stockModel->getProductQuantity($stock['id'], "adn");
+                    $params['llista']['adn'][$index]['quantity'] = $stockModel->getProductQuantity($stock['id'], $_SESSION['user_logged']['id'], "adn");
                 }
             }
         }
@@ -59,10 +74,12 @@ class stockController extends Controller
         if (isset($params['llista']['host']) && is_array($params['llista']['host'])) {
             foreach ($params['llista']['host'] as $index => $stock) {
                 if (isset($stock['id'])) {
-                    $params['llista']['host'][$index]['quantity'] = $stockModel->getProductQuantity($stock['id'], "host");
+                    $params['llista']['host'][$index]['quantity'] = $stockModel->getProductQuantity($stock['id'], $_SESSION['user_logged']['id'], "host");
                 }
             }
         }
+
+
 
         // echo '<pre>';
         // var_dump($params['llista']);
