@@ -30,4 +30,15 @@ class Stock extends Orm
         $db = new Database();
         $db->queryDataBase($sql);
     }
+
+    public function getProductQuantity($id, $type)
+    {
+        $sql = "SELECT COUNT(*) as quantity FROM stock WHERE id_" . $type . " = :id";
+        $params = array(":id" => $id);
+
+        $db = new Database();
+        $result = $db->queryDataBase($sql, $params)->fetch();
+
+        return $result['quantity'];
+    }
 }

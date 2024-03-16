@@ -233,6 +233,12 @@ class resetController extends Controller
             "tipus_compra" => "Host"
         ]);
 
+        $compra->insert([
+            "id_usuari" => 1,
+            "id_host" => 1,
+            "tipus_compra" => "Host"
+        ]);
+
 
 
         //Log_cap

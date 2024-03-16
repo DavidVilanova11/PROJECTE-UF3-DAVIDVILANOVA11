@@ -7,7 +7,7 @@ class Orm
     protected $model;
 
     public function __construct($model)
-    {   
+    {
         if (!isset($_SESSION[$model])) {
             $_SESSION[$model] = [];
         }
@@ -19,51 +19,69 @@ class Orm
         $sql = "SELECT * FROM " . $this->model;
         $params = null;
         $db = new Database();
-        $result = $db->queryDataBase($sql,$params)->fetchAll();
+        $result = $db->queryDataBase($sql, $params)->fetchAll();
         return $result;
     }
-    public function getById($id){
+
+    public function getDistinct($column)
+    {
+        try {
+            $sql = "SELECT DISTINCT $column FROM " . $this->model;
+            $db = new Database();
+            $result = $db->queryDataBase($sql)->fetchAll(PDO::FETCH_COLUMN);
+            return $result;
+        } catch (PDOException $e) {
+            // Manejar errores de la base de datos
+            // Por ejemplo, puedes registrar el error y devolver un mensaje genérico al usuario
+            error_log('Error en la consulta: ' . $e->getMessage());
+            return false;
+        }
+    }
+
+
+    public function getById($id)
+    {
         $sql = "SELECT * FROM " . $this->model . " WHERE id = :id";
         $params = array(
             ":id" => $id
         );
         $db = new Database();
-        $result = $db->queryDataBase($sql,$params)->fetch();
+        $result = $db->queryDataBase($sql, $params)->fetch();
         return $result;
     }
-    public function insert($data){
+
+    public function insert($data)
+    {
         $params = array();
-        foreach($data as $key => $value){
+        foreach ($data as $key => $value) {
             $params[":" . $key] = $value;
         }
-        if(!isset($data['id'])){
-            $columns = implode(", ",array_keys($data));
-            $values = ":" . implode(", :",array_keys($data));
-    
+        if (!isset($data['id'])) {
+            $columns = implode(", ", array_keys($data));
+            $values = ":" . implode(", :", array_keys($data));
+
             $sql = "INSERT INTO " . $this->model . " ($columns) VALUES ($values)";
             $db = new Database();
-            $data = $db->queryDataBase($sql,$params,true);
+            $data = $db->queryDataBase($sql, $params, true);
             // echo '<pre>';
             // var_dump($sql);
             // // echo '</pre>'; 
             // die();
             return $data;
-        } else{
-            $values_sql_update="";
-            foreach($data as $key => $value){
-                if($key != "id"){
-                $values_sql_update .= $key . " = :" . $key . ", ";
+        } else {
+            $values_sql_update = "";
+            foreach ($data as $key => $value) {
+                if ($key != "id") {
+                    $values_sql_update .= $key . " = :" . $key . ", ";
+                }
             }
-            }
-            $values_sql_update = substr($values_sql_update,0,-2);
+            $values_sql_update = substr($values_sql_update, 0, -2);
             $sql = "UPDATE  $this->model  SET $values_sql_update WHERE id = :id";
 
             $db = new Database();
-            $result = $db->queryDataBase($sql,$params)->fetch();
+            $result = $db->queryDataBase($sql, $params)->fetch();
             return $result;
         }
-       
-    
     }
 
     public function removeItemById($id)
@@ -73,7 +91,7 @@ class Orm
             ":id" => $id
         );
         $db = new Database();
-        $result = $db->queryDataBase($sql,$params);
+        $result = $db->queryDataBase($sql, $params);
         return $result;
     }
 }
