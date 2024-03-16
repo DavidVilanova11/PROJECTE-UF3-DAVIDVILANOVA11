@@ -26,13 +26,15 @@ require_once(__DIR__ . "/../../Core/Store.php");
                     <!-- Buy Button -->
                     <div class="buy-group" style="position: absolute; bottom: 1em; left: 1em; right: 0;">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Comprar</button>
+                            <!-- Enlace con etiqueta a -->
+                            <a href="/host/comprar/?id=<?= $host['id'] ?>" class="btn btn-sm btn-outline-secondary">Comprar</a>
                         </div>
                         <small class="text-muted text-right"><?php echo number_format($host['preu'], 2, '.', ',') . "$" ?></small>
                     </div>
                 </div>
             </div>
         <?php endforeach; ?>
+
 
         <div class="requadre-fix">
             <p class="text">Pressupost: &emsp; <?= number_format($_SESSION['user_logged']['pressupost'], 2, '.', ',') . "$" ?></p>

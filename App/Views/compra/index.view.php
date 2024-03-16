@@ -28,7 +28,13 @@ include_once(__DIR__ . "/../templates/navbar.php");
     <tbody>
       <?php foreach ($params['llista'] as $compra) : ?>
         <tr>
-          <td><?= $compra['id'] ?></td>
+          <td><?php
+              if ($compra['tipus_compra'] === 'ADN' && isset($compra['adn'])) {
+                echo $compra['adn']['nom'];
+              } elseif ($compra['tipus_compra'] === 'Host' && isset($compra['host'])) {
+                echo $compra['host']['especie'];
+              }
+              ?></td>
           <td><?= $compra['tipus_compra'] ?></td>
           <td>
             <?php
@@ -36,8 +42,6 @@ include_once(__DIR__ . "/../templates/navbar.php");
               echo number_format($compra['adn']['preu'], 2, '.', ',') . "$";
             } elseif ($compra['tipus_compra'] === 'Host' && isset($compra['host'])) {
               echo number_format($compra['host']['preu'], 2, '.', ',') . "$";
-            } else {
-              echo "Precio no disponible";
             }
             ?>
           </td>

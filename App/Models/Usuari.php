@@ -72,4 +72,15 @@ class Usuari extends Orm
 
         return $result;
     }
+
+    public function updatePressupost($id_usuari)
+    {
+        $sql = "SELECT pressupost FROM usuaris WHERE id = :id";
+        $params = array(
+            ":id" => $id_usuari,
+        );
+        $db = new Database();
+        $result = $db->queryDataBase($sql, $params)->fetch();
+        return floatval($result['pressupost']);
+    }
 }

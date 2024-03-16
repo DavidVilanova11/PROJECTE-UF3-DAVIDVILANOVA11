@@ -2,6 +2,9 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Core/Store.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Adn.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Core/Controller.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Stock.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Usuari.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Compra.php";
 
 
 class AdnController extends Controller
@@ -123,5 +126,42 @@ class AdnController extends Controller
         $params['llista'] = $adnModel->getAll();
 
         $this->render("adn/manage", $params, "site");
+    }
+
+    public function comprar()
+    {
+
+        // funció per comprar el adn
+        $adnModel = new Adn();
+        $compraModel = new Compra();
+        $usuariModel = new Usuari();
+
+        $id_adn = $_GET['id'];
+        $id_usuari = $_SESSION['user_logged']['id'];
+
+        $adn = $adnModel->getById($id_adn);
+        $usuari = $usuariModel->getById($id_usuari);
+
+        if ($usuari['pressupost'] >= $adn['preu']) {
+            $compraModel->insert([
+                "id_usuari" => $id_usuari,
+                "id_adn" => $id_adn,
+                "tipus_compra" => "ADN"
+            ]);
+            $_SESSION['user_logged']['pressupost'] = $usuariModel->updatePressupost($id_usuari, $adn['preu']);
+            // echo '<pre>';
+            // var_dump($_SESSION['user_logged']);
+            // echo '</pre>';
+
+            $_SESSION['flash'] = "Compra realitzada amb èxit";
+        } else {
+            $_SESSION['flash'] = "No tens prou pressupost";
+        }
+
+        $params['title'] = "Gestió Recuperades";
+        $params['llista'] = $adnModel->getAll();
+
+        // $this->render("adn/index", $params, "home");
+        header("Location: /adn/manage");
     }
 }

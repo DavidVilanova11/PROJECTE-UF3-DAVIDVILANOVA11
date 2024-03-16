@@ -23,6 +23,7 @@ class compraController extends Controller
 
         // }
 
+
         $params['title'] = "Gestió compres";
         $params['llista'] = $compraModel->getAll();
         $params['var'] = $_ENV['DB_NAME']; //
@@ -48,8 +49,12 @@ class compraController extends Controller
             $host = $hostModel->getById($compra['id_host']);
             $params['llista'][$index]['host'] = $host;
         }
-        $params['compra_loguejat'] = $_GET['id_compra'] ?? null; // if user_logejat and admin == true veiem la llista
 
+        // echo '<pre>';
+        // var_dump($params['llista']);
+        // echo '</pre>';
+
+        // die();
 
         //$params['compra_loguejat'] = $compraModel->getById('1');  
 
