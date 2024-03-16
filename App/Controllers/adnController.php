@@ -124,6 +124,14 @@ class AdnController extends Controller
         $adnModel = new Adn();
         $params['title'] = "Gestió Recuperades";
         $params['llista'] = $adnModel->getAll();
+        if (isset($_SESSION['flash']['ok'])) {
+            $params['flash']['ok'] = $_SESSION['flash']['ok'];
+            unset($_SESSION['flash']['ok']);
+        }
+        if (isset($_SESSION['flash']['ko'])) {
+            $params['flash']['ko'] = $_SESSION['flash']['ko'];
+            unset($_SESSION['flash']['ko']);
+        }
 
         $this->render("adn/manage", $params, "site");
     }
@@ -142,6 +150,11 @@ class AdnController extends Controller
         $adn = $adnModel->getById($id_adn);
         $usuari = $usuariModel->getById($id_usuari);
 
+        // Verificar si $_SESSION['flash'] está inicializado como un array
+        if (!isset($_SESSION['flash']) || !is_array($_SESSION['flash'])) {
+            $_SESSION['flash'] = array(); // Inicializar como un array vacío
+        }
+
         if ($usuari['pressupost'] >= $adn['preu']) {
             $compraModel->insert([
                 "id_usuari" => $id_usuari,
@@ -153,9 +166,9 @@ class AdnController extends Controller
             // var_dump($_SESSION['user_logged']);
             // echo '</pre>';
 
-            $_SESSION['flash'] = "Compra realitzada amb èxit";
+            $_SESSION['flash']['ok'] = "Compra realitzada amb èxit";
         } else {
-            $_SESSION['flash'] = "No tens prou pressupost";
+            $_SESSION['flash']['ko'] = "No tens prou pressupost";
         }
 
         $params['title'] = "Gestió Recuperades";

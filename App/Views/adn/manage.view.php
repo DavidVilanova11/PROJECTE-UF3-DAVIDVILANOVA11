@@ -13,6 +13,24 @@ require_once(__DIR__ . "/../../Core/Store.php");
 
 ?>
 
+<?php
+
+if (isset($params['flash']['ok'])) {
+    echo "<div class='alert alert-success my-3 mx-3' style='display: inline; role='alert'>";
+    echo $params['flash']['ok'];
+    echo "</div>";
+    unset($params['flash']['ok']);
+}
+
+if (isset($params['flash']['ko'])) {
+    echo "<div class='alert alert-danger my-3 mx-3' style='display: inline;' role='alert'>";
+    echo $params['flash']['ko'];
+    echo "</div>";
+    unset($params['flash']['ko']);
+}
+
+?>
+
 <div class="container mt-5">
     <div class="d-flex flex-wrap">
 
