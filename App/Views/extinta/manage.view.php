@@ -28,10 +28,24 @@ require_once(__DIR__ . "/../../Core/Store.php");
             </div>
         <?php endforeach; ?>
 
+
         <div class="requadre-fix">
             <p class="text">Pressupost: &emsp; <?= number_format($_SESSION['user_logged']['pressupost'], 2, '.', ',') . "$" ?></p>
-            <p class="text">Hosts obtinguts: ...</p>
-            <p class="text">Adn obtinguts: ...</p>
+            <p class="text">Hosts obtinguts:</p>
+            <ul>
+                <?php foreach ($params['llista-stock']['host'] as $stock) : ?>
+                    <?php if ($stock !== null && isset($stock['especie']) && isset($stock['quantity'])) : ?>
+                        <li><?php echo $stock['especie'] . ": " . $stock['quantity']; ?></li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
+            <p class="text">Adn obtinguts:</p>
+            <ul>
+                <?php foreach ($params['llista-stock']['adn'] as $stock) : ?>
+                    <?php if ($stock !== null && isset($stock['nom']) && isset($stock['quantity'])) : ?>
+                        <li><?php echo $stock['nom'] . ": " . $stock['quantity']; ?></li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
         </div>
 
     </div>

@@ -70,6 +70,7 @@ class stockController extends Controller
             }
         }
 
+
         // agregar la cantidad de productos para 'host'
         if (isset($params['llista']['host']) && is_array($params['llista']['host'])) {
             foreach ($params['llista']['host'] as $index => $stock) {

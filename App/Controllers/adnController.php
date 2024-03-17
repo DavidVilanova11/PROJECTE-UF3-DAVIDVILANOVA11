@@ -5,6 +5,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Core/Controller.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Stock.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Usuari.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Compra.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Host.php";
 
 
 class AdnController extends Controller
@@ -131,6 +132,73 @@ class AdnController extends Controller
         if (isset($_SESSION['flash']['ko'])) {
             $params['flash']['ko'] = $_SESSION['flash']['ko'];
             unset($_SESSION['flash']['ko']);
+        }
+
+        $stockModel = new Stock();
+        $hostModel = new Host();
+        $distinct_hosts = $stockModel->getStockByIdUsuari('id_host', $_SESSION['user_logged']['id']);
+        $distinct_adn = $stockModel->getStockByIdUsuari('id_adn', $_SESSION['user_logged']['id']);
+
+        // $distinct_hosts = $stockModel->getDistinct('id_host');
+        // $distinct_adn = $stockModel->getDistinct('id_adn');
+
+        // echo '<pre>';
+        // var_dump($distinct_hosts);
+        // echo '</pre>';
+
+        // echo '<pre>';
+        // var_dump(
+        //     $distinct_adn
+        // );
+        // echo '</pre>';
+
+        // die();
+
+        // Recuperar los objetos completos de host
+        $hosts = [];
+        foreach ($distinct_hosts as $host_id) {
+            if ($host_id !== null) {
+                $host = $hostModel->getById($host_id);
+                if ($host !== false) {
+                    $hosts[] = $host;
+                }
+            }
+        }
+
+        // Recuperar los objetos completos de adn
+        $adns = [];
+        foreach ($distinct_adn as $adn_id) {
+            if ($adn_id !== null) {
+                $adn = $adnModel->getById($adn_id);
+                if ($adn !== false) {
+                    $adns[] = $adn;
+                }
+            }
+        }
+
+        // Asignar los objetos completos a $params['llista']
+        $params['llista-stock'] = [
+            'adn' => $adns,
+            'host' => $hosts
+        ];
+
+        // agregar la cantidad de productos para 'adn'
+        if (isset($params['llista-stock']['adn']) && is_array($params['llista-stock']['adn'])) {
+            foreach ($params['llista-stock']['adn'] as $index => $stock) {
+                if (isset($stock['id'])) {
+                    $params['llista-stock']['adn'][$index]['quantity'] = $stockModel->getProductQuantity($stock['id'], $_SESSION['user_logged']['id'], "adn");
+                }
+            }
+        }
+
+
+        // agregar la cantidad de productos para 'host'
+        if (isset($params['llista-stock']['host']) && is_array($params['llista-stock']['host'])) {
+            foreach ($params['llista-stock']['host'] as $index => $stock) {
+                if (isset($stock['id'])) {
+                    $params['llista-stock']['host'][$index]['quantity'] = $stockModel->getProductQuantity($stock['id'], $_SESSION['user_logged']['id'], "host");
+                }
+            }
         }
 
         $this->render("adn/manage", $params, "site");
