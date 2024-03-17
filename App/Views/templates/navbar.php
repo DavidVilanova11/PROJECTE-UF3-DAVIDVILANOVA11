@@ -105,9 +105,9 @@
                                         echo "active";
                                     } ?>" href="/compra/index">Compres
                     <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "purchase") {
-                        echo '<img src="../../../Public/img/web/icons/tag-solid-purple.svg" alt="My Happy SVG" width="20px" style="margin-left: 5px; margin-bottom: 5px;" />';
+                        echo '<img src="../../../Public/img/web/icons/clock-rotate-left-solid-purple.svg" alt="My Happy SVG" width="20px" style="margin-left: 5px; margin-bottom: 5px;" />';
                     } else {
-                        echo '<img src="../../../Public/img/web/icons/tag-solid.svg" alt="My Happy SVG" width="20px" style="margin-left: 5px; margin-bottom: 5px;" />';
+                        echo '<img src="../../../Public/img/web/icons/clock-rotate-left-solid.svg" alt="My Happy SVG" width="20px" style="margin-left: 5px; margin-bottom: 5px;" />';
                     } ?>
                 </a>
             </li>
