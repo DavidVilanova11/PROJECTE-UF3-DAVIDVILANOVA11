@@ -71,8 +71,10 @@ require_once(__DIR__ . "/../../Core/Store.php");
 
 
 
-<button id="confirmHostBtn" style="display: none;">Confirmar host</button>
-<button id="fusionBtn" style="display: none;">Fusionar</button>
+<div class="container mb-5 fixed-bottom text-right"> <!-- Utilizamos 'fixed-bottom' para fijar los botones en la parte inferior de la pantalla -->
+    <button id="confirmHostBtn" class="btn btn-primary btn-lg mr-3" style="display: none; float:right;">Confirmar host</button>
+    <button id="fusionBtn" class="btn btn-success btn-lg" style="display: none; float:right;">Fusionar</button>
+</div>
 
 
 </div>
