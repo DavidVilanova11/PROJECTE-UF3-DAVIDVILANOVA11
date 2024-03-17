@@ -29,7 +29,7 @@ require_once(__DIR__ . "/../../Core/Store.php");
         <?php foreach ($params['llista'] as $tipo => $stocks) : ?>
             <?php if ($tipo === 'host' && !empty($stocks)) : ?>
                 <?php foreach ($stocks as $stock) : ?>
-                    <div class="card mx-3 my-3 <?php echo ($selectedHostId && $selectedHostId === $stock['id']) ? 'selected' : ''; ?>" style="width: 16rem; height: 28rem; border: 2px solid transparent;" data-tipo="<?php echo $tipo; ?>" data-id="<?php echo $stock['id']; ?>">
+                    <div class="card mx-3 my-3 <?php echo ($selectedHostId && $selectedHostId === $stock['id']) ? 'selected' : ''; ?>" style="width: 16rem; height: 28rem;" data-tipo="<?php echo $tipo; ?>" data-id="<?php echo $stock['id']; ?>">
                         <div class="img-container">
                             <img class="custom-image" src="../../../Public/img/hosts/<?php echo $stock['img']; ?>" alt="...">
                         </div>
@@ -51,7 +51,7 @@ require_once(__DIR__ . "/../../Core/Store.php");
         <?php foreach ($params['llista'] as $tipo => $stocks) : ?>
             <?php if ($tipo === 'adn' && !empty($stocks)) : ?>
                 <?php foreach ($stocks as $stock) : ?>
-                    <div class="card mx-3 my-3" style="width: 16rem; height: 28rem; border: 2px solid transparent;" data-tipo="<?php echo $tipo; ?>" data-id="<?php echo $stock['id']; ?>">
+                    <div class="card mx-3 my-3" style="width: 16rem; height: 28rem;" data-tipo="<?php echo $tipo; ?>" data-id="<?php echo $stock['id']; ?>">
                         <div class="img-container">
                             <img class="custom-image" src="../../../Public/img/adn/<?php echo $stock['img']; ?>" alt="...">
                         </div>

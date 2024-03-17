@@ -124,53 +124,53 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
 
-<script>
-    let selectedHostId = null;
-    let hostConfirmed = false;
+    <script>
+        let selectedHostId = null;
+        let hostConfirmed = false;
 
-    // Función para cambiar los estilos al seleccionar un elemento
-    function selectElement(element) {
-        // Reiniciar estilos solo si no se ha confirmado el host
-        if (!hostConfirmed) {
-            document.querySelectorAll('.card').forEach(item => {
-                item.style.border = '2px solid transparent';
-                item.style.filter = 'none';
-            });
-        }
-        
-        // Establecer estilos para el elemento seleccionado
-        element.style.border = '2px solid';
-        element.style.borderColor = (element.dataset.tipo === 'adn') ? 'blue' : 'purple';
-        element.style.filter = 'brightness(80%)';
-        selectedHostId = (element.dataset.tipo === 'host') ? element.dataset.id : selectedHostId;
-    }
-
-    // Event listeners para seleccionar elementos
-    document.querySelectorAll('.card').forEach(item => {
-        item.addEventListener('click', () => {
-            if (!hostConfirmed && item.dataset.tipo === 'host') {
-                selectElement(item);
-                document.getElementById('confirmHostBtn').style.display = 'block';
-            } else if (hostConfirmed && item.dataset.tipo === 'adn') {
-                selectElement(item);
-                document.getElementById('fusionBtn').style.display = 'block';
+        // Función para cambiar los estilos al seleccionar un elemento
+        function selectElement(element) {
+            // Reiniciar estilos solo si no se ha confirmado el host
+            if (!hostConfirmed) {
+                document.querySelectorAll('.card').forEach(item => {
+                    item.style.border = '';
+                    item.style.filter = 'none';
+                });
             }
+
+            // Establecer estilos para el elemento seleccionado
+            element.style.border = '2px solid';
+            element.style.borderColor = (element.dataset.tipo === 'adn') ? 'blue' : 'purple';
+            element.style.filter = 'brightness(80%)';
+            selectedHostId = (element.dataset.tipo === 'host') ? element.dataset.id : selectedHostId;
+        }
+
+        // Event listeners para seleccionar elementos
+        document.querySelectorAll('.card').forEach(item => {
+            item.addEventListener('click', () => {
+                if (!hostConfirmed && item.dataset.tipo === 'host') {
+                    selectElement(item);
+                    document.getElementById('confirmHostBtn').style.display = 'block';
+                } else if (hostConfirmed && item.dataset.tipo === 'adn') {
+                    selectElement(item);
+                    document.getElementById('fusionBtn').style.display = 'block';
+                }
+            });
         });
-    });
 
-    // Event listener para el botón de confirmar selección de host
-    document.getElementById('confirmHostBtn').addEventListener('click', () => {
-        document.getElementById('confirmHostBtn').style.display = 'none';
-        hostConfirmed = true;
-        document.querySelector('h1').textContent = `SELECCIONA UN ADN`;
-    });
+        // Event listener para el botón de confirmar selección de host
+        document.getElementById('confirmHostBtn').addEventListener('click', () => {
+            document.getElementById('confirmHostBtn').style.display = 'none';
+            hostConfirmed = true;
+            document.querySelector('h1').textContent = `SELECCIONA UN ADN`;
+        });
 
-    // Event listener para el botón de fusionar
-    document.getElementById('fusionBtn').addEventListener('click', () => {
-        document.getElementById('fusionBtn').style.display = 'none';
-        document.querySelector('.container').innerHTML += `<input type="hidden" name="selectedHostId" value="${selectedHostId}">`;
-    });
-</script>
+        // Event listener para el botón de fusionar
+        document.getElementById('fusionBtn').addEventListener('click', () => {
+            document.getElementById('fusionBtn').style.display = 'none';
+            document.querySelector('.container').innerHTML += `<input type="hidden" name="selectedHostId" value="${selectedHostId}">`;
+        });
+    </script>
 
 </body>
 
