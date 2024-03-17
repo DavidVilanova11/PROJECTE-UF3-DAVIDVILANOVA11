@@ -152,6 +152,11 @@
                     selectElement(item);
                     document.getElementById('confirmHostBtn').style.display = 'block';
                 } else if (hostConfirmed && item.dataset.tipo === 'adn') {
+                    // Restablecer el borde y el filtro de los elementos de ADN al seleccionar un ADN diferente
+                    document.querySelectorAll('.card[data-tipo="adn"]').forEach(adnItem => {
+                        adnItem.style.border = '';
+                        adnItem.style.filter = 'none';
+                    });
                     selectElement(item);
                     document.getElementById('fusionBtn').style.display = 'block';
                 }
@@ -171,6 +176,9 @@
             document.querySelector('.container').innerHTML += `<input type="hidden" name="selectedHostId" value="${selectedHostId}">`;
         });
     </script>
+
+
+
 
 </body>
 
