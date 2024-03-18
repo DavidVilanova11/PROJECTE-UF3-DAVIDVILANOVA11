@@ -126,11 +126,10 @@
 
     <script>
         let selectedHostId = null;
+        let selectedAdnId = null;
         let hostConfirmed = false;
 
-        // Función para cambiar los estilos al seleccionar un elemento
         function selectElement(element) {
-            // Reiniciar estilos solo si no se ha confirmado el host
             if (!hostConfirmed) {
                 document.querySelectorAll('.card').forEach(item => {
                     item.style.border = '';
@@ -138,21 +137,19 @@
                 });
             }
 
-            // Establecer estilos para el elemento seleccionado
             element.style.border = '2px solid';
             element.style.borderColor = (element.dataset.tipo === 'adn') ? 'blue' : 'purple';
             element.style.filter = 'brightness(80%)';
             selectedHostId = (element.dataset.tipo === 'host') ? element.dataset.id : selectedHostId;
+            selectedAdnId = (element.dataset.tipo === 'adn') ? element.dataset.id : selectedAdnId;
         }
 
-        // Event listeners para seleccionar elementos
         document.querySelectorAll('.card').forEach(item => {
             item.addEventListener('click', () => {
                 if (!hostConfirmed && item.dataset.tipo === 'host') {
                     selectElement(item);
                     document.getElementById('confirmHostBtn').style.display = 'block';
                 } else if (hostConfirmed && item.dataset.tipo === 'adn') {
-                    // Restablecer el borde y el filtro de los elementos de ADN al seleccionar un ADN diferente
                     document.querySelectorAll('.card[data-tipo="adn"]').forEach(adnItem => {
                         adnItem.style.border = '';
                         adnItem.style.filter = 'none';
@@ -163,19 +160,20 @@
             });
         });
 
-        // Event listener para el botón de confirmar selección de host
         document.getElementById('confirmHostBtn').addEventListener('click', () => {
             document.getElementById('confirmHostBtn').style.display = 'none';
             hostConfirmed = true;
             document.querySelector('h1').textContent = `SELECCIONA UN ADN`;
         });
 
-        // Event listener para el botón de fusionar
         document.getElementById('fusionBtn').addEventListener('click', () => {
-            document.getElementById('fusionBtn').style.display = 'none';
-            document.querySelector('.container').innerHTML += `<input type="hidden" name="selectedHostId" value="${selectedHostId}">`;
+            // Assign selected IDs to hidden input fields before form submission
+            document.querySelector('input[name="selectedHostId"]').value = selectedHostId;
+            document.querySelector('input[name="selectedAdnId"]').value = selectedAdnId;
         });
     </script>
+
+
 
 
 

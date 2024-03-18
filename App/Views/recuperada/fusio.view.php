@@ -69,12 +69,18 @@ require_once(__DIR__ . "/../../Core/Store.php");
 </div>
 
 
+<form id="fusionForm" action="/recuperada/addRecuperada/" method="get">
+    <div class="container">
+        <!-- Hidden inputs to store selected IDs -->
+        <input type="hidden" name="selectedHostId" value="">
+        <input type="hidden" name="selectedAdnId" value="">
 
+        <!-- Buttons -->
+        <button type="button" id="confirmHostBtn" class="btn btn-primary btn-lg" style="display: none; position: fixed; right: 3%; bottom: 12%; margin: 0 0 12px 0">Confirm Host</button>
+        <button type="submit" id="fusionBtn" class="btn btn-success btn-lg" style="display: none; position: fixed; right: 3%; bottom: 12%; margin: 0 0 12px 0">Fusion</button>
+    </div>
+</form>
 
-<div class="container mb-5 fixed-bottom text-right"> <!-- Utilizamos 'fixed-bottom' para fijar los botones en la parte inferior de la pantalla -->
-    <button id="confirmHostBtn" class="btn btn-primary btn-lg" style="display: none; float:right;">Confirmar host</button>
-    <button id="fusionBtn" class="btn btn-success btn-lg" style="display: none; float:right;">Fusionar</button>
-</div>
 
 
 </div>

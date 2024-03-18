@@ -58,18 +58,19 @@ class Stock extends Orm
         return $result;
     }
 
-    // public function getDistinct($column)
-    // {
-    //     try {
-    //         $sql = "SELECT DISTINCT $column FROM " . $this->model;
-    //         $db = new Database();
-    //         $result = $db->queryDataBase($sql)->fetchAll(PDO::FETCH_COLUMN);
-    //         return $result;
-    //     } catch (PDOException $e) {
-    //         // Manejar errores de la base de datos
-    //         // Por ejemplo, puedes registrar el error y devolver un mensaje genérico al usuario
-    //         error_log('Error en la consulta: ' . $e->getMessage());
-    //         return false;
-    //     }
-    // }
+
+    public function removeStock($id, $type)
+    {
+        // can be id_host or id_adn
+
+        $sql = "DELETE FROM " . $this->model . " WHERE id_" . $type . " = :id";
+        $params = array(
+            ":id" => $id
+        );
+
+        $db = new Database();
+        $db->queryDataBase($sql, $params);
+
+        return true;
+    }
 }

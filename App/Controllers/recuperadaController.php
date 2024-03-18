@@ -212,4 +212,47 @@ class recuperadaController extends Controller
 
         $this->render("recuperada/fusio", $params, "fusion");
     }
+
+    public function addRecuperada()
+    {
+
+        // remove the adn ant the hosts selected from the stock
+
+        echo '<pre>';
+        var_dump($_GET);
+        echo '</pre>';
+
+        $stockModel = new Stock();
+        $stockModel->removeStock($_POST['selectedHostId'], 'host');
+        $stockModel->removeStock($_POST['selectedAdnId'], 'adn');
+
+        // creem un log
+        $log = array(
+            "id_usuari" => $_SESSION['user_logged']['id'],
+            "id_adn" => $_GET['id_adn'],
+            "id_host" => $_GET['id_host'],
+            "data" => date("Y-m-d H:i:s")
+        );
+
+        $logModel = new Log();
+        $logModel->insert($log);
+
+        // creem la recuperada corresponent segon la probabilitat 
+
+        $recuperadaModel = new Recuperada();
+
+        $recuperada = array(
+            "num_recuperada" => $_GET['num_recuperada'],
+            "familia_recuperada" => $_GET['familia_recuperada'],
+            "nom_recuperada" => $_GET['nom_recuperada'],
+            "imatge_recuperada" => $_GET['imatge_recuperada'],
+            "video_recuperada" => $_GET['video_recuperada'],
+            "id_usuari" => $_GET['id']
+        );
+
+        $recuperadaModel->insert($recuperada);
+
+
+        header("Location: /recuperada/index");
+    }
 }
