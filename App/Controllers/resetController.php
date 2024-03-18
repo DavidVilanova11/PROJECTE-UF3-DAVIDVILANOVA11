@@ -243,8 +243,24 @@ class resetController extends Controller
 
         //Log_cap
 
+        $log_cap = new Log_cap();
+
+        $log_cap->insert([
+            "id" => 1
+        ]);
+
 
         // LOGS        
+
+        $log = new Log();
+        $log->insert([
+            "id_usuari" => 1,
+            "id_adn" => 1,
+            "id_host" => 1,
+            "id_extinta" => 1,
+            "satisfactori" => 1,
+            "id_cap" => 1
+        ]);
 
         // RECUPERADES
 

@@ -229,12 +229,27 @@ class recuperadaController extends Controller
         $stockModel->removeStock($idHost, 'host'); // només 1 no tots
         $stockModel->removeStock($idAdn, 'adn'); // només 1 no tots
 
+        // veure si el id_adn i el id_host són compatibles i quina extinta podem obtenir
+
+        $extintaModel = new Extinta();
+
+        $extinta = $extintaModel->checkAdnAndHost($idAdn, $idHost);
+
+        if ($extinta != null) {
+            $idExtinta = 0;
+        } else {
+            // hi ha extinta
+            $idExtinta = $extinta['id'];
+            //$_SESSION['missatge_flash_ok'] = "Extinta: " . $extinta['nom'];
+        }
+
+
         // creem un log
         $log = array(
             "id_usuari" => $_SESSION['user_logged']['id'],
             "id_adn" => $idAdn,
             "id_host" => $idHost,
-            "data" => date("Y-m-d H:i:s")
+            "id_extinta" => $idExtinta
         );
 
         $logModel = new Log();

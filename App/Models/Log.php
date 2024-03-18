@@ -20,7 +20,6 @@ class Log extends Orm
         `id_adn` INT NOT NULL , 
         `id_host` INT NOT NULL , 
         `satisfactori` BOOLEAN NOT NULL , 
-        `probabilitat` FLOAT NOT NULL , 
         `timestamp` TIMESTAMP NOT NULL, 
         PRIMARY KEY (`id`),
         FOREIGN KEY (`id_usuari`) REFERENCES usuaris(`id`) ON DELETE CASCADE,
@@ -35,5 +34,16 @@ class Log extends Orm
 
         $db = new Database();
         $db->queryDataBase($sql);
+    }
+
+    public function getLogByIdUsuari($id_usuari)
+    {
+        $sql = "SELECT * FROM " . $this->model . " WHERE id_usuari = :id_usuari";
+        $params = array(
+            ":id_usuari" => $id_usuari
+        );
+        $db = new Database();
+        $result = $db->queryDataBase($sql, $params)->fetchAll();
+        return $result;
     }
 }

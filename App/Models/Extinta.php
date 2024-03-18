@@ -31,4 +31,16 @@ class Extinta extends Orm
         $db = new Database();
         $db->queryDataBase($sql);
     }
+
+    public function checkAdnAndHost($id_adn, $id_host)
+    {
+        $sql = "SELECT * FROM " . $this->model . " WHERE id_adn = :id_adn AND id_host = :id_host";
+        $params = array(
+            ":id_adn" => $id_adn,
+            ":id_host" => $id_host
+        );
+        $db = new Database();
+        $result = $db->queryDataBase($sql, $params)->fetch();
+        return $result;
+    }
 }

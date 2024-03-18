@@ -1,5 +1,6 @@
 <?php
 
+// We wanna have an ACID standard in our database
 
 class Database
 {
