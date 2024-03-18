@@ -222,15 +222,18 @@ class recuperadaController extends Controller
         var_dump($_GET);
         echo '</pre>';
 
+        $idHost = $_GET['selectedHostId'];
+        $idAdn = $_GET['selectedAdnId'];
+
         $stockModel = new Stock();
-        $stockModel->removeStock($_POST['selectedHostId'], 'host');
-        $stockModel->removeStock($_POST['selectedAdnId'], 'adn');
+        $stockModel->removeStock($idHost, 'host'); // només 1 no tots
+        $stockModel->removeStock($idAdn, 'adn'); // només 1 no tots
 
         // creem un log
         $log = array(
             "id_usuari" => $_SESSION['user_logged']['id'],
-            "id_adn" => $_GET['id_adn'],
-            "id_host" => $_GET['id_host'],
+            "id_adn" => $idAdn,
+            "id_host" => $idHost,
             "data" => date("Y-m-d H:i:s")
         );
 

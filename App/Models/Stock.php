@@ -63,7 +63,7 @@ class Stock extends Orm
     {
         // can be id_host or id_adn
 
-        $sql = "DELETE FROM " . $this->model . " WHERE id_" . $type . " = :id";
+        $sql = "DELETE FROM " . $this->model . " WHERE id_" . $type . " = :id LIMIT 1"; // Limit the deletion to one record
         $params = array(
             ":id" => $id
         );

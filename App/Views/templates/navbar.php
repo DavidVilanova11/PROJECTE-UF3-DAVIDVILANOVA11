@@ -90,6 +90,17 @@
                 </a>
             </li>
             <li class="nav-item" style="margin-left: 15px;">
+                <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "log") {
+                                        echo "active";
+                                    } ?>" href="/log/index">Logs
+                    <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "log") {
+                        echo '<img src="../../../Public/img/web/icons/align-left-solid-purple.svg" alt="My Happy SVG" width="15px" style="margin-left: 5px; margin-bottom: 5px;" />';
+                    } else {
+                        echo '<img src="../../../Public/img/web/icons/align-left-solid.svg" alt="My Happy SVG" width="15px" style="margin-left: 5px; margin-bottom: 5px;" />';
+                    } ?>
+                </a>
+            </li>
+            <li class="nav-item" style="margin-left: 15px;">
                 <a class="nav-link <?php if (isset($_SESSION['actual_page']) && $_SESSION['actual_page'] == "stock") {
                                         echo "active";
                                     } ?>" href="/stock/manage">Stock
