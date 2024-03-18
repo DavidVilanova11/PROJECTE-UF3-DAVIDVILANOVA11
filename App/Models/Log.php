@@ -63,7 +63,7 @@ class Log extends Orm
         $sql = "CREATE TRIGGER `insert_recuperada` AFTER INSERT ON `logs` FOR EACH ROW
         BEGIN
             IF NEW.satisfactori = 1 THEN
-                INSERT INTO recuperades (nom, especie, img, id_usuari, id_extinta) VALUES ((SELECT nom FROM extintes WHERE id = NEW.id_extinta), (SELECT especie FROM extintes WHERE id = NEW.id_extinta), (SELECT img FROM extintes WHERE id = NEW.id_extinta), NEW.id_usuari, NEW.id_extinta);
+                INSERT INTO recuperades (nom, especie, img, id_usuari, id_extinta) VALUES ((SELECT nom FROM extintes WHERE id = NEW.id_extinta), (SELECT nom FROM extintes WHERE id = NEW.id_extinta), (SELECT img FROM extintes WHERE id = NEW.id_extinta), NEW.id_usuari, NEW.id_extinta);
             END IF;
         END;";
 

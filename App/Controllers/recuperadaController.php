@@ -14,25 +14,25 @@ class recuperadaController extends Controller
     public function manage()
     {
         $hostModel = new Host();
-        $adnModel = new Adn();
+        $recuperadaModel = new Adn();
         $stockModel = new Recuperada();
         $params['title'] = "Gestió Stock";
         $distinct_recuperades = $stockModel->getRecuperadesByIdUsuari($_SESSION['user_logged']['id']);
 
         echo '<pre>';
-        var_dump($distinct_hosts);
+        var_dump($distinct_recuperades);
         echo '</pre>';
 
-        // $distinct_hosts = $stockModel->getDistinct('id_host');
-        // $distinct_adn = $stockModel->getDistinct('id_adn');
+        // $distinct_recuperades = $stockModel->getDistinct('id_host');
+        // $distinct_recuperada = $stockModel->getDistinct('id_recuperada');
 
         // echo '<pre>';
-        // var_dump($distinct_hosts);
+        // var_dump($distinct_recuperades);
         // echo '</pre>';
 
         // echo '<pre>';
         // var_dump(
-        //     $distinct_adn
+        //     $distinct_recuperada
         // );
         // echo '</pre>';
 
@@ -40,7 +40,7 @@ class recuperadaController extends Controller
 
         // Recuperar los objetos completos de recuprada
         $recuprades = [];
-        foreach ($distinct_hosts as $host_id) {
+        foreach ($distinct_recuperades as $host_id) {
             if ($host_id !== null) {
                 $recuprada = $hostModel->getById($host_id);
                 if ($recuprada !== false) {
@@ -50,19 +50,19 @@ class recuperadaController extends Controller
         }
 
         // Recuperar los objetos completos de recuprada
-        $adns = [];
-        foreach ($distinct_adn as $adn_id) {
-            if ($adn_id !== null) {
-                $recuprada = $adnModel->getById($adn_id);
+        $recuperades = [];
+        foreach ($distinct_recuperada as $recuperada_id) {
+            if ($recuperada_id !== null) {
+                $recuprada = $recuperadaModel->getById($recuperada_id);
                 if ($recuprada !== false) {
-                    $adns[] = $recuprada;
+                    $recuperades[] = $recuprada;
                 }
             }
         }
 
         // Asignar los objetos completos a $params['llista']
         $params['llista'] = [
-            'recuprada' => $adns,
+            'recuprada' => $recuperades,
             'recuprada' => $recuprades
         ];
 
