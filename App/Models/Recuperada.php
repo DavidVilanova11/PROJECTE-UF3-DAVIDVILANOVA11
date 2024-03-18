@@ -31,4 +31,16 @@ class Recuperada extends Orm
         $db = new Database();
         $db->queryDataBase($sql);
     }
+
+    public function getRecuperadesByIdUsuari($id_usuari)
+    {
+        $db = new Database();
+
+        $sql = "SELECT * FROM " . $this->model . " WHERE id_usuari = $id_usuari;";
+        $params = array(
+            ":id_usuari" => $id_usuari
+        );
+        $result = $db->queryDataBase($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
