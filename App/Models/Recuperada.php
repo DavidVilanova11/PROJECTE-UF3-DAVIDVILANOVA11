@@ -43,4 +43,18 @@ class Recuperada extends Orm
         $result = $db->queryDataBase($sql)->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function getProductQuantity($id, $id_usuari)
+    {
+        $sql = "SELECT COUNT(*) as quantity FROM recuperades WHERE id = :id AND id_usuari = :id_usuari";
+        $params = array(
+            ":id" => $id,
+            ":id_usuari" => $id_usuari
+        );
+
+        $db = new Database();
+        $result = $db->queryDataBase($sql, $params)->fetch();
+
+        return $result['quantity'];
+    }
 }
