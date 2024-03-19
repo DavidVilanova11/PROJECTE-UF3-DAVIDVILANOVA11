@@ -88,6 +88,7 @@ class recuperadaController extends Controller
             //$_SESSION['missatge_flash_ok'] = "Extinta: " . $extinta['nom'];
         }
 
+        if ()
         // calcular si ha set satisafctori segons el percentatge de probabilitat
 
         $probabilitat = $extinta['probabilitat'];
@@ -121,13 +122,26 @@ class recuperadaController extends Controller
         $logModel = new Log();
         $logModel->insert($log);
 
+        $params['idExtinta'] = $idExtinta;
+        $params['satisfactori'] = $satisfactori;
+
+        $this->render("recuperada/fusio", $params, "fusion");
+
+
+        //createRecuperada($idExtinta, $satisfactori, $nomRecuperada);
+
+
+    }
+
+    public function createRecuperada($idExtinta, $satisfactori, $nomRecuperada)
+    {
         // creem la recuperada corresponent segon la probabilitat 
 
         $recuperadaModel = new Recuperada();
 
         $recuperada = array(
-            "nom" => $nomEscollit,
-            "especie" => $exitnta['especie'],
+            //"nom" => $nomEscollit,
+            // "especie" => $exitnta['especie'],
             "naixement" => $_GET['imatge_recuperada'],
             "img" => $_GET['video_recuperada'],
             "id_usuari" => $_GET['id'],

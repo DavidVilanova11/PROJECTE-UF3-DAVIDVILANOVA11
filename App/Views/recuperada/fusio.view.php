@@ -21,6 +21,14 @@ require_once(__DIR__ . "/../../Core/Store.php");
 
 ?>
 
+<?php 
+
+if (isset($params['idExtinta']) && $params['idExtinta'] != 0 && isset($params['satisfactori']) && $params['satisfactori'] != 0) {
+    
+}
+
+?>
+
 <h1>SELECCIONA UN HOST</h1>
 
 <div class="container mt-5">
