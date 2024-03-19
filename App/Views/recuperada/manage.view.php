@@ -16,11 +16,11 @@ require_once(__DIR__ . "/../../Core/Store.php");
 <div class="container mt-5">
     <div class="d-flex flex-wrap">
 
-        <?php foreach ($_SESSION['recuperades'] as $index => $recuperada) : ?>
+        <?php foreach ($params['llista']['recuperades'] as $index => $recuperada) : ?>
             <div class="card mx-3 my-3" style="width: 18rem;">
-                <img class="custom-image" src="../../../Public/img/recuperades/<?php echo $recuperada['familia_recuperada'] . "/" . $recuperada['imatge_recuperada'] ?>" alt="...">
+                <img class="custom-image" src="../../../Public/img/recuperades/<?php echo $recuperada['img'] ?>" alt="...">
                 <div class="card-body">
-                    <p class="card-text"><?php echo $recuperada['nom_recuperada']; ?></p>
+                    <p class="card-text"><?php echo $recuperada['nom']; ?></p>
                 </div>
             </div>
         <?php endforeach; ?>
