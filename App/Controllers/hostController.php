@@ -14,7 +14,7 @@ class HostController extends Controller
     public function index()
     {
         $hostModel = new Host();
-        $params['title'] = "Gestió Recuperades";
+        $params['title'] = "Hosts";
         $params['llista'] = $hostModel->getAll();
         $params['user'] = $_SESSION['user_logged']['nom'];
 
@@ -123,7 +123,7 @@ class HostController extends Controller
     public function manage()
     {
         $hostModel = new Host();
-        $params['title'] = "Gestió Recuperades";
+        $params['title'] = "Comprar Hosts";
         $params['llista'] = $hostModel->getAll();
 
         if (isset($_SESSION['flash']['ok'])) {

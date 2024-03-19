@@ -16,7 +16,6 @@ class ExtintaController extends Controller
     public function index()
     {
         $extintaModel = new Extinta();
-        $params['title'] = "Gestió Recuperades";
         $params['llista'] = $extintaModel->getAll();
         $params['user'] = $_SESSION['user_logged']['nom'];
 
@@ -125,7 +124,7 @@ class ExtintaController extends Controller
     public function manage()
     {
         $extintaModel = new Extinta();
-        $params['title'] = "Gestió Recuperades";
+        $params['title'] = "Extintes";
         $params['llista'] = $extintaModel->getAll();
 
         $stockModel = new Stock();

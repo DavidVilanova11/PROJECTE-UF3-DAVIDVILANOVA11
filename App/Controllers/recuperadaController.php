@@ -17,7 +17,7 @@ class recuperadaController extends Controller
     {
         $extintaModel = new Extinta();
         $recuperadaModel = new Recuperada();
-        $params['title'] = "Gestió Stock";
+        $params['title'] = "Recuperades";
         $params['llista']['recuperades'] = $recuperadaModel->getRecuperadesByIdUsuari($_SESSION['user_logged']['id']);
 
 
@@ -165,8 +165,6 @@ class recuperadaController extends Controller
         );
 
         $recuperadaModel->insert($recuperada);
-
-        $params['title'] = "Espècies Recuperades";
 
 
         header("Location: /recuperada/fusio");

@@ -14,7 +14,7 @@ class AdnController extends Controller
     public function index()
     {
         $adnModel = new Adn();
-        $params['title'] = "Gestió Recuperades";
+        $params['title'] = "Comprar Adn";
         $params['llista'] = $adnModel->getAll();
         $params['user'] = $_SESSION['user_logged']['nom'];
 
@@ -123,7 +123,7 @@ class AdnController extends Controller
     public function manage()
     {
         $adnModel = new Adn();
-        $params['title'] = "Gestió Recuperades";
+        $params['title'] = "Comprar Adn";
         $params['llista'] = $adnModel->getAll();
         if (isset($_SESSION['flash']['ok'])) {
             $params['flash']['ok'] = $_SESSION['flash']['ok'];
