@@ -126,8 +126,8 @@ class recuperadaController extends Controller
         $recuperadaModel = new Recuperada();
 
         $recuperada = array(
-            "nom" => $nomEscollit
-            "especie" => $exitnta,
+            "nom" => $nomEscollit,
+            "especie" => $exitnta['especie'],
             "naixement" => $_GET['imatge_recuperada'],
             "img" => $_GET['video_recuperada'],
             "id_usuari" => $_GET['id'],

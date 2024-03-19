@@ -32,7 +32,40 @@ class Compra extends Orm
         $db->queryDataBase($sql);
     }
 
+    public static function createTriggers()
+    {
 
+        // SQL statements to create triggers
+        $sqlStatements = [
+            "CREATE TRIGGER `insert_stock` AFTER INSERT ON `compres` FOR EACH ROW
+    BEGIN
+        IF NEW.tipus_compra = 'ADN' THEN
+            INSERT INTO stock (id_usuari, tipus_stock, id_adn) VALUES (NEW.id_usuari, 'ADN', NEW.id_adn);
+        ELSE
+            INSERT INTO stock (id_usuari, tipus_stock, id_host) VALUES (NEW.id_usuari, 'Host', NEW.id_host);
+        END IF;
+    END;",
+            "CREATE TRIGGER `subtract_money` AFTER INSERT ON `compres` FOR EACH ROW
+            BEGIN
+                IF NEW.id_adn IS NOT NULL THEN
+                    UPDATE usuaris SET pressupost = pressupost - (SELECT preu FROM adn WHERE id = NEW.id_adn) WHERE id = NEW.id_usuari;
+                ELSE
+                    UPDATE usuaris SET pressupost = pressupost - (SELECT preu FROM hosts WHERE id = NEW.id_host) WHERE id = NEW.id_usuari;
+                END IF;
+            END;
+            "
+        ];
+
+        foreach ($sqlStatements as $sql) {
+            try {
+                $db = new Database();
+                $db->queryDataBase($sql);
+            } catch (Exception $ex) {
+                // Manejar el error específico para esta declaración SQL
+                echo "Error executing SQL statement: " . $sql . " - " . $ex->getMessage();
+            }
+        }
+    }
 
 
     public function getCompraByIdUsuari($id_usuari)
