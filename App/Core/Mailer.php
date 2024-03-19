@@ -57,10 +57,13 @@ class Mailer extends PHPMailer
     function addVerifyContent($user = null) // per defecte null
     {
         $this->isHTML(true);
-        $this->Subject = 'Verify your email please';
-        $content = '<p>Hi ' . $user['nom'] . '</p>';
-        $content .= '<p>Click follow button in order to verify your email</p>';
-        $content .= "<a style='padding: 4px; background-color: blue; color:white; text-decoration: unset;' href='http://localhost/usuari/verify/?email=" . $user['email'] . "&token=" . $user['token'] . "'>Verify!</a>";
+        $this->Subject = 'Verify Your Email!';
+        $content =  '<img src="https://i.pinimg.com/736x/d8/22/3b/d8223b912e287e531990d1c01b39efc3.jpg" alt="logo" style="width: 100px; height: 100px;">';
+        $content .= '<h2 style="color: #333; font-family: Arial, sans-serif;">Hey ' . $user['nom'] . ',</h2>';
+        $content .= '<p style="color: #666; font-family: Arial, sans-serif; font-size: 16px;">Welcome to our community! We’re thrilled to have you on board.</p>';
+        $content .= '<p style="color: #666; font-family: Arial, sans-serif; font-size: 16px;">Just one quick step left:</p>';
+        $content .= "<a style='padding: 12px 24px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-family: Arial, sans-serif; font-size: 18px; display: inline-block; margin-top: 20px;' href='http://localhost/usuari/verify/?email=" . $user['email'] . "&token=" . $user['token'] . "'>Verify My Email 🚀</a>";
+        $content .= '<p style="color: #666; font-family: Arial, sans-serif; font-size: 14px; margin-top: 20px;">Having trouble? Reach out to our support team at support@example.com</p>';
         $this->Body = $content;
     }
 
