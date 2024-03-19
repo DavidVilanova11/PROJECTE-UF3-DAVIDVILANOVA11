@@ -18,28 +18,29 @@ class recuperadaController extends Controller
         $extintaModel = new Extinta();
         $recuperadaModel = new Recuperada();
         $params['title'] = "Gestió Stock";
-        $distinct_recuperades = $recuperadaModel->getRecuperadesByIdUsuari($_SESSION['user_logged']['id']);
+        $params['llista']['recuperades'] = $recuperadaModel->getRecuperadesByIdUsuari($_SESSION['user_logged']['id']);
 
+
+        // No hi haura quantitat tots seràn únics perquè tenen nom personal
 
 
         // Recuperar los objetos completos de recuperada
-        $recuperades = [];
-        foreach ($distinct_recuperades as $recuperada) {
-            if ($recuperada !== null) {
-                $recuperada = $extintaModel->getById($recuperada['id']);
-                if ($recuperada !== false) {
-                    $recuperades[] = $recuperada;
-                }
-            }
-        }
+        // $recuperades = [];
+        // foreach ($distinct_recuperades as $recuperada) {
+        //     if ($recuperada !== null) {
+        //         $recuperada = $extintaModel->getById($recuperada['id']);
+        //         if ($recuperada !== false) {
+        //             $recuperades[] = $recuperada;
+        //         }
+        //     }
+        // }
 
 
-        // Asignar los objetos completos a $params['llista']
-        $params['llista'] = [
-            'recuperades' => $recuperades
-        ];
+        // // Asignar los objetos completos a $params['llista']
+        // $params['llista'] = [
+        //     'recuperades' => $recuperades
+        // ];
 
-        // No hi haura quantitat tots seràn únics perquè tenen nom personal
         // // agregar la cantidad de productos para 'recuperada'
         // if (isset($params['llista']['recuperades']) && is_array($params['llista']['recuperades'])) {
         //     foreach ($params['llista']['recuperades'] as $index => $recuperada) {
