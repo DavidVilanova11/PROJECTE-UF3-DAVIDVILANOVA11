@@ -148,9 +148,9 @@ class recuperadaController extends Controller
 
         $img = strtolower($extinta['nom']);
 
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/public/img/species/" . $img . ".jpg")) {
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/public/img/recuperades/" . $img . ".jpg")) {
             $img = $img . ".jpg";
-        } else if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/public/img/species/" . $img . ".png")) {
+        } else if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/public/img/recuperades/" . $img . ".png")) {
             $img = $img . ".png";
         } else {
             $img = $img . ".webp";
@@ -158,7 +158,7 @@ class recuperadaController extends Controller
 
         $recuperada = array(
             "nom" => $nomEscollit,
-            "especie" => $extinta['especie'],
+            "especie" => $extinta['nom'],
             "img" => $img,
             "id_usuari" => $_SESSION['user_logged']['id'],
             "id_extinta" => $idExtinta
