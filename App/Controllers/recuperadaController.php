@@ -134,18 +134,32 @@ class recuperadaController extends Controller
 
     public function createRecuperada()
     {
+        $extintaModel = new Extinta();
+        $idExtinta = $_POST['idExtinta'];
         $nomEscollit = $_POST['nomEscollit'];
-        
-        $extintaModel = 
+
+        $extinta = $extintaModel->getById($idExtinta);
 
         $recuperadaModel = new Recuperada();
 
+        // get the image name, to do soo we will convert the name of the species to lowercase and concat it with jpg i case it exists, else png and else webp
+
+        $img = strtolower($extinta['nom']);
+
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/public/img/species/" . $img . ".jpg")) {
+            $img = $img . ".jpg";
+        } else if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/public/img/species/" . $img . ".png")) {
+            $img = $img . ".png";
+        } else {
+            $img = $img . ".webp";
+        }
+
         $recuperada = array(
-            "nom" = $nomEscollit,
-            "especie" = , 
-            "img", 
-            "id_usuari", 
-            "id_extinta"
+            "nom" => $nomEscollit,
+            "especie" => $extinta['especie'],
+            "img" => $img,
+            "id_usuari" => $_SESSION['user_logged']['id'],
+            "id_extinta" => $idExtinta
         );
 
         $recuperadaModel->insert($recuperada);

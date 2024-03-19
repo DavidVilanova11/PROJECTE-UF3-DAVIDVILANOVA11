@@ -25,6 +25,7 @@ require_once(__DIR__ . "/../../Core/Store.php");
 if (isset($params['idExtinta']) && $params['idExtinta'] != 0 && isset($params['satisfactori']) && $params['satisfactori'] != 0) {
     echo "<form id='myForm' action='/recuperada/createRecuperada' method='post'>";
     echo "<input type='hidden' name='nomEscollit' id='nomEscollitInput'>";
+    echo "<input type='hidden' name='idExtinta' value='" . $params['idExtinta'] . "'>";
     echo "</form>";
 
     echo "<script>";
