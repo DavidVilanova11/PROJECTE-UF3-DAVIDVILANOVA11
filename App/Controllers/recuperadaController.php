@@ -57,9 +57,9 @@ class recuperadaController extends Controller
 
         // remove the adn ant the hosts selected from the stock
 
-        echo '<pre>';
-        var_dump($_GET);
-        echo '</pre>';
+        // echo '<pre>';
+        // var_dump($_GET);
+        // echo '</pre>';
 
         $idHost = $_GET['selectedHostId'];
         $idAdn = $_GET['selectedAdnId'];
@@ -88,25 +88,29 @@ class recuperadaController extends Controller
             //$_SESSION['missatge_flash_ok'] = "Extinta: " . $extinta['nom'];
         }
 
-        if ()
-        // calcular si ha set satisafctori segons el percentatge de probabilitat
-
-        $probabilitat = $extinta['probabilitat'];
-
-        // allow decimal between 0 and 1
-        $random = mt_rand() / mt_getrandmax();
-
-        echo '<pre>';
-        var_dump($random);
-        echo '</pre>';
-
-
-        if ($random <= $probabilitat) {
-            $satisfactori = 1;
-        } else {
+        if ($idExtinta == 0) {
             $satisfactori = 0;
-        }
+            $params['idExtinta'] = $idExtinta;
+            $params['satisfactori'] = $satisfactori;
+        } else {
+            // calcular si ha set satisafctori segons el percentatge de probabilitat
 
+            $probabilitat = $extinta['probabilitat'];
+
+            // allow decimal between 0 and 1
+            $random = mt_rand() / mt_getrandmax();
+
+            // echo '<pre>';
+            // var_dump($random);
+            // echo '</pre>';
+
+
+            if ($random <= $probabilitat) {
+                $satisfactori = 1;
+            } else {
+                $satisfactori = 0;
+            }
+        }
 
         // creem un log
         $log = array(
@@ -122,47 +126,51 @@ class recuperadaController extends Controller
         $logModel = new Log();
         $logModel->insert($log);
 
-        $params['idExtinta'] = $idExtinta;
-        $params['satisfactori'] = $satisfactori;
+        $_SESSION['idExtinta'] = $idExtinta;
+        $_SESSION['satisfactori'] = $satisfactori;
 
-        $this->render("recuperada/fusio", $params, "fusion");
-
-
-        //createRecuperada($idExtinta, $satisfactori, $nomRecuperada);
-
-
+        header("Location: /recuperada/fusio");
     }
 
-    public function createRecuperada($idExtinta, $satisfactori, $nomRecuperada)
-    {
-        // creem la recuperada corresponent segon la probabilitat 
+    // public function createRecuperada($idExtinta, $satisfactori, $nomRecuperada)
+    // {
+    //     // creem la recuperada corresponent segon la probabilitat 
 
-        $recuperadaModel = new Recuperada();
+    //     $recuperadaModel = new Recuperada();
 
-        $recuperada = array(
-            //"nom" => $nomEscollit,
-            // "especie" => $exitnta['especie'],
-            "naixement" => $_GET['imatge_recuperada'],
-            "img" => $_GET['video_recuperada'],
-            "id_usuari" => $_GET['id'],
-            "id_extinta" => $_GET['id']
-        );
+    //     $recuperada = array(
+    //         //"nom" => $nomEscollit,
+    //         // "especie" => $exitnta['especie'],
+    //         "naixement" => $_GET['imatge_recuperada'],
+    //         "img" => $_GET['video_recuperada'],
+    //         "id_usuari" => $_GET['id'],
+    //         "id_extinta" => $_GET['id']
+    //     );
 
-        $recuperadaModel->insert($recuperada);
+    //     $recuperadaModel->insert($recuperada);
 
-        $params['title'] = "Espècies Recuperades";
+    //     $params['title'] = "Espècies Recuperades";
 
 
-        header("Location: /recuperada/index");
-        $this->render("stock/manage", $params, "site");
-    }
+    //     header("Location: /recuperada/fusio");
+    // }
 
     public function fusio()
     {
+
+        if (isset($_SESSION['idExtinta'])) {
+            $params['idExtinta'] = $_SESSION['idExtinta'];
+            $params['satisfactori'] = $_SESSION['satisfactori'];
+            unset($_SESSION['idExtinta']);
+            unset($_SESSION['satisfactori']);
+        }
+
+
+
         $hostModel = new Host();
         $adnModel = new Adn();
         $stockModel = new Stock();
-        $params['title'] = "Gestió Stock";
+        $params['title'] = "Fusió";
         $distinct_hosts = $stockModel->getStockByIdUsuari('id_host', $_SESSION['user_logged']['id']);
         $distinct_adn = $stockModel->getStockByIdUsuari('id_adn', $_SESSION['user_logged']['id']);
 

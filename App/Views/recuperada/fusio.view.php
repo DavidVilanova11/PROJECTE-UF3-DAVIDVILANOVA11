@@ -21,13 +21,22 @@ require_once(__DIR__ . "/../../Core/Store.php");
 
 ?>
 
-<?php 
-
+<?php
 if (isset($params['idExtinta']) && $params['idExtinta'] != 0 && isset($params['satisfactori']) && $params['satisfactori'] != 0) {
-    
+    echo "<script>";
+    echo "alert('Enhorabona! Escolleix el nom de l\'espècies:');";
+    echo "</script>";
+} elseif (isset($params['idExtinta']) && $params['idExtinta'] != 0 && isset($params['satisfactori']) && $params['satisfactori'] == 0) {
+    echo "<script>";
+    echo "alert('No has aconseguit recuperar l\'espècie. Torna-ho a intentar!');";
+    echo "</script>";
+} elseif (isset($params['idExtinta']) && $params['idExtinta'] == 0) {
+    echo "<script>";
+    echo "alert('No has aconseguit recuperar l\'espècie. Torna-ho a intentar!');";
+    echo "</script>";
 }
-
 ?>
+
 
 <h1>SELECCIONA UN HOST</h1>
 
