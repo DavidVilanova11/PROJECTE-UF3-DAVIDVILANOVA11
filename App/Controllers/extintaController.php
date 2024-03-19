@@ -134,6 +134,15 @@ class ExtintaController extends Controller
         $distinct_hosts = $stockModel->getStockByIdUsuari('id_host', $_SESSION['user_logged']['id']);
         $distinct_adn = $stockModel->getStockByIdUsuari('id_adn', $_SESSION['user_logged']['id']);
 
+
+        // get complete adn object for $params['llista']
+
+        foreach ($params['llista'] as $index => $extinta) {
+            $adn = $adnModel->getById($extinta['id_adn']);
+            $params['llista'][$index]['adn'] = $adn;
+        }
+
+
         // $distinct_hosts = $stockModel->getDistinct('id_host');
         // $distinct_adn = $stockModel->getDistinct('id_adn');
 
