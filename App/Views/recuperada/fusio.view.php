@@ -23,8 +23,16 @@ require_once(__DIR__ . "/../../Core/Store.php");
 
 <?php
 if (isset($params['idExtinta']) && $params['idExtinta'] != 0 && isset($params['satisfactori']) && $params['satisfactori'] != 0) {
+    echo "<form id='myForm' action='/recuperada/createRecuperada' method='post'>";
+    echo "<input type='hidden' name='nomEscollit' id='nomEscollitInput'>";
+    echo "</form>";
+
     echo "<script>";
-    echo "alert('Enhorabona! Escolleix el nom de l\'espècies:');";
+    echo "var nomEscollit = prompt('Enhorabona! Escolleix el nom de l\'espècies:');";
+    echo "if (nomEscollit !== null) {"; // Verifica si el usuario ingresó algo
+    echo "  document.getElementById('nomEscollitInput').value = nomEscollit;";
+    echo "  document.getElementById('myForm').submit();"; // Envía el formulario
+    echo "}";
     echo "</script>";
 } elseif (isset($params['idExtinta']) && $params['idExtinta'] != 0 && isset($params['satisfactori']) && $params['satisfactori'] == 0) {
     echo "<script>";

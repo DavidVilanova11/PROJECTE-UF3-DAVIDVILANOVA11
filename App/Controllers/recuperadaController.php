@@ -132,28 +132,29 @@ class recuperadaController extends Controller
         header("Location: /recuperada/fusio");
     }
 
-    // public function createRecuperada($idExtinta, $satisfactori, $nomRecuperada)
-    // {
-    //     // creem la recuperada corresponent segon la probabilitat 
+    public function createRecuperada()
+    {
+        $nomEscollit = $_POST['nomEscollit'];
+        
+        $extintaModel = 
 
-    //     $recuperadaModel = new Recuperada();
+        $recuperadaModel = new Recuperada();
 
-    //     $recuperada = array(
-    //         //"nom" => $nomEscollit,
-    //         // "especie" => $exitnta['especie'],
-    //         "naixement" => $_GET['imatge_recuperada'],
-    //         "img" => $_GET['video_recuperada'],
-    //         "id_usuari" => $_GET['id'],
-    //         "id_extinta" => $_GET['id']
-    //     );
+        $recuperada = array(
+            "nom" = $nomEscollit,
+            "especie" = , 
+            "img", 
+            "id_usuari", 
+            "id_extinta"
+        );
 
-    //     $recuperadaModel->insert($recuperada);
+        $recuperadaModel->insert($recuperada);
 
-    //     $params['title'] = "Espècies Recuperades";
+        $params['title'] = "Espècies Recuperades";
 
 
-    //     header("Location: /recuperada/fusio");
-    // }
+        header("Location: /recuperada/fusio");
+    }
 
     public function fusio()
     {

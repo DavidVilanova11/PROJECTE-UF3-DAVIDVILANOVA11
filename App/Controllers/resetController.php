@@ -43,7 +43,7 @@ class resetController extends Controller
 
         Compra::createTriggers(); // Inserció a la taula stock i actualització del pressupost
 
-        Log::createTriggers(); // Inserció de espècie recuperada
+        //Log::createTriggers(); // Inserció de espècie recuperada
 
         $pepper = $_ENV['PEPPER'];
         $salt = bin2hex(random_bytes(16));

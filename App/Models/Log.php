@@ -55,20 +55,22 @@ class Log extends Orm
         $db->queryDataBase($sql);
     }
 
-    public static function createTriggers()
-    {
 
-        // Trigger to insert the recuperada after log satisfactori (img de moment serà el nom de la extinta)
-        $sql = "CREATE TRIGGER `insert_recuperada` AFTER INSERT ON `logs` FOR EACH ROW
-        BEGIN
-            IF NEW.satisfactori = 1 THEN
-                INSERT INTO recuperades (nom, especie, img, id_usuari, id_extinta) VALUES ((SELECT nom FROM extintes WHERE id = NEW.id_extinta), (SELECT nom FROM extintes WHERE id = NEW.id_extinta), (SELECT img FROM extintes WHERE id = NEW.id_extinta), NEW.id_usuari, NEW.id_extinta);
-            END IF;
-        END;";
+    // Ja no utilitzarem aquest trigger donat que hem de passar-li el nom escollit per l'usuari
+    // public static function createTriggers()
+    // {
 
-        $db = new Database();
-        $db->queryDataBase($sql);
-    }
+    //     // Trigger to insert the recuperada after log satisfactori (img de moment serà el nom de la extinta)
+    //     $sql = "CREATE TRIGGER `insert_recuperada` AFTER INSERT ON `logs` FOR EACH ROW
+    //     BEGIN
+    //         IF NEW.satisfactori = 1 THEN
+    //             INSERT INTO recuperades (nom, especie, img, id_usuari, id_extinta) VALUES ((SELECT nom FROM extintes WHERE id = NEW.id_extinta), (SELECT nom FROM extintes WHERE id = NEW.id_extinta), (SELECT img FROM extintes WHERE id = NEW.id_extinta), NEW.id_usuari, NEW.id_extinta);
+    //         END IF;
+    //     END;";
+
+    //     $db = new Database();
+    //     $db->queryDataBase($sql);
+    // }
 
     public function getLogByIdUsuari($id_usuari)
     {
