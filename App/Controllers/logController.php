@@ -51,7 +51,12 @@ class logController extends Controller
             $params['llista'][$index]['host'] = $host;
             $extintaModel = new Extinta();
             $extinta = $extintaModel->getById($log['id_extinta']);
-            $params['llista'][$index]['extinta'] = $extinta;
+            if ($log['id_extinta'] !== 0) {
+                $params['llista'][$index]['extinta'] = $extinta;
+            } else {
+                $params['llista'][$index]['extinta']['nom'] = 'NONE';
+                $params['llista'][$index]['extinta']['probabilitat'] = 0;
+            }
         }
 
         // <th scope="col">Host</th>
