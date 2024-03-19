@@ -7,6 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Core/Controller.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Usuari.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Recuperada.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Extinta.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/App/Models/Log.php";
 
 
 class recuperadaController extends Controller
@@ -73,6 +74,12 @@ class recuperadaController extends Controller
 
         $extinta = $extintaModel->checkAdnAndHost($idAdn, $idHost);
 
+        // echo '<pre>';
+        // var_dump($extinta);
+        // echo '</pre>';
+
+        // die();
+
         if ($extinta != null) {
             $idExtinta = 0;
         } else {
@@ -81,13 +88,31 @@ class recuperadaController extends Controller
             //$_SESSION['missatge_flash_ok'] = "Extinta: " . $extinta['nom'];
         }
 
+        // calcular si ha set satisafctori segons el percentatge de probabilitat
+
+        $probabilitat = $extinta['probabilitat'];
+
+        // allow decimal between 0 and 1
+        $random = mt_rand() / mt_getrandmax();
+
+        echo '<pre>';
+        var_dump($random);
+        echo '</pre>';
+
+
+        if ($random <= $probabilitat) {
+            $satisfactori = 1;
+        } else {
+            $satisfactori = 0;
+        }
 
         // creem un log
         $log = array(
             "id_usuari" => $_SESSION['user_logged']['id'],
             "id_adn" => $idAdn,
             "id_host" => $idHost,
-            "id_extinta" => $idExtinta
+            "id_extinta" => $idExtinta,
+            "satisfactori" => $satisfactori,
         );
 
         $logModel = new Log();
@@ -107,6 +132,8 @@ class recuperadaController extends Controller
         );
 
         $recuperadaModel->insert($recuperada);
+
+        $params['title'] = "Gestió Stock";
 
 
         header("Location: /recuperada/index");
