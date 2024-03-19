@@ -80,7 +80,7 @@ class recuperadaController extends Controller
 
         // die();
 
-        if ($extinta != null) {
+        if ($extinta == false) {
             $idExtinta = 0;
         } else {
             // hi ha extinta
@@ -106,6 +106,7 @@ class recuperadaController extends Controller
             $satisfactori = 0;
         }
 
+
         // creem un log
         $log = array(
             "id_usuari" => $_SESSION['user_logged']['id'],
@@ -115,6 +116,8 @@ class recuperadaController extends Controller
             "satisfactori" => $satisfactori,
         );
 
+
+
         $logModel = new Log();
         $logModel->insert($log);
 
@@ -123,17 +126,17 @@ class recuperadaController extends Controller
         $recuperadaModel = new Recuperada();
 
         $recuperada = array(
-            "num_recuperada" => $_GET['num_recuperada'],
-            "familia_recuperada" => $_GET['familia_recuperada'],
-            "nom_recuperada" => $_GET['nom_recuperada'],
-            "imatge_recuperada" => $_GET['imatge_recuperada'],
-            "video_recuperada" => $_GET['video_recuperada'],
-            "id_usuari" => $_GET['id']
+            "nom" => $nomEscollit
+            "especie" => $exitnta,
+            "naixement" => $_GET['imatge_recuperada'],
+            "img" => $_GET['video_recuperada'],
+            "id_usuari" => $_GET['id'],
+            "id_extinta" => $_GET['id']
         );
 
         $recuperadaModel->insert($recuperada);
 
-        $params['title'] = "Gestió Stock";
+        $params['title'] = "Espècies Recuperades";
 
 
         header("Location: /recuperada/index");
