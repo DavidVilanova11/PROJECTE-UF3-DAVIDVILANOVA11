@@ -50,4 +50,132 @@ class recuperadaController extends Controller
 
         $this->render("recuperada/manage", $params, "site");
     }
+
+    public function addRecuperada()
+    {
+
+        // remove the adn ant the hosts selected from the stock
+
+        echo '<pre>';
+        var_dump($_GET);
+        echo '</pre>';
+
+        $idHost = $_GET['selectedHostId'];
+        $idAdn = $_GET['selectedAdnId'];
+
+        $stockModel = new Stock();
+        $stockModel->removeStock($idHost, 'host'); // només 1 no tots
+        $stockModel->removeStock($idAdn, 'adn'); // només 1 no tots
+
+        // veure si el id_adn i el id_host són compatibles i quina extinta podem obtenir
+
+        $extintaModel = new Extinta();
+
+        $extinta = $extintaModel->checkAdnAndHost($idAdn, $idHost);
+
+        if ($extinta != null) {
+            $idExtinta = 0;
+        } else {
+            // hi ha extinta
+            $idExtinta = $extinta['id'];
+            //$_SESSION['missatge_flash_ok'] = "Extinta: " . $extinta['nom'];
+        }
+
+
+        // creem un log
+        $log = array(
+            "id_usuari" => $_SESSION['user_logged']['id'],
+            "id_adn" => $idAdn,
+            "id_host" => $idHost,
+            "id_extinta" => $idExtinta
+        );
+
+        $logModel = new Log();
+        $logModel->insert($log);
+
+        // creem la recuperada corresponent segon la probabilitat 
+
+        $recuperadaModel = new Recuperada();
+
+        $recuperada = array(
+            "num_recuperada" => $_GET['num_recuperada'],
+            "familia_recuperada" => $_GET['familia_recuperada'],
+            "nom_recuperada" => $_GET['nom_recuperada'],
+            "imatge_recuperada" => $_GET['imatge_recuperada'],
+            "video_recuperada" => $_GET['video_recuperada'],
+            "id_usuari" => $_GET['id']
+        );
+
+        $recuperadaModel->insert($recuperada);
+
+
+        header("Location: /recuperada/index");
+        $this->render("stock/manage", $params, "site");
+    }
+
+    public function fusio()
+    {
+        $hostModel = new Host();
+        $adnModel = new Adn();
+        $stockModel = new Stock();
+        $params['title'] = "Gestió Stock";
+        $distinct_hosts = $stockModel->getStockByIdUsuari('id_host', $_SESSION['user_logged']['id']);
+        $distinct_adn = $stockModel->getStockByIdUsuari('id_adn', $_SESSION['user_logged']['id']);
+
+        // $distinct_hosts = $stockModel->getDistinct('id_host');
+        // $distinct_adn = $stockModel->getDistinct('id_adn');
+
+        // die();
+
+        // Recuperar los objetos completos de host
+        $hosts = [];
+        foreach ($distinct_hosts as $host_id) {
+            if ($host_id !== null) {
+                $host = $hostModel->getById($host_id);
+                if ($host !== false) {
+                    $hosts[] = $host;
+                }
+            }
+        }
+
+        // Recuperar los objetos completos de adn
+        $adns = [];
+        foreach ($distinct_adn as $adn_id) {
+            if ($adn_id !== null) {
+                $adn = $adnModel->getById($adn_id);
+                if ($adn !== false) {
+                    $adns[] = $adn;
+                }
+            }
+        }
+
+        // Asignar los objetos completos a $params['llista']
+        $params['llista'] = [
+            'adn' => $adns,
+            'host' => $hosts
+        ];
+
+        // agregar la cantidad de productos para 'adn'
+        if (isset($params['llista']['adn']) && is_array($params['llista']['adn'])) {
+            foreach ($params['llista']['adn'] as $index => $stock) {
+                if (isset($stock['id'])) {
+                    $params['llista']['adn'][$index]['quantity'] = $stockModel->getProductQuantity($stock['id'], $_SESSION['user_logged']['id'], "adn");
+                }
+            }
+        }
+
+
+        // agregar la cantidad de productos para 'host'
+        if (isset($params['llista']['host']) && is_array($params['llista']['host'])) {
+            foreach ($params['llista']['host'] as $index => $stock) {
+                if (isset($stock['id'])) {
+                    $params['llista']['host'][$index]['quantity'] = $stockModel->getProductQuantity($stock['id'], $_SESSION['user_logged']['id'], "host");
+                }
+            }
+        }
+
+        // die();
+
+        $this->render("recuperada/fusio", $params, "fusion");
+    }
 }
