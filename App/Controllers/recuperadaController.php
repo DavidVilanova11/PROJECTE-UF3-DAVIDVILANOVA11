@@ -39,14 +39,15 @@ class recuperadaController extends Controller
             'recuperades' => $recuperades
         ];
 
-        // agregar la cantidad de productos para 'recuperada'
-        if (isset($params['llista']['recuperades']) && is_array($params['llista']['recuperades'])) {
-            foreach ($params['llista']['recuperades'] as $index => $recuperada) {
-                if (isset($recuperada['id'])) {
-                    $params['llista']['recuperades'][$index]['quantity'] = $recuperadaModel->getProductQuantity($recuperada['id'], $_SESSION['user_logged']['id']);
-                }
-            }
-        }
+        // No hi haura quantitat tots seràn únics perquè tenen nom personal
+        // // agregar la cantidad de productos para 'recuperada'
+        // if (isset($params['llista']['recuperades']) && is_array($params['llista']['recuperades'])) {
+        //     foreach ($params['llista']['recuperades'] as $index => $recuperada) {
+        //         if (isset($recuperada['id'])) {
+        //             $params['llista']['recuperades'][$index]['quantity'] = $recuperadaModel->getProductQuantity($recuperada['id'], $_SESSION['user_logged']['id']);
+        //         }
+        //     }
+        // }
 
 
         $this->render("recuperada/manage", $params, "site");
